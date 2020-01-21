@@ -1,0 +1,289 @@
+\documentclass{article}
+\usepackage{spikey}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{chngcntr}
+\usepackage{centernot}
+\usepackage[shortlabels]{enumitem}
+\usepackage[margin=1truein]{geometry}
+\usepackage{tkz-graph}
+\usepackage{dsfont}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\usepackage{setspace}
+\linespread{1.15}
+\usepackage[margin=1truein]{geometry}
+
+\counterwithin{equation}{section}
+\counterwithin{figure}{section}
+
+\usepackage{listings}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.3,0.5,0.8}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
+\lstset{style=mystyle}
+
+\title{CSC413: Homework 1}
+\date{\today}
+\author{Tianyu Du (1003801647)}
+\begin{document}
+    \maketitle
+    \section{Hard-Coding Networks}
+    \subsection{Verify Sort}
+    \begin{proof}[Soln]
+    	The first layer performs pairwise comparison to construct indicators $\id{x_1 \leq x_2}$, $\id{x_2 \leq x_3}$, and $\id{x_3 \leq x_4}$. The second layer performs an \texttt{all()} operation on indicators from the previous layer.
+    	\begin{align}
+    		\textbf{W}^{(1)} = 
+    		\begin{pmatrix}
+    			-1 & 1 & 0 & 0 \\
+    			0 & -1 & 1 & 0 \\
+    			0 & 0 & -1 & 1
+    		\end{pmatrix}
+    	\end{align}
+    	\begin{align}
+    		\textbf{b}^{(1)} = 
+    		\begin{pmatrix}
+    			0 & 0 & 0
+    		\end{pmatrix}
+    	\end{align}
+    	So that 
+    	\begin{align}
+    		\varphi(\textbf{h}) = \varphi(\textbf{W}^{(1)} \vex + \textbf{b}^{(1)}) =
+    		\varphi \begin{pmatrix}
+    			x_2 - x_1 \\
+    			x_3 - x_2 \\
+    			x_4 - x_3
+    		\end{pmatrix} =
+    		\begin{pmatrix}
+    			\id{x_2 \geq x_1} \\
+    			\id{x_3 \geq x_2} \\
+    			\id{x_4 \geq x_3}
+    		\end{pmatrix}
+    	\end{align}
+    	\begin{align}
+    		\textbf{w}^{(2)} = 
+    		\begin{pmatrix}
+    			1 & 1 & 1
+    		\end{pmatrix}
+    	\end{align}
+    	\begin{align}
+    		b^{(2)} = - 0.5
+    	\end{align}
+    	Such that $y = 1$ if and only if all components of \textbf{h} are ones, i.e., the list is sorted.
+    \end{proof}
+
+	\subsection{Perform Sort}
+	\begin{proof}[Soln]
+		Algorithm:
+		\begin{enumerate}
+			\item Let $\ell := ((x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote the collection of all permutations of the input;
+			\item Let $\textbf{y} := (\texttt{network}(x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote variables indicating whether each permutation is sorted or not;
+			\item Return $\hat{f}(x_1, x_2, x_3, x_4)$ as the $\ell$\texttt{[y==1]}.
+		\end{enumerate}
+	\end{proof}
+	
+	\subsection{Universal Approximation Theorem}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		To avoid over-using of notations, let $\varphi(y) := \id{y > 0}$ denote the activation function.
+		\begin{align}
+			n &= 2 \\
+			\textbf{W}_0 &= (1, -1) \\
+			\textbf{b}_0 &= (-a, b) \\
+			\textbf{W}_1 &= (1, 1) \\
+			\textbf{b}_1 &= - 0.5
+		\end{align}
+		Justification:
+		\begin{align}
+			\varphi(\textbf{h}) &= \varphi((x - a, b - x)) \\
+			&= (\id{x-a>0}, \id{b-x>0}) \\
+			&= (\id{x>a}, \id{x<b}) \\
+			\varphi(\textbf{W}_1 \varphi(\textbf{h}) + \textbf{b}_1) &= \id{\id{x>a} + \id{x<b} - 0.5} \\
+			&=\id{x>a} \land \id{x<b} \\
+			&=\id{a < x < b}
+		\end{align}
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		\begin{align}
+			\hat{f}_1(x) &= \hat{f}_0(x) + g(h_1, a_1, b_1, x) \\
+			&= 0 + g\left( \right)
+		\end{align}
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		Not required.
+	\end{proof}
+	
+	\section{Backprop}
+	\subsection{Computational Graph}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		\todo{Add graph}
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		\begin{align}
+			\overline{\textbf{x}} &= \overline{\textbf{z}} \pd{\textbf{z}}{\textbf{x}}\\
+			&= \overline{\textbf{z}} \textbf{W}^{(1)} \\
+			&= \overline{\textbf{h}} \pd{\textbf{h}}{\textbf{z}} \textbf{W}^{(1)} \\
+			&= \overline{\textbf{h}} \id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+			&= \left (
+			\overline{\mc{R}} \pd{\mc{R}}{\textbf{h}}
+			+ \overline{\textbf{y}} \pd{\textbf{y}}{\textbf{h}}
+			\right)
+			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+			&= \left (
+			\overline{\mc{R}} \textbf{r}^T
+			+ \overline{\textbf{y}} \textbf{W}^{(2)}
+			\right)
+			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+			&= \left (
+			\textbf{r}^T
+			+ \overline{\textbf{y}'} \pd{\textbf{y}'}{\textbf{y}} \textbf{W}^{(2)}
+			\right)
+			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+			&= \left (
+			\textbf{r}^T
+			+ \overline{\textbf{y}'} \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
+			\right)
+			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+			&= \left (
+			\textbf{r}^T
+			+ \overline{\mc{S}} \pd{\mc{S}}{\textbf{y}'} \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
+			\right)
+			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+			&= \left (
+			\textbf{r}^T
+			+ \textbf{e}_k\ \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
+			\right)
+			\id{\textbf{z} \geq 0} \textbf{W}^{(1)}
+		\end{align}
+		where \textbf{e}$_k$ denotes the one-hot vector in $\R^M$ in which the $k^{th}$ element is one.
+	\end{proof}
+	\subsection{Vector-Jacobean Product (VJPs)}
+	\subsubsection{}
+	\subsubsection{}
+	\subsubsection{}
+
+	\section{Linear Regression}
+	\subsection{Driving the Gradient}
+	\begin{proof}[Soln]
+		\begin{align}
+			\frac{d}{d\hat{\textbf{w}}} \frac{1}{n} (X \hat{\textbf{w}} - \textbf{t})^2
+			&= \frac{d}{d\hat{\textbf{w}}} \frac{1}{n} \norm{X \hat{\textbf{w}} - \textbf{t}}^2_2 \\
+			&= \frac{2}{n} (X \hat{\textbf{w}} - \textbf{t})^T X
+		\end{align}
+	\end{proof}
+
+	\subsection{Under-parameterized Model}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		Assume $d < n$ so that $X^T X$ is invertible. The gradient descent algorithm converges when the gradient equals zero:
+		\begin{align}
+			\frac{2}{n} (X \hat{\textbf{w}} - \textbf{t})^T X &= 0 \\
+			\implies (X \hat{\textbf{w}} - \textbf{t})^T X &= 0 \\
+			\implies X^T (X \hat{\textbf{w}} - \textbf{t}) &= 0^T \\
+			\implies X^T X \hat{\textbf{w}} - X^T \textbf{t} &= 0^T \\
+			\implies X^T X \hat{\textbf{w}} &= X^T \textbf{t} \\
+			\implies \hat{\textbf{w}} &= (X^T X)^{-1} X^T \textbf{t}
+		\end{align}
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		Let $\vex \in \R^d$, note that $(X^T X)^{-1}$ is symmetric. Assuming target \textbf{t} is generated by a linear process, then $\textbf{t} = X \textbf{w}^*$. Immediately, $\textbf{t}^T = \textbf{w}^{*T} X^T$.
+		\begin{align}
+			(\textbf{w}^{*T} \vex  -  \hat{\textbf{w}}^{T} \vex)^2 
+			&= (\textbf{w}^{*T} \vex - [(X^T X)^{-1} X^T \textbf{t}]^T \vex)^2 \\
+			&= (\textbf{w}^{*T} \vex - \textbf{t}^T X (X^T X)^{-1} \vex)^2 \\
+			&= (\textbf{w}^{*T} \vex - \textbf{w}^{*T} X^T X (X^T X)^{-1} \vex)^2 \\
+			&= (\textbf{w}^{*T} \vex - \textbf{w}^{*T} \vex)^2 \\
+			&= 0
+		\end{align}
+	\end{proof}
+	
+	\subsection{Over-parameterized Model: 2D Example}
+	\subsubsection{}
+	\begin{proof}[Soln]
+%		Assume $d > n$ so that $X X^T$ is invertible.
+		To minimize the empirical risk minimizer, 
+		\begin{align}
+			\min_{w_1, w_2} (w_1 x_1 + w_2 x_2 - t_1)^2 \\
+			\tx{equivalently, } \min_{w_1, w_2} (2 w_1 + w_2 - 2)^2
+		\end{align}
+		Any pair of $(w_1, w_2)$ satisfying
+		\begin{align}
+			2 w_1 + w_2 - 2 = 0\quad (\dagger)
+		\end{align}
+		attains the minimum level of empirical risk (zero). Equivalently, any $\hat{\textbf{w}}$ on the line
+		\begin{align}
+			\hat{\textbf{w}} = \begin{pmatrix}
+				0 \\ 2
+			\end{pmatrix} + t \begin{pmatrix}
+				1 \\ -2
+			\end{pmatrix} \tx{ for } t \in \R
+		\end{align}
+		satisfies ($\dagger$). Therefore, there are infinitely many empirical risk minimizers.
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		
+	\end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
