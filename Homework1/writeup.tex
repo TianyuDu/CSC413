@@ -106,12 +106,12 @@
 
 	\subsection{Perform Sort}
 	\begin{proof}[Soln]
-		Algorithm:
-		\begin{enumerate}
-			\item Let $\ell := ((x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote the collection of all permutations of the input;
-			\item Let $\textbf{y} := (\texttt{network}(x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote variables indicating whether each permutation is sorted or not;
-			\item Return $\hat{f}(x_1, x_2, x_3, x_4)$ as the $\ell$\texttt{[y==1]}.
-		\end{enumerate}
+%		Algorithm:
+%		\begin{enumerate}
+%			\item Let $\ell := ((x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote the collection of all permutations of the input;
+%			\item Let $\textbf{y} := (\texttt{network}(x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote variables indicating whether each permutation is sorted or not;
+%			\item Return $\hat{f}(x_1, x_2, x_3, x_4)$ as the $\ell$\texttt{[y==1]}.
+%		\end{enumerate}
 	\end{proof}
 	
 	\subsection{Universal Approximation Theorem}
@@ -137,14 +137,127 @@
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
+		Let $\delta \in (0, 1)$ denote the ratio parameter, a higher value of $\delta$ results in a finer approximation is. In this example, take $\delta = \frac{9}{10}$. \\
+		Without loss of generality, assume the region $I$ on which function $f$ is defined on to be symmetric across zero. \\
+		Let $I = [-1, 1]$, given $f$ is symmetric, $f(-\delta) = f(\delta)$. \\
+		Define:
 		\begin{align}
-			\hat{f}_1(x) &= \hat{f}_0(x) + g(h_1, a_1, b_1, x) \\
-			&= 0 + g\left( \right)
+			\hat{f}_1(x) = \hat{f}_0(x) + g(
+				f(\delta), -\delta, \delta, x
+			)
+		\end{align}
+		Note that
+		\begin{align}
+			\norm{f - \hat{f}_1}
+			&= \int_{-1}^1 \abs{f(x) - \hat{f}_1(x)}\ dx \\
+			&= \int_{-1}^{-\delta} \abs{f(x)}\ dx
+			+ \int_{-\delta}^\delta \abs{f(x) - \hat{f}_1(x)}\ dx
+			+ \int_{\delta}^{1} \abs{f(x)}\ dx
+		\end{align}
+		Given that $\forall x \in (-\delta, \delta),\ f(x) > f(-\delta) = f(\delta) > 0$, it follows
+		\begin{align}
+			\int_{-\delta}^\delta \abs{f(x) - \hat{f}_1(x)}\ dx
+			&= \int_{-\delta}^\delta f(x) - \hat{f}_1(x)\ dx \\
+			&= \int_{-\delta}^\delta f(x)\ dx - \int_{-\delta}^\delta \hat{f}_1(x)\ dx
+		\end{align}
+		Also, $\int_{-\delta}^\delta \hat{f}_1(x)\ dx > 0$ provided $\delta \neq 0$. Therefore,
+		\begin{align}
+			\int_{-\delta}^\delta \abs{f(x) - \hat{f}_1(x)}\ dx &< \int_{-\delta}^\delta f(x)\ dx \\
+			&= \int_{-\delta}^\delta \abs{f(x)}\ dx
+		\end{align}
+		Therefore,
+		\begin{align}
+			\norm{f - \hat{f}_1} &= \int_{-1}^{-\delta} \abs{f(x)}\ dx
+			+ \int_{-\delta}^\delta \abs{f(x) - \hat{f}_1(x)}\ dx
+			+ \int_{\delta}^{1} \abs{f(x)}\ dx \\
+			&< \int_{-1}^{-\delta} \abs{f(x)}\ dx
+			+ \int_{-\delta}^\delta \abs{f(x)}\ dx
+			+ \int_{\delta}^{1} \abs{f(x)}\ dx \\
+			&= \int_{-1}^1 \abs{f(x) - 0}\ dx \\
+			&= \int_{-1}^1 \abs{f(x) - \hat{f}_0(x)}\ dx \\
+			&= \norm{f(x) - \hat{f}_0(x)}
+		\end{align}
+		Therefore, 
+		\begin{align}
+			\norm{f(x) - \hat{f}_1(x)} &< \norm{f(x) - \hat{f}_0(x)}
 		\end{align}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
+		\textbf{Algorithm:}
+		\begin{enumerate}[(i)]
+			\item Divide $I = [-1, 1]$ into $N+2$ sub-intervals with equal length, such that
+			\begin{align}
+				I_i := \left[
+				-1 + \frac{i}{N+2},
+				-1 + \frac{i+1}{N+2}
+				\right]\quad \forall\ i \in \{1, 2, \cdots, N\}
+			\end{align}
+			Note that the first and last sub-intervals are not used to construct $g_i$.
+			\item For each $i$, define
+			\begin{align}
+				h_i &:=\min_{x \in I_i} f(x) \\
+				a_i &:= -1 + \frac{i}{N+2} \\
+				b_i &:= -1 + \frac{i+1}{N+2}
+			\end{align}
+		\end{enumerate}
+		Because $f(x) \geq 0\ \forall x \in I$.\\
+		By the definition of $g_i(x)$, it can be shown that\footnote{I am excluding those boundary points between consecutive sub-intervals, because at those points, the value of $f_i$ spikes due to duplicate counts of indicator functions. However, while doing integral, this does not matter as the set of boundary points has measure zero.}
+		\begin{align}
+			f(x) \geq f_i(x)\ \forall i \in \{1, 2, \cdots, N\}\ \forall x \in \bigcup_{i=1}^N (a_i, b_i)
+		\end{align}
+		Further,
+		\begin{align}
+			f(x) = f_i(x)\quad \forall i \in \{1, 2, \cdots, N\}\ \forall x \in \left[-1, -1 + \frac{1}{N+2} \right) \bigcup \left (
+			1 - \frac{1}{N+2}, 1 \right]
+		\end{align}
+		Define
+		\begin{align}
+			\mc{K} := \left[-1, -1 + \frac{1}{N+2} \right) \bigcup \left (
+			1 - \frac{1}{N+2}, 1 \right] \bigcup \left(\bigcup_{i=1}^N (a_i, b_i) \right)
+		\end{align}
+		Note that the set $I \backslash \mc{K}$ consists of all boundary points between consecutive sub-intervals. There are only finitely many such points, therefore $I \backslash \mc{K}$ has measure zero, and
+		\begin{align}
+			\int_I \abs{f(x) - \hat{f}_i(x)}\ dx = \int_\mc{K} \abs{f(x) - \hat{f}_i(x)}\ dx
+		\end{align}
+		And I've shown that for every $i$ and every $x \in \mc{K}$, $f(x) \geq f_i(x)$. Consequently,
+		\begin{align}
+			\int_I \abs{f(x) - \hat{f}_i(x)}\ dx 
+			&= \int_\mc{K} \abs{f(x) - \hat{f}_i(x)}\ dx \tx{ (removing measure zero set.)} \\
+			&= \int_\mc{K} f(x) - \hat{f}_i(x)\ dx \\
+			&= \int_I f(x) - \hat{f}_i(x)\ dx \tx{ (adding back the measure zero set.)}\quad (\dagger)
+		\end{align}
 		
+		Define $\hat{f}_0(x) = 0$ and let $i \in \{1, 2, \cdots, N\}$,
+		\begin{align}
+			\norm{f - \hat{f}_{i+1}}
+			&= \int_{-1}^1 \abs{f(x) - \hat{f}_{i+1}(x)}\ dx \\
+			&= \int_{-1}^1 f(x) - \hat{f}_{i+1}(x)\ dx \tx{ by }(\dagger)\\
+			&= \int_{-1}^{-1 \frac{i+1}{N}} f(x) - \hat{f}_{i+1}(x)\ dx 
+			+ \int_{-1+\frac{i+1}{N}}^{-1+\frac{i+2}{N}} f(x) - \hat{f}_{i+1}(x)\ dx 
+			+ \int_{-1+\frac{i+2}{N}}^1 f(x) - \hat{f}_{i+1}(x)\ dx
+		\end{align}
+		Further, by construction, $\hat{f}_{i+1}(x) = \hat{f}_i(x)\ \forall x \notin [a_{i+1}, b_{i+1}]$. Therefore,
+		\begin{align}
+			\norm{f - \hat{f}_{i+1}}
+			&= \int_{-1}^{a_{i+1}} f(x) - \hat{f}_i(x)\ dx 
+			+ \int_{a_{i+1}}^{b_{i+1}} f(x) - \hat{f}_{i+1}(x)\ dx 
+			+ \int_{b_{i+1}}^1 f(x) - \hat{f}_i(x)\ dx \\
+			&= \int_{-1}^{a_{i+1}} f(x) - \hat{f}_i(x)\ dx 
+			+ \int_{a_{i+1}}^{b_{i+1}} f(x) - \hat{f}_{i}(x) - g(h_{i+1}, a_{i+1}, b_{i+1}, x)\ dx 
+			+ \int_{b_i}^1 f(x) - \hat{f}_i(x)\ dx \\
+			&= \int_{-1}^{a_{i+1}} f(x) - \hat{f}_i(x)\ dx 
+			+ \int_{a_{i+1}}^{b_{i+1}} f(x) - \hat{f}_{i}(x)\ dx 
+			+ \int_{b_{i+1}}^1 f(x) - \hat{f}_i(x)\ dx 
+			- \int_{a_{i+1}}^{b_{i+1}} g(h_{i+1}, a_{i+1}, b_{i+1}, x)\ dx \\
+			&= \int_{-1}^1 f(x) - \hat{f}_i(x)\ dx - \int_{a_{i+1}}^{b_{i+1}} g(h_{i+1}, a_{i+1}, b_{i+1}, x)\ dx \\
+			&= \norm{f - \hat{f}_{i}} - \int_{a_{i+1}}^{b_{i+1}} g(h_{i+1}, a_{i+1}, b_{i+1}, x)\ dx
+		\end{align}
+		Note that for every $i$, for every $x \in [a_i, b_i],\ g(h_i, a_i, b_i, x) > 0$. Therefore, $\int_{a_i}^{b_i} g(h_i, a_i, b_i, x)\ dx > 0$. Hence,
+		\begin{align}
+			\norm{f - \hat{f}_{i+1}} &= \norm{f - \hat{f}_{i}} - \int_{a_{i+1}}^{b_{i+1}} g(h_{i+1}, a_{i+1}, b_{i+1}, x)\ dx \\
+			&> \norm{f - \hat{f}_{i}}
+		\end{align}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
@@ -208,7 +321,8 @@
 		\begin{align}
 			\frac{d}{d\hat{\textbf{w}}} \frac{1}{n} (X \hat{\textbf{w}} - \textbf{t})^2
 			&= \frac{d}{d\hat{\textbf{w}}} \frac{1}{n} \norm{X \hat{\textbf{w}} - \textbf{t}}^2_2 \\
-			&= \frac{2}{n} (X \hat{\textbf{w}} - \textbf{t})^T X
+			&= \frac{2}{n} (X \hat{\textbf{w}} - \textbf{t})^T X \\
+		\implies \nabla_{\textbf{w}} \mc{J} &= \frac{2}{n} X^T(X\hat{\textbf{w}} - \textbf{t})
 		\end{align}
 	\end{proof}
 
@@ -259,11 +373,85 @@
 				1 \\ -2
 			\end{pmatrix} \tx{ for } t \in \R
 		\end{align}
-		satisfies ($\dagger$). Therefore, there are infinitely many empirical risk minimizers.
+		satisfies ($\dagger$). Therefore, there are infinitely many empirical risk minimizers. \\
+		Equivalently, the collection of solution is
+		\begin{align}
+			w_2 = -2 w_1 + 2
+		\end{align}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
+		From the fist part of this question we know that
+		\begin{align}
+			\nabla_{\textbf{w}} \mc{J} 
+			&= \frac{2}{n} (X \hat{\textbf{w}} - \textbf{t})^T X \\
+			&= \frac{2}{1} \left [
+			\begin{pmatrix}2 \\ 1 \end{pmatrix}
+			\cdot
+			\begin{pmatrix}
+			0 \\ 0	
+			\end{pmatrix}
+			- 2
+			\right ]
+			\begin{pmatrix}
+				2 \\ 1
+			\end{pmatrix} \\
+			&= \begin{pmatrix}
+				-4 \\ -2
+			\end{pmatrix}
+		\end{align}
+		The unit-norm gradient is
+		\begin{align}
+			\widehat{\nabla_{\textbf{w}}} \mc{J} 
+			&= \begin{pmatrix}
+				- \frac{2\sqrt{5}}{5} \\
+				- \frac{\sqrt{5}}{5}
+			\end{pmatrix}
+		\end{align}
+		The direction (gradient) does not change along the trajectory.
+		Ultimately, the gradient descend algorithm converges to 
+		\begin{align}
+			\hat{\textbf{w}}^*
+			&= \left(\frac{4}{5}, \frac{2}{5} \right)
+		\end{align}
+		\begin{figure}[H]
+			\center
+			\includegraphics[width=0.7\linewidth]{grad_desc.png}
+		\end{figure}
+	\end{proof}
+	
+	\subsubsection{}
+	\begin{proof}[Soln]
+		Let $\hat{\textbf{w}}^*$ denote the solution found using gradient descent. Note that the line of solution can be written parametrically as
+		\begin{align}
+			\hat{\textbf{w}} = \begin{pmatrix}
+				0 \\ 2
+			\end{pmatrix} + t \begin{pmatrix}
+				1 \\ -2
+			\end{pmatrix}
+		\end{align}
+		Notice that the path of $\hat{\textbf{w}}_t$ during the process of gradient descend, the path is perpendicular to the direction of the line of solutions. Therefore, the attained $\hat{\textbf{w}}^*$ is the one nearest to the initial point, $\hat{\textbf{w}}_0$. Here $\hat{\textbf{w}}_0 = \textbf{0}$, and the solution is therefore the one has the smallest Euclidean norm. \todo{Formalize this proof.}
+	\end{proof}
+	
+	\subsection{Overparameterized Model: General Case}
+	\subsubsection{}
+	\begin{proof}
 		
+	\end{proof}
+	
+	\subsubsection{}
+	\begin{proof}
+		
+	\end{proof}
+	
+	\subsection{Benefit of Overparameterization}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		
+	\end{proof}
+	\subsubsection{}
+	\begin{proof}[Soln]
+		Not required.
 	\end{proof}
 \end{document}
 
