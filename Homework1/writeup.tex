@@ -105,13 +105,35 @@
     \end{proof}
 
 	\subsection{Perform Sort}
-	\begin{proof}[Soln]
-%		Algorithm:
-%		\begin{enumerate}
-%			\item Let $\ell := ((x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote the collection of all permutations of the input;
-%			\item Let $\textbf{y} := (\texttt{network}(x_{i1}, x_{i2}, x_{i3}, x_{i4}))_{i=1}^{4P4}$ denote variables indicating whether each permutation is sorted or not;
-%			\item Return $\hat{f}(x_1, x_2, x_3, x_4)$ as the $\ell$\texttt{[y==1]}.
-%		\end{enumerate}
+	\begin{proof}
+		For this section, I am implementing a feedforward neural network performing bubble sort. \\
+		Note that given $\vex = (x_1, x_2, x_3, x_4)$, the \textbf{swapping} operation can be conducted by multiplying $\vex$ by a matrix. \\
+		For instance, the following $\textbf{W}^{(12)}$ swaps the first and second elements.
+		\begin{align}
+			\underbrace{\begin{pmatrix}
+				0 & 1 & 0 & 0 \\
+				1 & 0 & 0 & 0 \\
+				0 & 0 & 1 & 0 \\
+				0 & 0 & 0 & 1
+			\end{pmatrix}}_{\textbf{W}^{(12)}} (x_1, x_2, x_3, x_4)^T
+			&= (x_2, x_1, x_3, x_4)^T
+		\end{align}
+		Let $\textbf{I}_4$ denote the identity matrix. Define the following neural network:
+		\begin{align}
+			\textbf{h}_1 &:= \id{x_1 \leq x_2} \textbf{I}_4 \vex
+			+ \id{x_1 > x_2} \textbf{W}^{(12)} \vex \\
+			\textbf{h}_2 &= \id{x_2 \leq x_3} \textbf{I}_4 \textbf{h}_1
+			+ \id{x_2 > x_3} \textbf{W}^{(23)} \textbf{h}_1 \\
+			\textbf{h}_3 &= \id{x_3 \leq x_4} \textbf{I}_4 \textbf{h}_2
+			+ \id{x_3 > x_4} \textbf{W}^{(34)} \textbf{h}_2 \\
+			\textbf{h}_4 &= \id{x_1 \leq x_2} \textbf{I}_4 \textbf{h}_3
+			+ \id{x_1 > x_2} \textbf{W}^{(12)} \textbf{h}_3 \\
+			\textbf{h}_5 &= \id{x_2 \leq x_3} \textbf{I}_4 \textbf{h}_4
+			+ \id{x_2 > x_3} \textbf{W}^{(23)} \textbf{h}_4 \\
+			\textbf{y}(\vex) &= \id{x_1 \leq x_2} \textbf{I}_4 \textbf{h}_5
+			+ \id{x_1 > x_2} \textbf{W}^{(12)} \textbf{h}_5
+		\end{align}
+		The above neural network can also be implemented using a recurrent structure, in which hidden states record the number of pairwise comparisons made.9
 	\end{proof}
 	
 	\subsection{Universal Approximation Theorem}
@@ -181,6 +203,11 @@
 		\begin{align}
 			\norm{f(x) - \hat{f}_1(x)} &< \norm{f(x) - \hat{f}_0(x)}
 		\end{align}
+		\begin{figure}[H]
+			\center
+			\includegraphics[width=0.7\linewidth]{plot_132.png}
+			\caption{Approximated Result}
+		\end{figure}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
@@ -258,6 +285,11 @@
 			\norm{f - \hat{f}_{i+1}} &= \norm{f - \hat{f}_{i}} - \int_{a_{i+1}}^{b_{i+1}} g(h_{i+1}, a_{i+1}, b_{i+1}, x)\ dx \\
 			&> \norm{f - \hat{f}_{i}}
 		\end{align}
+		\begin{figure}[H]
+			\center
+			\includegraphics[width=0.7\linewidth]{plot_133.png}
+			\caption{Approximated Results for $N=6$}
+		\end{figure}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
@@ -268,7 +300,11 @@
 	\subsection{Computational Graph}
 	\subsubsection{}
 	\begin{proof}[Soln]
-		\todo{Add graph}
+		\begin{figure}[H]
+			\center
+			\includegraphics[width=\linewidth]{comp_graph.png}
+			\caption{Computational Graph}
+		\end{figure}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
@@ -312,8 +348,36 @@
 	\end{proof}
 	\subsection{Vector-Jacobean Product (VJPs)}
 	\subsubsection{}
+	\begin{proof}[Soln]
+		\begin{align}
+			\textbf{f}(\vex) &:= \vev \vev^T \vex \\
+			\implies J = \frac{d}{d\vex} \textbf{f}(\vex) &= \vev \vev^T \\
+			\implies J &=
+			\left(
+			\begin{array}{ccc}
+			 1 & 2 & 3 \\
+			 2 & 4 & 6 \\
+			 3 & 6 & 9 \\
+			\end{array}
+			\right)
+		\end{align}
+	\end{proof}
+	
 	\subsubsection{}
+	\begin{proof}[Soln]
+		\textbf{Time cost}: $n^2$. \\
+		\textbf{Memory cost}: $\frac{(n+1)n}{2}$ (only need to store elements above the diagonal (including the diagonal), because $J$ is symmetric).
+	\end{proof}
 	\subsubsection{}
+	\begin{proof}[Soln]
+		\begin{align}
+			J^T \vey &= \vev \vev^T \vey \\
+			&= \vev (\vev^T \vey) \\
+			&= \underbrace{\vev \overbrace{\inner{\vev}{\vey}}^{\tx{step 1}}}_{\tx{step 2}}\quad (\dagger)
+		\end{align}
+		where the inner product operation has time cost $n$ and its output takes memory cost 1. Let $\alpha = \inner{\vev}{\vey} \in \R$, the vector scaler multiplication operation $\vev \alpha$ has time cost $n$ and its output has memory cost $n$. \\
+		The overall time cost for ($\dagger$) is therefore $2n$ and memory cost is $n + 1$.
+	\end{proof}
 
 	\section{Linear Regression}
 	\subsection{Driving the Gradient}
@@ -436,18 +500,116 @@
 	\subsection{Overparameterized Model: General Case}
 	\subsubsection{}
 	\begin{proof}
-		
+		Note that the solution reached by gradient descent $\vew^*$ can be written as a linear combination of rows of $X$:
+		\begin{align}
+			X &= \begin{pmatrix}
+				x_{11} & \cdots & x_{1d} \\
+				\vdots & \ddots & \vdots \\
+				x_{n1} & \cdots & x_{nd}
+			\end{pmatrix} \\
+			\vew^* &= r_1
+			\begin{pmatrix}
+				x_{11} \\ \vdots \\ x_{1d}
+			\end{pmatrix}
+			+ \cdots + r_n
+			\begin{pmatrix}
+				x_{n1} \\ \vdots \\ x_{nd}
+			\end{pmatrix} \\
+			&= \begin{pmatrix}
+				x_{11} & \cdots & x_{1d} \\
+				\vdots & \ddots & \vdots \\
+				x_{n1} & \cdots & x_{nd}
+			\end{pmatrix}^T
+			\begin{pmatrix}
+				r_1 \\ \vdots \\ r_n
+			\end{pmatrix} \\
+			&= X^T \textbf{r}
+		\end{align}
+		The original minimization problem in $\R^d$ (choosing the optimal $\vew \in \R^d$) can be reduced to a minimization problem in $\R^n$ (choosing the optimal $\textbf{r} \in \R^n$). \\
+		The gradient descent algorithm converges if and only if zero gradient is encountered, which is characterized by the following condition:
+		\begin{align}
+			\frac{d}{d\textbf{r}} \frac{1}{n} \norm{X X^T \textbf{r} - \textbf{t}}_2^2 &= 0 \\
+			\implies \frac{2}{n} (XX^T \textbf{r} - \textbf{t})^T XX^T &= 0 \\
+			\implies XX^T (XX^T \textbf{r} - \textbf{t}) &= 0 \tx{ (take transpose on both sides)} \\
+			\implies XX^T XX^T \textbf{r} = XX^T \textbf{t}
+		\end{align}
+		Because $d > n$, so $rank(XX^T) = n$ and it is invertible. Therefore,
+		\begin{align}
+			(XX^T)^{-1} XX^T XX^T \textbf{r} &= (XX^T)^{-1} XX^T \textbf{t} \\
+			\implies XX^T \textbf{r} &= \textbf{t} \\
+			\implies \textbf{r}^* &= (XX^T)^{-1} \textbf{t} \\
+			\implies \vew^* &= X^T (XX^T)^{-1} \textbf{t}
+		\end{align}
+		where the solution is uniquely determined.
 	\end{proof}
 	
 	\subsubsection{}
 	\begin{proof}
-		
+		Let $\hat{\vew}_1$ be another zero loss weight, then
+		\begin{align}
+			X \hat{\vew}_1 &= \textbf{t}
+		\end{align}
+		Immediately,
+		\begin{align}
+			\hat{\vew}_1^T X^T &= \textbf{t}^T
+		\end{align}
+		Evaluating
+		\begin{align}
+			(\hat{\vew} - \hat{\vew}_1)^T \hat{\vew} &= \norm{\hat{\vew}}^2_2 - \hat{\vew}_1^T \hat{\vew} \\
+			&= (X^T (XX^T)^{-1} \textbf{t})^T
+			(X^T (XX^T)^{-1} \textbf{t})
+			- \hat{\vew}_1^T \hat{\vew} \\
+			&= \textbf{t}^T (XX^T)^{-1} X (X^T (XX^T)^{-1} \textbf{t})
+			- \hat{\vew}_1^T \hat{\vew} \\
+			&= \textbf{t}^T (XX^T)^{-1} \textbf{t}
+			- \hat{\vew}_1^T X^T (XX^T)^{-1} \textbf{t} \\
+			&= \textbf{t}^T (XX^T)^{-1} \textbf{t}
+			- \textbf{t}^T (XX^T)^{-1} \textbf{t} \\
+			&= 0\quad (\dagger)
+		\end{align}
+		Because $\hat{\vew}_1$ is chosen arbitrarily, let $\mc{S}$ denote the space of zero-loss weights. ($\dagger$) suggests the optimal solution found by gradient descent $\hat{\vew} \perp \mc{S}$. \\
+		Let $\hat{\vew}$ denote the solution found by gradient descent. \\
+		Let $\hat{\vew}_\alpha \in \mc{S}$ and $\textbf{v} = \hat{\vew}_\alpha - \hat{\vew}$.
+		\begin{align}
+			\norm{\hat{\vew}_\alpha}_2^2 &= \norm{\hat{\vew} + \textbf{v}}_2^2 \\
+			&= \norm{\hat{\vew}}_2^2 + 2 \textbf{v} \cdot \hat{\vew} + \norm{\textbf{v}}_2^2 \\
+			&= \norm{\hat{\vew}}_2^2 + 2 (\hat{\vew}_\alpha - \hat{\vew}) \cdot \hat{\vew} + \norm{\textbf{v}}_2^2 \\
+			&= \norm{\hat{\vew}}_2^2 + \norm{\textbf{v}}_2^2 \tx{ by }(\dagger) \\
+			&\geq \norm{\hat{\vew}}_2^2
+		\end{align}
+		Therefore,
+		\begin{align}
+			\norm{\hat{\vew}_\alpha}_2^2 \geq \norm{\hat{\vew}}_2^2\quad \forall\ \hat{\vew}_\alpha \in \mc{S}
+		\end{align}
+		And $\hat{\vew}$ is the element with smallest Euclidean norm among all zero-loss solutions in $\mc{S}$.
 	\end{proof}
 	
 	\subsection{Benefit of Overparameterization}
 	\subsubsection{}
 	\begin{proof}[Soln]
-		
+	Fitting function implementation:
+	\begin{lstlisting}[language=Python]
+def fit_poly(X, d,):
+    X_expand = poly_expand(X, d=d, poly_type = poly_type)
+    if d > n: # Over-parameterized case
+        W = X_expand.T @ np.linalg.inv(X_expand @ X_expand.T) @ t
+    else:  # Under parameterized case.
+        W = np.linalg.inv(X_expand.T @ X_expand) @ X_expand.T @ t
+    return W
+	\end{lstlisting}
+	Lines fitted and the corresponding losses using both legendre and chebyshev polynomials are presented in figures below. In both experiments, over-parameterization does \textbf{not} always lead to overfitting. In fact, models with a super high degree (say 100) actually outperformed models with low degrees.
+		\begin{figure}[H]
+			\center
+			\includegraphics[width=0.45\linewidth]{chebyshev_fit.png}
+			\includegraphics[width=0.45\linewidth]{chebyshev_loss.png}
+			\caption{chebyshev results}
+		\end{figure}
+		\begin{figure}[H]
+			\center
+			\includegraphics[width=0.45\linewidth]{legendre_fit.png}
+			\includegraphics[width=0.45\linewidth]{legendre_loss.png}
+			\caption{legendre results}
+		\end{figure}
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
