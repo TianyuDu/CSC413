@@ -300,6 +300,7 @@
 	\subsection{Computational Graph}
 	\subsubsection{}
 	\begin{proof}[Soln]
+		The computational graph can be drawn as:
 		\begin{figure}[H]
 			\center
 			\includegraphics[width=\linewidth]{comp_graph.png}
@@ -308,42 +309,59 @@
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
+		For individual derivatives:
 		\begin{align}
-			\overline{\textbf{x}} &= \overline{\textbf{z}} \pd{\textbf{z}}{\textbf{x}}\\
-			&= \overline{\textbf{z}} \textbf{W}^{(1)} \\
-			&= \overline{\textbf{h}} \pd{\textbf{h}}{\textbf{z}} \textbf{W}^{(1)} \\
-			&= \overline{\textbf{h}} \id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
-			&= \left (
-			\overline{\mc{R}} \pd{\mc{R}}{\textbf{h}}
-			+ \overline{\textbf{y}} \pd{\textbf{y}}{\textbf{h}}
-			\right)
-			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
-			&= \left (
-			\overline{\mc{R}} \textbf{r}^T
-			+ \overline{\textbf{y}} \textbf{W}^{(2)}
-			\right)
-			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
-			&= \left (
-			\textbf{r}^T
-			+ \overline{\textbf{y}'} \pd{\textbf{y}'}{\textbf{y}} \textbf{W}^{(2)}
-			\right)
-			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
-			&= \left (
-			\textbf{r}^T
-			+ \overline{\textbf{y}'} \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
-			\right)
-			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
-			&= \left (
-			\textbf{r}^T
-			+ \overline{\mc{S}} \pd{\mc{S}}{\textbf{y}'} \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
-			\right)
-			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
-			&= \left (
-			\textbf{r}^T
-			+ \textbf{e}_k\ \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
-			\right)
-			\id{\textbf{z} \geq 0} \textbf{W}^{(1)}
+			\overline{\mc{J}} &= \pd{\mc{J}}{\mc{J}} = 1 \\
+			\overline{\mc{R}} &= \pd{\mc{J}}{\mc{R}} = \overline{\mc{J}}1 \\
+			\overline{\mc{S}} &= \overline{\mc{J}} 1 \\
+			\overline{\textbf{r}} &= \overline{\mc{R}} \pd{\mc{R}}{\textbf{r}} = \overline{\mc{R}} \textbf{h} \\
+			\overline{\textbf{y}'} &= \overline{\mc{S}} \pd{\mc{S}}{\textbf{y}'} = \overline{\mc{S}} \textbf{e}_k \\
+			\overline{\textbf{y}} &= \overline{\textbf{y}'} \pd{\textbf{y}'}{\textbf{y}} = \overline{\textbf{y}'}\texttt{softmax}'(\textbf{y}) \\
+			\overline{\textbf{h}} &= \overline{\mc{R}} \pd{\mc{R}}{\textbf{h}} + \overline{\textbf{y}} \pd{\textbf{y}}{\textbf{h}} = \overline{\mc{R}} \textbf{r} + \overline{\textbf{y}} \textbf{W}^{(2)} \\
+			\overline{\textbf{b}^{(2)}} &= \overline{\textbf{y}} 1 \\
+			\overline{\textbf{W}^{(2)}} &= \overline{\textbf{y}} \textbf{h} \\
+			\overline{\textbf{z}} &= \overline{\textbf{h}} \id{\textbf{z} \geq 0} \\
+			\overline{\textbf{W}^{(1)}} &= \overline{\textbf{z}} \textbf{x} \\
+			\overline{\textbf{b}^{(1)}} &= \overline{\textbf{z}} 1 \\
+			\overline{\textbf{x}} &= \overline{\textbf{z}} \textbf{W}^{(1)} + \overline{\textbf{y}} 1
 		\end{align}
+%		Put everything together:
+%		\begin{align}
+%			\overline{\textbf{x}} &= \overline{\textbf{z}} \pd{\textbf{z}}{\textbf{x}}\\
+%			&= \overline{\textbf{z}} \textbf{W}^{(1)} \\
+%			&= \overline{\textbf{h}} \pd{\textbf{h}}{\textbf{z}} \textbf{W}^{(1)} \\
+%			&= \overline{\textbf{h}} \id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+%			&= \left (
+%			\overline{\mc{R}} \pd{\mc{R}}{\textbf{h}}
+%			+ \overline{\textbf{y}} \pd{\textbf{y}}{\textbf{h}}
+%			\right)
+%			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+%			&= \left (
+%			\overline{\mc{R}} \textbf{r}^T
+%			+ \overline{\textbf{y}} \textbf{W}^{(2)}
+%			\right)
+%			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+%			&= \left (
+%			\textbf{r}^T
+%			+ \overline{\textbf{y}'} \pd{\textbf{y}'}{\textbf{y}} \textbf{W}^{(2)}
+%			\right)
+%			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+%			&= \left (
+%			\textbf{r}^T
+%			+ \overline{\textbf{y}'} \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
+%			\right)
+%			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+%			&= \left (
+%			\textbf{r}^T
+%			+ \overline{\mc{S}} \pd{\mc{S}}{\textbf{y}'} \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
+%			\right)
+%			\id{\textbf{z} \geq 0} \textbf{W}^{(1)} \\
+%			&= \left (
+%			\textbf{r}^T
+%			+ \textbf{e}_k\ \texttt{softmax}'(\textbf{y}) \textbf{W}^{(2)}
+%			\right)
+%			\id{\textbf{z} \geq 0} \textbf{W}^{(1)}
+%		\end{align}
 		where \textbf{e}$_k$ denotes the one-hot vector in $\R^M$ in which the $k^{th}$ element is one.
 	\end{proof}
 	\subsection{Vector-Jacobean Product (VJPs)}
