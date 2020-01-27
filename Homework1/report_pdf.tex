@@ -100,7 +100,7 @@
     		\end{pmatrix}
     	\end{align}
     	\begin{align}
-    		b^{(2)} = - 0.5
+    		b^{(2)} = - 2.5
     	\end{align}
     	Such that $y = 1$ if and only if all components of \textbf{h} are ones, i.e., the list is sorted.
     \end{proof}
@@ -140,22 +140,22 @@
 	\subsection{Universal Approximation Theorem}
 	\subsubsection{}
 	\begin{proof}[Soln]
-		To avoid over-using of notations, let $\varphi(y) := \id{y > 0}$ denote the activation function.
+		To avoid over-using of notations, let $\varphi(y) := \id{y \geq 0}$ denote the activation function.
 		\begin{align}
 			n &= 2 \\
 			\textbf{W}_0 &= (1, -1) \\
 			\textbf{b}_0 &= (-a, b) \\
-			\textbf{W}_1 &= (1, 1) \\
-			\textbf{b}_1 &= - 0.5
+			\textbf{W}_1 &= (h, h) \\
+			\textbf{b}_1 &= - h
 		\end{align}
 		Justification:
 		\begin{align}
 			\varphi(\textbf{h}) &= \varphi((x - a, b - x)) \\
-			&= (\id{x-a>0}, \id{b-x>0}) \\
-			&= (\id{x>a}, \id{x<b}) \\
-			\varphi(\textbf{W}_1 \varphi(\textbf{h}) + \textbf{b}_1) &= \id{\id{x>a} + \id{x<b} - 0.5} \\
-			&=\id{x>a} \land \id{x<b} \\
-			&=\id{a < x < b}
+			&= (\id{x-a \geq 0}, \id{b-x \geq 0}) \\
+			&= (\id{x \geq a}, \id{x \leq b}) \\
+			\textbf{W}_1 \varphi(\textbf{h}) + \textbf{b}_1
+			&=\id{x \geq a} h + \id{x \leq b} h - h \\
+			&=\id{a \leq x \leq b} h
 		\end{align}
 	\end{proof}
 	\subsubsection{}
@@ -316,7 +316,7 @@
 			\overline{\mc{R}} &= \pd{\mc{J}}{\mc{R}} = \overline{\mc{J}}1 \\
 			\overline{\mc{S}} &= \overline{\mc{J}} (-1) \\
 			\overline{\textbf{r}} &= \overline{\mc{R}} \pd{\mc{R}}{\textbf{r}} = \overline{\mc{R}} \textbf{h} \\
-			\overline{\textbf{y}'} &= \overline{\mc{S}} \pd{\mc{S}}{\textbf{y}'} = \overline{\mc{S}} \textbf{e}_k \\
+			\overline{\textbf{y}'} &= \overline{\mc{S}} \pd{\mc{S}}{\textbf{y}'} = \overline{\mc{S}} \textbf{e}_t \\
 			\overline{\textbf{y}} &= \overline{\textbf{y}'} \pd{\textbf{y}'}{\textbf{y}} = \overline{\textbf{y}'}\texttt{softmax}'(\textbf{y}) \\
 			\overline{\textbf{h}} &= \overline{\mc{R}} \pd{\mc{R}}{\textbf{h}} + \overline{\textbf{y}} \pd{\textbf{y}}{\textbf{h}} = \overline{\mc{R}} \textbf{r} + \overline{\textbf{y}} \textbf{W}^{(2)} \\
 			\overline{\textbf{b}^{(2)}} &= \overline{\textbf{y}} 1 \\
@@ -363,7 +363,7 @@
 %			\right)
 %			\id{\textbf{z} \geq 0} \textbf{W}^{(1)}
 %		\end{align}
-		where \textbf{e}$_k$ denotes the one-hot vector in $\R^M$ in which the $k^{th}$ element is one.
+		where \textbf{e}$_t$ denotes the one-hot vector in $\R^N$ in which the $t^{th}$ element is one.
 	\end{proof}
 	\subsection{Vector-Jacobean Product (VJPs)}
 	\subsubsection{}
@@ -383,19 +383,21 @@
 	\end{proof}
 	
 	\subsubsection{}
-	\begin{proof}[Soln]
-		\textbf{Time cost}: $n^2$. \\
-		\textbf{Memory cost}: $\frac{(n+1)n}{2}$ (only need to store elements above the diagonal (including the diagonal), because $J$ is symmetric).
+	\begin{proof}[Soln] Time cost: $n^2$. Memory cost: $\frac{(n+1)n}{2}$ (only need to store elements above the diagonal (including the diagonal), because $J$ is symmetric). Therefore, both time and memory cost are $\mc{O}(n^2)$.
 	\end{proof}
 	\subsubsection{}
 	\begin{proof}[Soln]
 		\begin{align}
 			J^T \vey &= \vev \vev^T \vey \\
 			&= \vev (\vev^T \vey) \\
-			&= \underbrace{\vev \overbrace{\inner{\vev}{\vey}}^{\tx{step 1}}}_{\tx{step 2}}\quad (\dagger)
+			&= \underbrace{\vev \overbrace{\inner{\vev}{\vey}}^{\tx{step 1}}}_{\tx{step 2}}\quad (\dagger) \\
+			\implies \vez & \vev \sum_{i=1}^3 v_i y_i \\
+			\implies \vez^T &= 6 \vev^T \\
+			\implies \vez^T &= [6, 12, 18]
 		\end{align}
 		where the inner product operation has time cost $n$ and its output takes memory cost 1. Let $\alpha = \inner{\vev}{\vey} \in \R$, the vector scaler multiplication operation $\vev \alpha$ has time cost $n$ and its output has memory cost $n$. \\
-		The overall time cost for ($\dagger$) is therefore $2n$ and memory cost is $n + 1$.
+		The overall time cost for ($\dagger$) is therefore $2n$ and memory cost is $n + 1$. \\
+		So that both the memory and time costs are in $\mc{O}(n)$.
 	\end{proof}
 
 	\section{Linear Regression}
@@ -513,7 +515,8 @@
 				1 \\ -2
 			\end{pmatrix}
 		\end{align}
-		The path of gradient descent starts from $\mc{S} = \textbf{0}$ and the path is perpendicular to the line of solutions $\{\hat{\textbf{w}}(t): t \in \R\}$. By  Pythagorean theorem, we know that the shortest path from a fixed point $x$ to a line $\ell$ is the perpendicular line $x$ and some point $y$ on $\ell$. Meanwhile, $y$ is the point on $\ell$ nearest to $x$. The path of gradient descent is exactly such a shortest path. Therefore, $\hat{\vew}^*$ is the solution nearest to $\textbf{0}$. In another word, $\hat{\vew}$ is solution with smallest Euclidean among all solutions in $\mc{S}$.
+		The path of gradient descent starts from $\mc{S} = \textbf{0}$ and the path is perpendicular to the line of solutions $\{\hat{\textbf{w}}(t): t \in \R\}$. By  Pythagorean theorem, we know that the shortest path from a fixed point $x$ to a line $\ell$ is the perpendicular line $x$ and some point $y$ on $\ell$. Meanwhile, $y$ is the point on $\ell$ nearest to $x$. The path of gradient descent is exactly such a shortest path. Therefore, $\hat{\vew}^*$ is the solution nearest to $\textbf{0}$. In another word, $\hat{\vew}$ is solution with smallest Euclidean among all solutions in $\mc{S}$. \\
+		Note: this proof is rough and relies on geometric intuition, for a more formal and general proof, please refer to 3.4.2.
 	\end{proof}
 	
 	\subsection{Overparameterized Model: General Case}
@@ -616,7 +619,7 @@ def fit_poly(X, d,):
         W = np.linalg.inv(X_expand.T @ X_expand) @ X_expand.T @ t
     return W
 	\end{lstlisting}
-	Lines fitted and the corresponding losses using both legendre and chebyshev polynomials are presented in figures below. In both experiments, over-parameterization does \textbf{not} always lead to overfitting. In fact, models with a super high degree (say 100) actually outperformed models with low degrees.
+	Lines fitted and the corresponding losses using both legendre and chebyshev polynomials are presented in figures below. In both experiments, over-parameterization does \textbf{not} always lead to overfitting. In fact, models with a super high degree (say 100) models resulted similar performances compared with low degrees (In the Legendre case, high degree models actually outperformed low degree models).
 		\begin{figure}[H]
 			\center
 			\includegraphics[width=0.45\linewidth]{chebyshev_fit.png}
