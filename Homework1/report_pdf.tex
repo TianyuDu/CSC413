@@ -488,13 +488,13 @@
 	\begin{proof}[Soln]
 		Let $\hat{\textbf{w}}^*$ denote the solution found using gradient descent. Note that the line of solution can be written parametrically as
 		\begin{align}
-			\hat{\textbf{w}} = \begin{pmatrix}
+			\hat{\textbf{w}}(t) = \begin{pmatrix}
 				0 \\ 2
 			\end{pmatrix} + t \begin{pmatrix}
 				1 \\ -2
 			\end{pmatrix}
 		\end{align}
-		Notice that the path of $\hat{\textbf{w}}_t$ during the process of gradient descend, the path is perpendicular to the direction of the line of solutions. Therefore, the attained $\hat{\textbf{w}}^*$ is the one nearest to the initial point, $\hat{\textbf{w}}_0$. Here $\hat{\textbf{w}}_0 = \textbf{0}$, and the solution is therefore the one has the smallest Euclidean norm. \todo{Formalize this proof.}
+		The path of gradient descent starts from $\mc{S} = \textbf{0}$ and the path is perpendicular to the line of solutions $\{\hat{\textbf{w}}(t): t \in \R\}$. By  Pythagorean theorem, we know that the shortest path from a fixed point $x$ to a line $\ell$ is the perpendicular line $x$ and some point $y$ on $\ell$. Meanwhile, $y$ is the point on $\ell$ nearest to $x$. The path of gradient descent is exactly such a shortest path. Therefore, $\hat{\vew}^*$ is the solution nearest to $\textbf{0}$. In another word, $\hat{\vew}$ is solution with smallest Euclidean among all solutions in $\mc{S}$.
 	\end{proof}
 	
 	\subsection{Overparameterized Model: General Case}
