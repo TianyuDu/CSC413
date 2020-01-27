@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 JAN 2020 20:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 JAN 2020 22:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -562,25 +562,69 @@ Package caption Info: hyperref package is loaded.
 Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
 \c@subfigure=\count166
 \c@subtable=\count167
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/datetime/datetime.sty
+Package: datetime 2015/03/20 v2.60 Date Time Package
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fmtcount.sty
+Package: fmtcount 2017/12/24 v3.05
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fcprefix.sty
+Package: fcprefix 2012/09/28
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
+Package: fcnumparser 2017/06/15
+\fc@digit@counter=\count168
+))
+\c@padzeroesN=\count169
+\fc@tmpcatcode=\count170
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fc-english.def
+File: fc-english.def 2016/01/12
+)
+\@DT@modctr=\count171
+\@ordinalctr=\count172
+\@orgargctr=\count173
+\@strctr=\count174
+\@tmpstrctr=\count175
+\@DT@loopN=\count176
+\@DT@X=\count177
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/datetime/datetime-defaults.sty
+Package: datetime-defaults 2013/09/10
+)
+\@day=\count178
+\@month=\count179
+\@year=\count180
+\c@HOUR=\count181
+\c@HOURXII=\count182
+\c@MINUTE=\count183
+\c@TOHOUR=\count184
+\c@TOMINUTE=\count185
+\c@SECOND=\count186
+\currenthour=\count187
+\currentminute=\count188
+\currentsecond=\count189
+Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
+\@dtctr=\count190
+\dayofyear=\count191
+\dayofweek=\count192
+LaTeX Info: Redefining \today on input line 736.
+\dt@a=\toks51
+\dt@b=\toks52
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count168
+\lst@mode=\count193
 \lst@gtempboxa=\box43
-\lst@token=\toks51
-\lst@length=\count169
+\lst@token=\toks53
+\lst@length=\count194
 \lst@currlwidth=\dimen185
-\lst@column=\count170
-\lst@pos=\count171
+\lst@column=\count195
+\lst@pos=\count196
 \lst@lostspace=\dimen186
 \lst@width=\dimen187
-\lst@newlines=\count172
-\lst@lineno=\count173
+\lst@newlines=\count197
+\lst@lineno=\count198
 \lst@maxwidth=\dimen188
  (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
-\c@lstnumber=\count174
-\lst@skipnumbers=\count175
+\c@lstnumber=\count199
+\lst@skipnumbers=\count266
 \lst@framebox=\box44
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2019/02/27 1.8b listings configuration
@@ -589,33 +633,33 @@ Package: listings 2019/02/27 1.8b (Carsten Heinz)
  (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework1/.texpadtmp/report_pdf.aux)
 \openout1 = `report_pdf.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
  (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count176
+\scratchcounter=\count267
 \scratchdimen=\dimen189
 \scratchbox=\box45
-\nofMPsegments=\count177
-\nofMParguments=\count178
-\everyMPshowfont=\toks52
-\MPscratchCnt=\count179
+\nofMPsegments=\count268
+\nofMParguments=\count269
+\everyMPshowfont=\toks54
+\MPscratchCnt=\count270
 \MPscratchDim=\dimen190
-\MPnumerator=\count180
-\makeMPintoPDFobject=\count181
-\everyMPtoPDFconversion=\toks53
+\MPnumerator=\count271
+\makeMPintoPDFobject=\count272
+\everyMPtoPDFconversion=\toks55
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
  (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/grfext.sty
@@ -629,17 +673,17 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \AtBeginShipoutBox=\box46
-Package hyperref Info: Link coloring OFF on input line 61.
+Package hyperref Info: Link coloring OFF on input line 62.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count182
+\c@section@level=\count273
 )
-LaTeX Info: Redefining \ref on input line 61.
-LaTeX Info: Redefining \pageref on input line 61.
-LaTeX Info: Redefining \nameref on input line 61.
+LaTeX Info: Redefining \ref on input line 62.
+LaTeX Info: Redefining \pageref on input line 62.
+LaTeX Info: Redefining \nameref on input line 62.
  (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework1/.texpadtmp/report_pdf.out) (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework1/.texpadtmp/report_pdf.out)
 \@outlinefile=\write4
 \openout4 = `report_pdf.out'.
@@ -683,20 +727,20 @@ ABD: EveryShipout initializing macros
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count183
-LaTeX Font Info:    Try loading font information for U+msa on input line 63.
+\c@lstlisting=\count274
+LaTeX Font Info:    Try loading font information for U+msa on input line 64.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 63.
+LaTeX Font Info:    Try loading font information for U+msb on input line 64.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+rsfs on input line 63.
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 64.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Try loading font information for U+dsrom on input line 66.
+LaTeX Font Info:    Try loading font information for U+dsrom on input line 67.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/doublestroke/Udsrom.fd
 File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 ) [1
@@ -705,10 +749,10 @@ File: Udsrom.fd 1995/08/01 v0.1 Double stroke roman font definitions
 <plot_132.png, id=179, 418.56375pt x 228.855pt>
 File: plot_132.png Graphic file (type png)
 <use plot_132.png>
-Package pdftex.def Info: plot_132.png  used on input line 208.
+Package pdftex.def Info: plot_132.png  used on input line 209.
 (pdftex.def)             Requested size: 328.82707pt x 179.78775pt.
  [3] [4 <./plot_132.png (PNG copy)>]
-Overfull \hbox (38.73653pt too wide) detected at line 282
+Overfull \hbox (38.73653pt too wide) detected at line 283
 []
  []
 
@@ -716,18 +760,18 @@ Overfull \hbox (38.73653pt too wide) detected at line 282
 <plot_133.png, id=236, 777.90625pt x 488.82625pt>
 File: plot_133.png Graphic file (type png)
 <use plot_133.png>
-Package pdftex.def Info: plot_133.png  used on input line 290.
+Package pdftex.def Info: plot_133.png  used on input line 291.
 (pdftex.def)             Requested size: 328.82707pt x 206.6333pt.
 <comp_graph.png, id=238, 458.71375pt x 406.51875pt>
 File: comp_graph.png Graphic file (type png)
 <use comp_graph.png>
-Package pdftex.def Info: comp_graph.png  used on input line 306.
+Package pdftex.def Info: comp_graph.png  used on input line 307.
 (pdftex.def)             Requested size: 469.75502pt x 416.32463pt.
  [6 <./plot_133.png>] [7 <./comp_graph.png>] [8] [9] [10]
 <grad_desc.png, id=306, 462.528pt x 346.896pt>
 File: grad_desc.png Graphic file (type png)
 <use grad_desc.png>
-Package pdftex.def Info: grad_desc.png  used on input line 501.
+Package pdftex.def Info: grad_desc.png  used on input line 502.
 (pdftex.def)             Requested size: 328.82707pt x 246.63135pt.
  [11 <./grad_desc.png>] [12] (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
@@ -735,44 +779,44 @@ File: lstlang1.sty 2019/02/27 1.8b listings language file
 <chebyshev_fit.png, id=354, 389.455pt x 252.945pt>
 File: chebyshev_fit.png Graphic file (type png)
 <use chebyshev_fit.png>
-Package pdftex.def Info: chebyshev_fit.png  used on input line 621.
+Package pdftex.def Info: chebyshev_fit.png  used on input line 622.
 (pdftex.def)             Requested size: 211.38832pt x 137.29071pt.
 <chebyshev_loss.png, id=355, 395.4775pt x 273.02pt>
 File: chebyshev_loss.png Graphic file (type png)
 <use chebyshev_loss.png>
-Package pdftex.def Info: chebyshev_loss.png  used on input line 622.
+Package pdftex.def Info: chebyshev_loss.png  used on input line 623.
 (pdftex.def)             Requested size: 211.38832pt x 145.93303pt.
 <legendre_fit.png, id=356, 389.455pt x 252.945pt>
 File: legendre_fit.png Graphic file (type png)
 <use legendre_fit.png>
-Package pdftex.def Info: legendre_fit.png  used on input line 627.
+Package pdftex.def Info: legendre_fit.png  used on input line 628.
 (pdftex.def)             Requested size: 211.38832pt x 137.29071pt.
 <legendre_loss.png, id=357, 395.4775pt x 273.02pt>
 File: legendre_loss.png Graphic file (type png)
 <use legendre_loss.png>
-Package pdftex.def Info: legendre_loss.png  used on input line 628.
+Package pdftex.def Info: legendre_loss.png  used on input line 629.
 (pdftex.def)             Requested size: 211.38832pt x 145.93303pt.
  [14 <./chebyshev_fit.png> <./chebyshev_loss.png> <./legendre_fit.png> <./legendre_loss.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 636.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 636.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 637.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 637.
  (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework1/.texpadtmp/report_pdf.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 636.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 636.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 637.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 637.
 Package rerunfilecheck Info: File `report_pdf.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
  ) 
 Here is how much of TeX's memory you used:
- 22581 strings out of 492616
- 404556 string characters out of 6129482
- 703110 words of memory out of 5000000
- 25893 multiletter control sequences out of 15000+600000
+ 23198 strings out of 492616
+ 414156 string characters out of 6129482
+ 726660 words of memory out of 5000000
+ 26490 multiletter control sequences out of 15000+600000
  15612 words of font info for 66 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 62i,25n,92p,827b,1403s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,25n,92p,992b,1403s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/doublestroke/dsrom10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on /Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework1/.texpadtmp/report_pdf.pdf (14 pages, 660424 bytes).
+Output written on /Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework1/.texpadtmp/report_pdf.pdf (14 pages, 660439 bytes).
 PDF statistics:
  496 PDF objects out of 1000 (max. 8388607)
  436 compressed objects within 5 object streams
