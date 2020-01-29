@@ -134,6 +134,7 @@
 			\textbf{y}(\vex) &= \id{x_1 \leq x_2} \textbf{I}_4 \textbf{h}_5
 			+ \id{x_1 > x_2} \textbf{W}^{(12)} \textbf{h}_5
 		\end{align}
+		Note: $x_i$s in different equations have potentially different values. For instance, the $x_2$ in equations (1.7) and (1.8) are potentially different, in 1.7, it represents the second component of $\vex$ and in 1.8 it represents the second component of $\textbf{h}_1$.\\
 		The above neural network can also be implemented using a recurrent structure, in which hidden states record the number of pairwise comparisons made.
 	\end{proof}
 	
@@ -325,7 +326,7 @@
 			\overline{\textbf{z}} &= \overline{\textbf{h}} \id{\textbf{z} \geq 0} \\
 			\overline{\textbf{W}^{(1)}} &= \overline{\textbf{z}} \textbf{x}^T \in \R^{N \times N} \\
 			\overline{\textbf{b}^{(1)}} &= \overline{\textbf{z}} \\
-			\overline{\textbf{x}} &= \textbf{W}^{(1)T}\overline{\textbf{z}} + \overline{\textbf{y}} 
+			\overline{\textbf{x}} &= \textbf{W}^{(1)T}\overline{\textbf{z}} + \overline{\textbf{y}}
 		\end{align}
 %		Put everything together:
 %		\begin{align}
