@@ -114,25 +114,26 @@
     \begin{align}
     	\pd{}{\vew_\alpha} L\left(\left\{\mathbf{w}_{i}, b_{i}\right\}_{i=1}^{V}\right)
     	&= 4 \delta_{\alpha \alpha} \vew_\alpha^T + 2 \sum_{i \neq \alpha} 2 \delta_{i \alpha} \vew_i^T \\
-    	&= 4 \sum_{i=\alpha} \delta_{i\alpha} \vew_i^T \quad(\dagger \dagger)
+    	&= 4 \sum_{i=1}^V \delta_{i\alpha} \vew_i^T \quad(\dagger \dagger)
     \end{align}
     Taking the transpose of derivative ($\dagger\dagger$) gives the gradient
     \begin{align}
     	\nabla_{\vew_\alpha} L\left(\left\{\mathbf{w}_{i}, b_{i}\right\}_{i=1}^{V}\right)
-    	&= 4 \sum_{i=\alpha} \delta_{i\alpha} \vew_i
+    	&= 4 \sum_{i=1}^V \delta_{i\alpha} \vew_i \\
+    	&= 4 \sum_{i=1}^V \left(\vew_\alpha^T \vew_j + b_\alpha + b_j - \log X_{\alpha j} \right) \vew_i 
     \end{align}
-    Following the same procedure of deriving ($\dagger$), the derivative of $L$ with respect to $b_\alpha$ is:
-    \begin{align}
-    	\pd{}{b_\alpha} L\left(\left\{\mathbf{w}_{i}, b_{i}\right\}_{i=1}^{V}\right)
-    	&= \pd{}{b_\alpha}\left[ \delta_{\alpha \alpha}^2 
-		+ 2 \sum_{i\neq\alpha} \delta_{i \alpha}^2
-		\right] \\
-		&= 2 \delta_{\alpha \alpha} \pd{}{b_\alpha} (\norm{\vew_\alpha}^2_2 + 2 b_\alpha - \log X_{\alpha \alpha})
-		+ 2 \pd{}{b_\alpha} \sum_{i \neq \alpha} (\vew_i^T \vew_\alpha + b_i + b_\alpha - \log X_{i \alpha})^2 \\
-		&= 4 \delta_{\alpha \alpha} + 2 \sum_{i \neq \alpha} 2 \delta_{i\alpha} \\
-		&= 4 \sum_{i=1}^V \delta_{i \alpha}
-    \end{align}
-    
+%    Following the same procedure of deriving ($\dagger$), the derivative of $L$ with respect to $b_\alpha$ is:
+%    \begin{align}
+%    	\pd{}{b_\alpha} L\left(\left\{\mathbf{w}_{i}, b_{i}\right\}_{i=1}^{V}\right)
+%    	&= \pd{}{b_\alpha}\left[ \delta_{\alpha \alpha}^2 
+%		+ 2 \sum_{i\neq\alpha} \delta_{i \alpha}^2
+%		\right] \\
+%		&= 2 \delta_{\alpha \alpha} \pd{}{b_\alpha} (\norm{\vew_\alpha}^2_2 + 2 b_\alpha - \log X_{\alpha \alpha})
+%		+ 2 \pd{}{b_\alpha} \sum_{i \neq \alpha} (\vew_i^T \vew_\alpha + b_i + b_\alpha - \log X_{i \alpha})^2 \\
+%		&= 4 \delta_{\alpha \alpha} + 2 \sum_{i \neq \alpha} 2 \delta_{i\alpha} \\
+%		&= 4 \sum_{i=1}^V \delta_{i \alpha}
+%    \end{align}
+
     \paragraph{Question 3} Implementation: 
     \begin{lstlisting}[language=python]
 def grad_GLoVE(W, b, log_co_occurence):
@@ -161,20 +162,20 @@ def grad_GLoVE(W, b, log_co_occurence):
     The \texttt{embed\_to\_hid\_weights} maps the embedding results of three context words ($3 \times 16 = 48$ d) to the 128d hidden layer. Hence,
     \begin{align}
     	\textbf{W}_\texttt{embed\_to\_hid\_weights} \in \R^{128 \times 48} \\
-    	\textbf{b}_\texttt{embed\_to\_hid\_weights} \in \R^{128}
+    	\textbf{b}_\texttt{embed\_to\_hid\_bias} \in \R^{128}
     \end{align}
     All entries in the weight and bias are trainable. \\
     The layer with \texttt{hid\_to\_output\_weights} maps 128d hidden neurones to 250d outputs. Therefore,
     \begin{align}
-    	\textbf{W}_\texttt{embed\_to\_hid\_weights} \in \R^{250 \times 128} \\
-    	\textbf{b}_\texttt{embed\_to\_hid\_weights} \in \R^{250}
+    	\textbf{W}_\texttt{hid\_to\_output\_weights} \in \R^{250 \times 128} \\
+    	\textbf{b}_\texttt{hid\_to\_output\_bias} \in \R^{250}
     \end{align}
     All entries in the weight and bias are trainable. \\
     Total number of trainable parameters is
     \begin{align}
     	128 \times 48 + 128 + 250 \times 128 + 250 = 38522
     \end{align}
-    The \texttt{embed\_to\_hid\_weights} part has the largest number of trainable parameters.
+    The \texttt{hid\_to\_output\_weights} part has the largest number of trainable parameters ($128 \times 250 = 32000$).
     
     \paragraph{Question 2} A 4-grams requires $250^3$ possible set of context words $\vew = (w_1, w_2, w_3)$, and for each \vew, there are 250 possible following words. The total number of combinations is 
     \begin{align}
@@ -182,14 +183,8 @@ def grad_GLoVE(W, b, log_co_occurence):
     \end{align}
     
     \section{Training the Neural Network}
-    \paragraph{Outputs} outputs from \texttt{check\_gradients} and \texttt{print\_gradients} methods.
+    \paragraph{Outputs} outputs from \texttt{print\_gradients} methods.
     \begin{lstlisting}
-The loss derivative looks OK.
-The gradient for word_embedding_weights looks OK.
-The gradient for embed_to_hid_weights looks OK.
-The gradient for hid_to_output_weights looks OK.
-The gradient for hid_bias looks OK.
-The gradient for output_bias looks OK.
 loss_derivative[2, 5] 0.001112231773782498
 loss_derivative[2, 121] -0.9991004720395987
 loss_derivative[5, 33] 0.0001903237803173703
@@ -282,9 +277,10 @@ The tri-gram "life in the" was followed by the following words in the training s
     \end{lstlisting}
     the prediction \texttt{life in the country} was not in the dataset, but the model still assigns it with a positive possibility.
    
-    \paragraph{Question 2} On the output from \texttt{tsne\_plot\_representation} we can see there is a cluster of \emph{prepositions} on the top-right area (around (10, 13)), which consists of words like 'against', 'thought', and 'of', etc. Another cluster appears near (-18, 0), which includes \emph{modal verbs} such as 'should', 'would', and 'might'. \\
-    Comparing the second graph from \texttt{tsne\_plot\_GLoVE\_representation(W\_final, b\_final)}, we can observe a right shifting of centroids. The first method presents most vocabularies around a global centroid around (-6, 0). However, the second visualization presents vocabularies around a centroid around (11, 5), which suggests a right shift of average. \\
-    The presented distribution from \texttt{plot\_2d\_GLoVE\_representation(W\_final\_2d, b\_final\_2d)} (the third graph) is more clustered compared with the previous two graphs. In previous graphs, vocabularies are distributed more or less evenly around a global centroid ((-6, 0) and (11, 5) respectively).
+    \paragraph{Question 2} On the output from \texttt{tsne\_plot\_representation(trained\_model)} we can see there is a cluster of \emph{prepositions} on the top-right area (around (10, 13)), which consists of words like 'against', 'thought', and 'of', etc. Another cluster appears near (-18, 0), which includes \emph{modal verbs} such as 'should', 'would', and 'might'. \\
+    Comparing the graph from \texttt{tsne\_plot\_GLoVE\_representation(W\_final, b\_final)} and the previous graph, we can observe a shift of the preposition cluster, which shifted from (10, 13) to (3, -3).
+    The presented distribution from \texttt{plot\_2d\_GLoVE\_representation(W\_final\_2d, b\_final\_2d)} (the third graph) is more clustered compared with the previous two graphs. In previous graphs, vocabularies are distributed more or less evenly, but in the third graph, most vocabularies are clustered around the top right corner. \\
+    For the graph from \texttt{tsne\_plot\_GLoVE\_representation(W\_final\_2d, b\_final\_2d)} forms a circular and radical  distribution. Vocabularies are distributed around (5, 0), but no words can be found near the centroid (5, 0).
     \paragraph{Question 3} The distance between \texttt{new} and \texttt{york} is 3.90. The following method computes distances between all pairs of words:
     \begin{lstlisting}[language=Python]
 dist = np.zeros([vocab_size, vocab_size])
