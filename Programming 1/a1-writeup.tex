@@ -157,7 +157,7 @@ def grad_GLoVE(W, b, log_co_occurence):
     \end{figure}
     
     \section{Network architecture}
-    \paragraph{Question 1} Suppose the embedding layers are already trained, and they are not trainable in this section. \\
+    \paragraph{Question 1} The \texttt{word\_embedding\_weights}, a matrix of size $N_V \times D = 250 \times 16$, and according to the source code in \texttt{language\_model.ipynb}, the gradient for this layer is also computed and gradient descent is applied on this weight. Therefore, this layer is trainable as well. \\
     The \texttt{word\_embedding\_weights} has shape $16 \times 250$, which maps one-hot-vector representing identities of words to their corresponding embeddings. This weight has been trained in the previous section, therefore, possesses zero trainable parameters. Note that this layer has no bias term.\\
     The \texttt{embed\_to\_hid\_weights} maps the embedding results of three context words ($3 \times 16 = 48$ d) to the 128d hidden layer. Hence,
     \begin{align}
@@ -173,13 +173,13 @@ def grad_GLoVE(W, b, log_co_occurence):
     All entries in the weight and bias are trainable. \\
     Total number of trainable parameters is
     \begin{align}
-    	128 \times 48 + 128 + 250 \times 128 + 250 = 38522
+    	250 \times 16 + 128 \times 48 + 128 + 250 \times 128 + 250 = 42,522
     \end{align}
-    The \texttt{hid\_to\_output\_weights} part has the largest number of trainable parameters ($128 \times 250 = 32000$).
+    The \texttt{hid\_to\_output\_weights} part has the largest number of trainable parameters ($128 \times 250 + 250 = 32,250$).
     
     \paragraph{Question 2} A 4-grams requires $250^3$ possible set of context words $\vew = (w_1, w_2, w_3)$, and for each \vew, there are 250 possible following words. The total number of combinations is 
     \begin{align}
-    	250^4 = 3906250000
+    	250^4 = 3,906,250,000
     \end{align}
     
     \section{Training the Neural Network}
