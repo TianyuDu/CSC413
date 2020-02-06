@@ -61,8 +61,85 @@
 \author{Tianyu Du (1003801647)}
 \begin{document}
 	\maketitle
+	\section{Optimization}
+	\subsection{Stochastic Gradient Descent (SGD)}
+	\subsubsection{Minimum Norm Solution}
+	\begin{proof}[Answer]
+		Recall from the previous homework that the solution found by gradient descent in the over-parameterized situation was
+		\begin{align}
+			\vew^* &= X^T (XX^T)^{-1} \textbf{t}
+		\end{align}
+		Moreover, the solution $\vew^*$ reached by gradient descent was in the row space of $X$ (i.e., the span of rows of $X$), and $\vew^*$ is a zero loss solution. \\
+		For one single updating using $\vex_i$ in the $t^{th}$ iteration in the SGD process, the gradient is
+		\begin{align}
+			\nabla_{\vew_t}{\mc{L}_i} &= \pd{}{\vew_t} \norm{\vew_t^T \vex_i - t_i}_2^2 \\
+			&= \underbrace{2 (\vew_t^T \vex_i - t_i)}_{\in \R} \vex_i \\
+			\implies - \eta \nabla_{\vew_t}{\mc{L}_i} &\in Row(X)
+		\end{align}
+		Provided that the starting point $\vew_0 = \textbf{0} \in Row(X)$, for every $t$, $\vew_t \in Row(X)$ by an inductive argument. \\
+		Because $\vew_t \in Row(X)$, let 
+		\begin{align}
+			\vew_t &= X^T \ver_t\quad \ver_t \in \R^n \\
+			\hat{\vew} &= X^T \hat{\ver}\quad \hat{\ver} \in \R^n
+		\end{align}
+		Suppose the solution $\hat{\vew}$ reached by SGD is a zero loss solution, that is, $X \hat{\vew} = \textbf{t}$. Then 
+		\begin{align}
+			XX^T \hat{\ver} = \textbf{t}
+		\end{align}
+		Because $\hat{\vew}$ is a global minimum and SGD converges to this point, then it must be the case that
+		\begin{align}
+			\nabla_{\hat{\vew}} \mc{L}_i(\vex_i, \hat{\vew}) &= 0\quad \forall i \in \{1, \cdots, n\}
+		\end{align}
+		That is, one additional iteration of SGD does not improve performance no matter which sample is chosen. This is the same as
+		\begin{align}
+			\nabla_{r_i} \norm{X X^T \hat{\ver} - \textbf{t}}_2^2 &= 0\quad \forall i \in \{1, \cdots, n\} \\
+			\iff \nabla_{\ver} \norm{X X^T \hat{\ver} - \textbf{t}}_2^2 &= 0 \\
+			\implies (X X^T \hat{\ver} - \textbf{t})^T XX^T &= 0 \\
+			\implies XX^T (X X^T \hat{\ver} - \textbf{t}) &= 0^T \\
+			\implies XX^T XX^T \hat{\ver} &= XX^T \textbf{t} \\
+			\implies \hat{\ver} &= (XX^T)^{-1} \textbf{t} \\
+			\implies \hat{w} = X^T \hat{\ver} &= X^T (XX^T)^{-1} \textbf{t} \\
+			&= \vew^*
+		\end{align}
+	\end{proof}
+
+	\section{Gradient-Based Hyper-Parameter Optimization}
 	
+	\section{Convolutional Neutral Networks}
+	\subsection{Convolutional Filters}
+	\begin{proof}[Answer]
+		\begin{align}
+			\textbf{I} * \textbf{J}
+			= \begin{bmatrix}
+				-1 & 2 & 2 & -2 & 0 \\
+				-2 & 1 & 0 & 2 & -1 \\
+				3 & 0 & 0 & 1 & -1 \\
+				-2 & 2 & 0 & 2 & -1 \\
+				0 & -2 & 3 & -2 & 0
+			\end{bmatrix}
+		\end{align}
+		This convolutional filter detect edges.
+	\end{proof}
+	
+	\subsection{Size of ConvNets}
+	\begin{proof}[Answer]
+		
+	\end{proof}
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
