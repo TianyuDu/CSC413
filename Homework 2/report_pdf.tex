@@ -17,7 +17,11 @@
 \usepackage{dsfont}
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{booktabs}
 \usepackage[yyyymmdd,hhmmss]{datetime}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 
 \usepackage{setspace}
 \linespread{1.15}
@@ -82,6 +86,7 @@
 			\vew_t &= X^T \ver_t\quad \ver_t \in \R^n \\
 			\hat{\vew} &= X^T \hat{\ver}\quad \hat{\ver} \in \R^n
 		\end{align}
+		Note that, if $\vex_i$ is chosen for the $t^{th}$ iteration of SGD, then only the $i^{th}$ components of $\ver_t$ and $\ver_{t+1}$ are different, and all other components are the same. \\
 		Suppose the solution $\hat{\vew}$ reached by SGD is a zero loss solution, that is, $X \hat{\vew} = \textbf{t}$. Then 
 		\begin{align}
 			XX^T \hat{\ver} = \textbf{t}
@@ -102,8 +107,130 @@
 			&= \vew^*
 		\end{align}
 	\end{proof}
+	
+	\subsubsection{Mini-batch SGD (Optional)}
+	\begin{proof}[Answer]
+		
+	\end{proof}
 
 	\section{Gradient-Based Hyper-Parameter Optimization}
+	\subsection{Computation Graph of Learning Rates}
+	\subsubsection{}
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}
+		\tikzset{vertex/.style = {shape=circle,draw,minimum size=1.5em}}
+		\tikzset{edge/.style = {->,> = latex'}}
+		% vertices
+		\node[vertex] (w0) at  (0,0) {$\vew_0$};
+		\node[vertex] (L0) at  (0,4) {$\mc{L}_0$};
+		\node[vertex] (gL0) at  (3,2) {$\nabla_{\vew_0} \mc{L}_0$};
+		\node[vertex] (w1) at  (6,0) {$\vew_1$};
+		\node[vertex] (L1) at  (6,4) {$\mc{L}_1$};
+		\node[vertex] (gL1) at  (9,2) {$\nabla_{\vew_1} \mc{L}_1$};
+		\node[vertex] (w2) at  (12,0) {$\vew_2$};
+		\node[vertex] (L2) at  (12,4) {$\mc{L}_2$};
+		
+		\node[vertex] (lr) at  (9, -2) {$\eta$};
+		%edges
+		% Iter 1
+		\draw[edge] (w0) to (L0);
+		\draw[edge] (L0) to (gL0);
+%		\draw[edge] (w0) to (gL0);
+		
+		\draw[edge] (lr) to (w1);
+		\draw[edge] (w0) to (w1);
+		\draw[edge] (gL0) to (w1);
+		% Iter 2
+		\draw[edge] (w1) to (L1);
+		\draw[edge] (L1) to (gL1);
+%		\draw[edge] (w1) to (gL1);
+		
+		\draw[edge] (lr) to (w2);
+		\draw[edge] (w1) to (w2);
+		\draw[edge] (gL1) to (w2);
+		
+		% Other
+		\draw[edge] (w2) to (L2);
+		\end{tikzpicture}
+	\end{figure}
+	
+	\subsubsection{}
+	\begin{proof}[Answer] \quad \\
+		(\textbf{Forward-Propagation})
+		For each iteration $t$, the prediction $X \hat{\vew} \in \R^n$ and label $\textbf{t}$ take memory of size $2t$, the loss takes 1 unit of memory. Therefore, the overall memory complexity is $\mc{O}(d)$.  \\
+		(\textbf{Back-Propagation}) $\nabla_\eta \mc{L}_t$ needs to be computed using chain rule through $\vew_\tau$ for every $\tau \leq t$. \\
+		Note that for every $\tau$, $\nabla_{\vew_\tau} \mc{L}_\tau \in \R^{d}$ and $\frac{d}{d\eta} \vew_\tau \in \R^d$. The memory complexity is $\mc{O}(dt)$.
+	\end{proof}
+	
+	\subsubsection{}
+	\begin{proof}[Answer]
+		The memory complexity analysis in the previous question suggests the required memory of tracing gradient with respect to $\eta$ grows linearly in the number of iterations, the memory cost can be prohibitive.
+	\end{proof}
+
+	\subsection{Learning Learning Rates}
+	\subsubsection{}
+	\begin{proof}[Answer]
+		\begin{align}
+			\vew_1
+			&= \vew_0 - \eta \nabla_{\vew_0} \mc{L}_0 \\
+			&= \vew_0 - \frac{2 \eta}{n} X^T (X \vew_0 - \textbf{t}) \\
+			\mc{L}_1
+			&= \frac{1}{n} \norm{
+				X \left [\vew_0 - \frac{2 \eta}{n} X^T (X \vew_0 - \textbf{t}) \right] - \textbf{t}
+			}^2_2 \\
+			&= \frac{1}{n} \norm{
+				X \left [\vew_0 - \frac{2 \eta}{n} X^T \vea) \right] - \textbf{t}
+			}^2_2 \\
+			&= \frac{1}{n} \norm{
+				X \vew_0 - \frac{2 \eta}{n} X X^T \vea - \textbf{t}
+			}^2_2 \\
+			&= \frac{1}{n} \norm{
+				\vea - \frac{2 \eta}{n} X X^T \vea
+			}^2_2
+		\end{align}
+	\end{proof}
+
+	\subsubsection{}
+	\begin{proof}[Answer]
+		Note that the an arbitrary norm is convex: let $\lambda \in [0, 1]$
+		\begin{align}
+			\norm{\lambda x + (1 - \lambda) y}_p
+			&\leq \norm{\lambda x}_p + \norm{(1 - \lambda) y}_p \tx{ (triangle inequality)} \\
+			&= \abs{\lambda} \norm{x}_p + \abs{1 - \lambda} \norm{y}_p \\
+			&= \lambda \norm{x}_p + (1 - \lambda) \norm{y}_p
+		\end{align}
+		And $f(x) = x^2$ is strictly convex as well.
+		Moreover, $\vea - \frac{2 \eta}{n} X X^T \vea$ is linear in $\eta$. 
+		$\mc{L}_1(\eta)$ is a composite of linear, convex and strictly convex functions. Therefore, $\mc{L}_1(\eta)$ is strictly convex with respect to $\eta$.
+	\end{proof}
+
+	\subsubsection{}
+	\begin{proof}[Answer]
+		The derivative of $\mc{L}_1$ w.r.t. $\eta$ is 
+		\begin{align}
+			\nabla_\eta \mc{L}_1
+			&= \nabla_\eta \frac{1}{n} \norm{
+				\vea - \frac{2 \eta}{n} X X^T \vea
+			}^2_2 \\
+			&= \frac{2}{n} \left(\vea - \frac{2 \eta}{n} X X^T \vea \right)^T XX^T \vea \\
+			&= \frac{2}{n} \left(
+			\vea^T - \frac{2\eta}{n} \vea^T X X^T
+			\right) XX^T \vea \\
+			&= \frac{2}{n} \left(
+			\vea^T X X^T \vea - \frac{2\eta}{n} \vea^T X X^T X X^T \vea
+			\right)
+		\end{align}
+		Set derivative to zero and solve for the optimal learning rate $\eta^*$:
+		\begin{align}
+			\nabla_\eta \mc{L}_1 &= 0 \\
+			\implies \frac{2}{n} \left(
+			\vea^T X X^T \vea - \frac{2\eta}{n} \vea^T X X^T X X^T \vea
+			\right) &= 0 \\
+			\implies \norm{X^T \vea}_2^2 &= \frac{2 \eta^*}{n} \norm{XX^T \vea}_2^2 \\
+			\implies \eta^* &= \frac{n\norm{X^T \vea}_2^2}{2 \norm{XX^T \vea}_2^2}
+		\end{align}
+	\end{proof}
 	
 	\section{Convolutional Neutral Networks}
 	\subsection{Convolutional Filters}
@@ -122,8 +249,28 @@
 	\end{proof}
 	
 	\subsection{Size of ConvNets}
-	\begin{proof}[Answer]
-		
+	\begin{proof}[Answer] The table below presents numbers of parameters in all layers.
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{l | c c c c c}
+				\toprule
+				Layer & Dim. In & Dim. Out & Num. Weights & Num. Bias & Total Params. \\
+				\midrule
+				Conv3-64 & 112*112*3 & 112*112*64 & 3*3*3*64 & 64 & 1,792 \\
+				Max Pool & 112*112*64 & 56*56*64 & 0 & 0 & 0 \\
+				Conv3-128 & 56*56*64 & 56*56*128 & 3*3*64*128 & 128 & 73,856 \\
+				Max Pool & 56*56*128 & 28*28*128 & 0 & 0 & 0 \\
+				Conv3-256 & 28*28*128 & 28*28*256 & 3*3*128*256 & 256 & 295,168 \\
+				Conv3-256 & 28*28*256 & 28*28*256 & 3*3*256*256 & 256 & 590,080 \\
+				Max Pool & 28*28*256 & 14*14*256 & 0 & 0 & 0 \\
+				FC-1024 & 14*14*256 & 1024 & 14*14*256*1024 & 1024 & 51,381,248 \\
+				FC-100 & 1024 & 100 & 1024*100 & 100 & 102,500 \\
+				Softmax & 100 & 100 & 0 & 0 & 0 \\
+				\midrule
+				Total & & & & & 52,444,644 \\
+				\bottomrule
+			\end{tabular}
+		\end{table}
 	\end{proof}
 \end{document}
 
@@ -132,7 +279,7 @@
 
 
 
-
+% 5444
 
 
 
