@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from torchsummary import summary
+
 
 class ConvNet(torch.nn.Module):
     def __init__(self):
