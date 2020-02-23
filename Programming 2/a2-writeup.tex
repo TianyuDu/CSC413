@@ -26,6 +26,37 @@
 \counterwithin{example}{section}
 \counterwithin{definition}{section}
 
+\usepackage{listings}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.3,0.5,0.8}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
+\lstset{style=mystyle}
+
+
 \author{Tianyu Du (1003801647)}
 \title{CSC413 Programming Assignment 2: Convolutional Neural Networks}
 
@@ -99,18 +130,20 @@
 		\item The model with skip connections has more trainable parameters than the previous CNN, it is more likely for it to pick up more complicated patterns.
 		\item In the CNN without skip connections, the input to the very last convolution layer is an abstract representation of the original image. It could be that the representation is too abstract and the last convolution layer fails to infer colouring information from such an abstract representation. Adding skip connections helps the last convolution layer recall the previous information such as the raw image and activations of previous layers. In this case, the CNN with skip connections outperforms the vanilla CNN.
 	\end{enumerate}
-	\paragraph{Question 4} The training/validation loss and final images are included below. And the table below summarizes the validation loss and accuracy after 25 epochs.
+	\paragraph{Question 4} The training/validation loss and final images are included below. And the table below summarizes the validation loss and accuracy after 25 epochs. In most coloured pictures from models trained with small batch sizes (50 and 100), the colouring is finer and more accurate especially at edges of objects. Evaluating metrics suggest a smaller batch size helps improve both models' losses and accuracy on the validation set.
 	
 	\begin{table}[H]
 		\centering
-		\begin{tabular}{l|c c}
+		\caption{Model Performances with Different Batch Sizes}
+		\begin{tabular}{c|c c}
 			\toprule
 			Batch Size & Validation Loss & Validation Accuracy \\
 			\midrule
 			50 & 1.32 & 50\% \\
 			100 & 1.36 & 49\% \\
 			500 & 1.52 & 43\% \\
-			1,000 & 1.63 & 41\%
+			1,000 & 1.63 & 41\% \\
+			\bottomrule
 		\end{tabular}
 	\end{table}
 	
@@ -125,32 +158,50 @@
 
 	\begin{figure}[H]
 		\centering
-		\caption{Batchsize=50}
-		\includegraphics[width=0.55\linewidth]{figures/unet_learning_bs_50.png}
-	\end{figure}
-
-
-	\begin{figure}[H]
-		\centering
-		\caption{Batchsize=100}
-		\includegraphics[width=0.55\linewidth]{figures/unet_learning_bs_100.png}
+		\caption{Batchsize=50(left) and 100(right)}
+		\includegraphics[width=0.45\linewidth]{figures/unet_learning_bs_50.png}
+		\includegraphics[width=0.45\linewidth]{figures/unet_learning_bs_100.png}
 	\end{figure}
 
 	\begin{figure}[H]
 		\centering
-		\caption{Batchsize=500}
-		\includegraphics[width=0.55\linewidth]{figures/unet_learning_bs_500.png}
-	\end{figure}
-
-	\begin{figure}[H]
-		\centering
-		\caption{Batchsize=1,000}
-		\includegraphics[width=0.55\linewidth]{figures/unet_learning_bs_1000.png}
+		\caption{Batchsize=500(left) and 1,000(right)}
+		\includegraphics[width=0.45\linewidth]{figures/unet_learning_bs_500.png}
+		\includegraphics[width=0.45\linewidth]{figures/unet_learning_bs_1000.png}
 	\end{figure}
 	
 	\section{Fine-tune Semantic Segmentation Model}
-	\paragraph{Question 1} 
-	\paragraph{Question 2}
+	\paragraph{Question 1} Implementation:
+	\begin{lstlisting}[language=python]
+for name, param in model.named_parameters():
+    if name.startswith("classifier.4"):
+        learned_parameters.append(param)
+	\end{lstlisting}
+	\paragraph{Question 2} Implementation:
+	\begin{lstlisting}[language=python]
+model.requires_grad_(False)
+model.classifier[4] = nn.Conv2d(
+	256, 21, kernel_size=(1, 1), stride=(1, 1)
+)
+	\end{lstlisting}
+	
+	\paragraph{Question 3} The visualized predictions:
+	\begin{figure}[H]
+		\centering
+		\caption{Prediction on Training (top) and Validation (bottom) Set}
+		\includegraphics[width=\linewidth]{figures/c3_train_9.png}
+		\includegraphics[width=\linewidth]{figures/c3_val_9.png}
+	\end{figure}
+
+	\begin{figure}[H]
+		\centering
+	\end{figure}
+
+	\paragraph{Question 4} The memory required of tuning the entire model involves storing all trainable parameters and the gradient with respect to each trainable parameter. The overall memory complexity of tuning the entire model is in $\mc{O}(n)$, and tuning only one layer is in $\mc{O}(1)$. \\
+	The computational complexity of backward propagation is approximately 200\% of the forward passing. Since the number of connections between two consecutive layers is constant, the computational complexity of training $n$ layers is in $\mc{O}(n)$. \\
+	Hence, tuning the entire model has computational complexity of $\mc{O}(n)$ while tuning only the last layer costs $\mc{O}(1)$.
+	
+	\paragraph{Question 5} The number of trainable parameters in each layer within this model only depends on kernel sizes, number of input channels and number of output channels. These numbers are unchanged when the size of input image changes. Therefore, the total number of parameters and memory needed to store the model is unchanged. However, the new dataset with larger images now requires 400\% memory, compared with the original dataset, to be stored.
 \end{document}
 
 
