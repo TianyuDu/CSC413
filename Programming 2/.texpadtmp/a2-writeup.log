@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  22 FEB 2020 21:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 FEB 2020 18:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -901,89 +901,126 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 LaTeX Font Info:    Try loading font information for U+msb on input line 67.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2019/02/27 1.8b listings language file
 ) [1
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<figures/unet_output_bs_50.png, id=75, 315.45856pt x 118.88416pt>
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
+<figures/partb_q2.png, id=234, 321.6015pt x 333.8874pt>
+File: figures/partb_q2.png Graphic file (type png)
+<use figures/partb_q2.png>
+Package pdftex.def Info: figures/partb_q2.png  used on input line 356.
+(pdftex.def)             Requested size: 469.75502pt x 487.711pt.
+ [7] [8 <./figures/partb_q2.png>]
+<figures/unet_output_bs_50.png, id=290, 315.45856pt x 118.88416pt>
 File: figures/unet_output_bs_50.png Graphic file (type png)
 <use figures/unet_output_bs_50.png>
-Package pdftex.def Info: figures/unet_output_bs_50.png  used on input line 153.
+Package pdftex.def Info: figures/unet_output_bs_50.png  used on input line 387.
 (pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
-<figures/unet_output_bs_100.png, id=77, 315.45856pt x 118.88416pt>
+<figures/unet_output_bs_100.png, id=291, 315.45856pt x 118.88416pt>
 File: figures/unet_output_bs_100.png Graphic file (type png)
 <use figures/unet_output_bs_100.png>
-Package pdftex.def Info: figures/unet_output_bs_100.png  used on input line 154.
+Package pdftex.def Info: figures/unet_output_bs_100.png  used on input line 388.
 (pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
-<figures/unet_output_bs_500.png, id=78, 315.45856pt x 118.88416pt>
+<figures/unet_output_bs_500.png, id=292, 315.45856pt x 118.88416pt>
 File: figures/unet_output_bs_500.png Graphic file (type png)
 <use figures/unet_output_bs_500.png>
-Package pdftex.def Info: figures/unet_output_bs_500.png  used on input line 155.
+Package pdftex.def Info: figures/unet_output_bs_500.png  used on input line 389.
 (pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
-<figures/unet_output_bs_1000.png, id=79, 315.45856pt x 118.88416pt>
+<figures/unet_output_bs_1000.png, id=293, 315.45856pt x 118.88416pt>
 File: figures/unet_output_bs_1000.png Graphic file (type png)
 <use figures/unet_output_bs_1000.png>
-Package pdftex.def Info: figures/unet_output_bs_1000.png  used on input line 156.
+Package pdftex.def Info: figures/unet_output_bs_1000.png  used on input line 390.
 (pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
- [3]
+ [9]
 Overfull \vbox (83.74303pt too high) has occurred while \output is active []
 
- [4 <./figures/unet_output_bs_50.png> <./figures/unet_output_bs_100.png> <./figures/unet_output_bs_500.png> <./figures/unet_output_bs_1000.png>]
-<figures/unet_learning_bs_50.png, id=98, 321.6015pt x 333.8874pt>
+ [10 <./figures/unet_output_bs_50.png> <./figures/unet_output_bs_100.png> <./figures/unet_output_bs_500.png> <./figures/unet_output_bs_1000.png>]
+<figures/unet_learning_bs_50.png, id=311, 321.6015pt x 333.8874pt>
 File: figures/unet_learning_bs_50.png Graphic file (type png)
 <use figures/unet_learning_bs_50.png>
-Package pdftex.def Info: figures/unet_learning_bs_50.png  used on input line 162.
+Package pdftex.def Info: figures/unet_learning_bs_50.png  used on input line 396.
 (pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
-<figures/unet_learning_bs_100.png, id=99, 321.6015pt x 333.8874pt>
+<figures/unet_learning_bs_100.png, id=312, 321.6015pt x 333.8874pt>
 File: figures/unet_learning_bs_100.png Graphic file (type png)
 <use figures/unet_learning_bs_100.png>
-Package pdftex.def Info: figures/unet_learning_bs_100.png  used on input line 163.
+Package pdftex.def Info: figures/unet_learning_bs_100.png  used on input line 397.
 (pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
-<figures/unet_learning_bs_500.png, id=100, 321.6015pt x 333.8874pt>
+<figures/unet_learning_bs_500.png, id=313, 321.6015pt x 333.8874pt>
 File: figures/unet_learning_bs_500.png Graphic file (type png)
 <use figures/unet_learning_bs_500.png>
-Package pdftex.def Info: figures/unet_learning_bs_500.png  used on input line 169.
+Package pdftex.def Info: figures/unet_learning_bs_500.png  used on input line 403.
 (pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
-<figures/unet_learning_bs_1000.png, id=101, 321.6015pt x 333.8874pt>
+<figures/unet_learning_bs_1000.png, id=314, 321.6015pt x 333.8874pt>
 File: figures/unet_learning_bs_1000.png Graphic file (type png)
 <use figures/unet_learning_bs_1000.png>
-Package pdftex.def Info: figures/unet_learning_bs_1000.png  used on input line 170.
+Package pdftex.def Info: figures/unet_learning_bs_1000.png  used on input line 404.
 (pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
- (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2019/02/27 1.8b listings language file
-) [5 <./figures/unet_learning_bs_50.png> <./figures/unet_learning_bs_100.png> <./figures/unet_learning_bs_500.png> <./figures/unet_learning_bs_1000.png>]
-<figures/c3_train_9.png, id=120, 722.7pt x 361.35pt>
-File: figures/c3_train_9.png Graphic file (type png)
-<use figures/c3_train_9.png>
-Package pdftex.def Info: figures/c3_train_9.png  used on input line 192.
-(pdftex.def)             Requested size: 469.75502pt x 234.88023pt.
-<figures/c3_val_9.png, id=121, 722.7pt x 361.35pt>
-File: figures/c3_val_9.png Graphic file (type png)
-<use figures/c3_val_9.png>
-Package pdftex.def Info: figures/c3_val_9.png  used on input line 193.
-(pdftex.def)             Requested size: 469.75502pt x 234.88023pt.
- [6 <./figures/c3_train_9.png> <./figures/c3_val_9.png>] [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+ [11 <./figures/unet_learning_bs_50.png> <./figures/unet_learning_bs_100.png> <./figures/unet_learning_bs_500.png> <./figures/unet_learning_bs_1000.png>]
+<figures/train0.png, id=331, 577.07594pt x 181.3977pt>
+File: figures/train0.png Graphic file (type png)
+<use figures/train0.png>
+Package pdftex.def Info: figures/train0.png  used on input line 426.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+<figures/train1.png, id=332, 577.07594pt x 181.3977pt>
+File: figures/train1.png Graphic file (type png)
+<use figures/train1.png>
+Package pdftex.def Info: figures/train1.png  used on input line 427.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+<figures/train2.png, id=333, 577.07594pt x 181.3977pt>
+File: figures/train2.png Graphic file (type png)
+<use figures/train2.png>
+Package pdftex.def Info: figures/train2.png  used on input line 428.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+<figures/train3.png, id=334, 577.07594pt x 181.3977pt>
+File: figures/train3.png Graphic file (type png)
+<use figures/train3.png>
+Package pdftex.def Info: figures/train3.png  used on input line 429.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+ [12]
+<figures/val0.png, id=347, 577.07594pt x 181.3977pt>
+File: figures/val0.png Graphic file (type png)
+<use figures/val0.png>
+Package pdftex.def Info: figures/val0.png  used on input line 435.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+<figures/val1.png, id=348, 577.07594pt x 181.3977pt>
+File: figures/val1.png Graphic file (type png)
+<use figures/val1.png>
+Package pdftex.def Info: figures/val1.png  used on input line 436.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+<figures/val2.png, id=349, 577.07594pt x 181.3977pt>
+File: figures/val2.png Graphic file (type png)
+<use figures/val2.png>
+Package pdftex.def Info: figures/val2.png  used on input line 437.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+<figures/val3.png, id=350, 577.07594pt x 181.3977pt>
+File: figures/val3.png Graphic file (type png)
+<use figures/val3.png>
+Package pdftex.def Info: figures/val3.png  used on input line 438.
+(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
+ [13 <./figures/train0.png> <./figures/train1.png> <./figures/train2.png> <./figures/train3.png>] [14 <./figures/val0.png> <./figures/val1.png> <./figures/val2.png> <./figures/val3.png>] [15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 450.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 450.
  (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 450.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 450.
 Package rerunfilecheck Info: File `a2-writeup.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 450.
  ) 
 Here is how much of TeX's memory you used:
- 31177 strings out of 492616
- 577859 string characters out of 6129482
- 931175 words of memory out of 5000000
- 34593 multiletter control sequences out of 15000+600000
+ 31445 strings out of 492616
+ 581795 string characters out of 6129482
+ 1126539 words of memory out of 5000000
+ 34664 multiletter control sequences out of 15000+600000
  544303 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,10n,83p,1026b,1344s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on "/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.pdf" (7 pages, 825791 bytes).
+ 69i,11n,83p,1026b,2069s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
+Output written on "/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.pdf" (15 pages, 1853860 bytes).
 PDF statistics:
- 203 PDF objects out of 1000 (max. 8388607)
- 142 compressed objects within 2 object streams
- 47 named destinations out of 1000 (max. 500000)
- 183 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 477 PDF objects out of 1000 (max. 8388607)
+ 391 compressed objects within 4 object streams
+ 237 named destinations out of 1000 (max. 500000)
+ 218 words of extra memory for PDF output out of 10000 (max. 10000000)
 
