@@ -189,34 +189,99 @@
 	
 	\section{Hard-Coding Recurrent Neural Networks [1pt]}
 	\begin{proof}[Solution]
-		Let $\sigma = \frac{1}{1 + \exp(-z)}$, and $\vex_t = (x_1^t, x_2^t)$ denotes the input feature at time $t$.
+		Let $\sigma = \frac{1}{1 + \exp(-z)}$, and $\vex_t = (x_1^t, x_2^t)$ denotes the input feature at time $t$. Note that when weights are sufficient large in scale, $\sigma$ behaves like hard threshold function.
 		Consider the following recurrent network:
 		\begin{align}
 			\hat{y}_t &= \sigma(\vew_{hy} \veh_t + b_y)\\
-			\veh_t &= \sigma(\vew_{hh} \veh_{t-1} + \vew_{xh} \vex_t + b_h)
+%			\veh_t &= \sigma\left(
+%				\begin{pmatrix}
+%					\vew_{xh} \vex_t \\
+%					\vew_{hh} \veh_{t-1}	
+%				\end{pmatrix}
+%				+ \veb_h
+%			\right)
+			\veh_t &= \sigma\left(
+				\vew_{xh} \vex_t
+				+ \vew_{hh} \veh_{t-1}
+				+ \veb_h
+			\right)
 		\end{align}
 		with the following parameters:
 		\begin{align}
 			\vew_{xh} &= 
 			\begin{pmatrix}
-				a & b \\ c & d
+				 1 & 1 \\
+				 1 & 1 \\
+				 1 & 1
 			\end{pmatrix}
-			\\
-			\vew_{hh} &= 
+			\quad
+			\vew_{hh} = 
 			\begin{pmatrix}
-				a & b \\ c & d
+				0 & 1 & 0 \\
+				0 & 1 & 0 \\
+				0 & 1 & 0
 			\end{pmatrix}
-			\\
-			b_h &= 0
-			\\
-			\vew_{hy} &= 
+			\quad
+			\veb_h = \begin{pmatrix}
+				-0.5 \\ -1.5 \\ -2.5
+			\end{pmatrix}
+		\end{align}
+		\begin{align}
+			\vew_{hy} = 
 			\begin{pmatrix}
-				a & b \\ c & d
+				1 & 0 & 1
 			\end{pmatrix}
-			\\
-			b_y &= 0
+			\quad
+			b_y = -0.5
+		\end{align}
+		
+		\begin{align}
+			\veh_t = 
+			\begin{pmatrix}
+				\id{x_1^t + x_2^t + h_{t-1} \geq 1} \\
+				\id{x_1^t + x_2^t + h_{t-1} \geq 2} \\
+				\id{x_1^t + x_2^t + h_{t-1} \geq 3}
+			\end{pmatrix}
 		\end{align}
 		\emph{Justification:} \\
+		\begin{align}
+			\vew_{xh} \vex_t =
+			\begin{pmatrix}
+				x_1^t + x_2^t \\
+				x_1^t + x_2^t \\
+				x_1^t + x_2^t \\
+			\end{pmatrix} \quad
+			\vew_{hh} \veh_{t-1} =  
+			\begin{pmatrix}
+				\id{x_1^{t-1} + x_2^{t-1} + h_{t-2} \geq 2} \\
+				\id{x_1^{t-1} + x_2^{t-1} + h_{t-2} \geq 2} \\
+				\id{x_1^{t-1} + x_2^{t-1} + h_{t-2} \geq 2} \\
+			\end{pmatrix}
+		\end{align}
+		Let $c_t$ denote the carry from the previous significant figure. Therefore, elements in $\vew_{hh} \veh_{t-1}$ are one only if $c_t = 1$.
+		Then,
+		\begin{align}
+			\veh_t
+			= \sigma\left(
+				\vew_{xh} \vex_t
+				+ \vew_{hh} \veh_{t-1}
+				+ \veb_h
+			\right)
+			= \begin{pmatrix}
+				\id{x_1^t + x_2^t + c_t \geq 1} \\
+				\id{x_1^t + x_2^t + c_t \geq 2} \\
+				\id{x_1^t + x_2^t + c_t \geq 3}
+			\end{pmatrix}
+		\end{align}
+		For the output layer, 
+		\begin{align}
+			\hat{y}_t = \sigma\left(
+				\vew_{xh} \vex_t
+				+ \vew_{hh} \veh_{t-1}
+				+ \veb_h
+			\right) = \id{x_1^t + x_2^t + c_t \geq 1} \lor \id{x_1^t + x_2^t + c_t \geq 3}
+		\end{align}
+		Therefore, let $c \in \{0, 1\}$ denote the carry, $\hat{y}$ whenever $x_1 + x_2 + c$ is one or three, and $\hat{y} = 0$ otherwise.
 	\end{proof}
 \end{document}
 
