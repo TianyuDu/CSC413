@@ -143,13 +143,200 @@
 	\end{proof}
 	
 	\subsection{Adaptive optimizer and Weight Decay [1pt]}
+	\begin{proof}[Solution]
+		
+	\end{proof}
 	
 	\section{Ensembles and Bias-variance Decomposition}
 	\subsection{Weight Average or Prediction Average?}
 	\subsubsection{[1pt]}
 	\begin{proof}[Solution]
-		Without loss of generality, assume the bias is zero. This is equivalent to inserting a column of ones to the $X$, so that $X \in \R^{n \times (d+1)}$, and we can ignore the bias.
+		Without loss of generality, assume the bias is zero. This is equivalent to inserting a column of ones to the $X$, so that $X \in \R^{n \times (d+1)}$, and we can ignore the bias. Suppose there are $K$ different models indexed using $j \in \{1, 2, \cdots, K\}$:
+		\begin{align}
+			h_j(\vex) = \vew_j(\mc{D}_j)\vex
+		\end{align}
+		where $\mc{D}_j$ are i.i.d. realization of datasets. Let $\overline{h}(\vex)$ denote the weight average ensemble:
+		\begin{align}
+			\overline{h}(\vex) &= \overline{\vew} \vex\\
+			&= \sum_{j=1}^K \vew_j(\mc{D}_j)\vex
+		\end{align}
+		And the prediction average at dataset point \vex is simply
+		\begin{align}
+			\sum_{j=1}^K h_j(\vex)
+		\end{align}
+		Therefore, the prediction from weight-average and prediction-average ensembles are the same. Hence, the expected generalization error should be the same.
 	\end{proof}
+	
+	\subsubsection{[0pt]}
+	\begin{proof}[Solution]
+		
+	\end{proof}
+	
+	\subsection{Bagging - Uncorrelated Models}
+	\subsubsection{Bias with bagging [0pt]}
+	\begin{proof}[Solution]
+		Note that
+		\begin{align}
+			\expect{
+				\bar{h}(\vex ; \mathcal{D})|\vex}
+			&= \expect{
+			\frac{1}{k} \sum_{i=1}^{k}
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex} \\
+			&= \frac{1}{k}
+			\sum_{i=1}^{k}
+			\expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex}
+		\end{align}
+		Since $\mc{D}_i$ are drawn from the identical distribution, so that
+		\begin{align}
+			\expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex} = 
+			\expect{
+			h\left(\vex ; \mathcal{D}_{j}\right)
+			| \vex}\quad \forall i, j \in \{1, 2, \cdots, k\}
+		\end{align}
+		Hence,
+		\begin{align}
+			\expect{
+				\bar{h}(\vex ; \mathcal{D})|\vex}
+			= \frac{1}{k}
+			\sum_{i=1}^{k}
+			\expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex}
+			= \expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex}\quad \forall i \in \{1, 2, \cdots, k\}
+		\end{align}
+		Since each data point in $\mc{D}_i$ is uniformly sampled with replaced from $\mc{D} \sim p_\tx{data}$, therefore, $\mc{D}_i \sim p_\tx{data}$ as well.
+		\begin{align}
+			\expect{
+			h\left(\vex ; \mathcal{D}\right)
+			| \vex}
+			= 
+			\expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex}\quad \forall i \in \{1, 2, \cdots, k\}
+		\end{align}
+		Therefore,
+		\begin{align}
+			bias = \expect{
+			\abs{
+			\expect{
+				\bar{h}(\vex ; \mathcal{D})|\vex}
+			- y_*(\vex)
+			}^2
+			}
+			= \expect{
+			\abs{
+			\expect{
+				h(\vex ; \mathcal{D})|\vex}
+			- y_*(\vex)
+			}^2
+			}
+		\end{align}
+	\end{proof}
+	
+	\subsubsection{Variance with bagging [1pt]}
+	\begin{proof}[Solution]
+		Suppose 
+		\begin{align}
+			\expect{
+				\abs{
+					h(\vex; \mc{D})
+					- \expect{h(x; \mc{D})|\vex}
+				}^2
+			} = \sigma^2
+		\end{align}
+		For the bagging model, 
+		\begin{align}
+			Var(\overline{h}) &= 
+			\expect{
+				\abs{
+					\overline{h}(\vex; \mc{D})
+					- \expect{\overline{h}(x; \mc{D})|\vex}
+				}^2
+			} \\
+			&= 
+			\expect{
+				\abs{
+				\frac{1}{k}
+				\sum_{i=1}^{k}
+				h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{\overline{h}(x; \mc{D})|\vex}
+				}^2
+			}\\
+			&= \expect{
+				\left(
+				\frac{1}{k}
+				\sum_{i=1}^{k}
+				h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{\overline{h}(x; \mc{D})|\vex}
+				\right)^2
+			}
+		\end{align}
+		Since $\expect{\overline{h}(x; \mc{D})|\vex}$ is constant for all realizations of datasets $\mc{D}_i$ and equals $\expect{h(x; \mc{D})|\vex}$ by linearity of expectation.
+		\begin{align}
+			&= \expect{
+				\left(
+				\frac{1}{k}
+				\sum_{i=1}^{k}
+				\left\{h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{h(x; \mc{D}_i)|\vex}
+				\right\}
+				\right)^2
+			} \\
+			&= \frac{1}{k^2} \expect{
+				\left(
+				\sum_{i=1}^{k}
+				\left\{h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{h(x; \mc{D}_i)|\vex}
+				\right\}
+				\right)^2
+			}\quad (\dagger)
+		\end{align}
+		Because datasets $\mc{D}_i$ are drawn independently, 
+		\begin{align}
+			\expect{
+				\left(h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{h(x; \mc{D}_i)|\vex}
+				\right)
+				\left(h\left(\vex ; \mathcal{D}_{j}\right)
+					- \expect{h(x; \mc{D}_j)|\vex}
+				\right)
+			} = Cov(h_i, h_j) = 0
+		\end{align}
+		Hence, after expanding the squared sum in $(\dagger)$,
+		\begin{align}
+			(\dagger) &= \frac{1}{k^2} \expect{
+				\sum_{i=1}^{k}
+				\left(
+				h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{h(x; \mc{D}_i)|\vex}
+				\right)^2
+			} \\
+			&= \frac{1}{k^2} \sum_{i=1}^{k}
+			\expect{
+				\left(
+				h\left(\vex ; \mathcal{D}_{i}\right)
+					- \expect{h(x; \mc{D}_i)|\vex}
+				\right)^2
+			} \\
+			&= \frac{1}{k^2} \sum_{i=1}^k Var(h_i)
+		\end{align}
+		Since $\mc{D}_i$ are i.i.d. from the dataset, $Var(h_i) = Var(h)$ for every $i$, therefore,
+		\begin{align}
+			Var(\overline{h}) &= \frac{\sigma^2}{k}
+		\end{align}
+	\end{proof}
+	
+	\subsection{Bagging - General Case}
+	\subsubsection{Bias under Correlation [1pt]}
+	\subsubsection{Variance under Correlation [0pt]}
+	\subsubsection{Intuitions on Bagging [1pt]}
 	
 	\section{Generalization and Dropout}
 	\subsection{Regression Coefficients}
@@ -186,6 +373,82 @@
 	\end{proof}
 	
 	\subsubsection{Regression from $(X_1, X_2)$ [1pt]}
+	\begin{proof}[Solution]
+		Let $G_1, G_2, G_3$ denote the three Gaussian distributions respectively, so that
+		\begin{align}
+			X_1 &\leftarrow G_1 \\
+			Y &\leftarrow X_1 + G_2 \\
+			X_2 &\leftarrow Y + G_3
+		\end{align}
+		So that,
+		\begin{align}
+			\mc{J} &= \expe_{(x_1, x_2, y) \sim (X_1, X_2, Y)} [(y - \hat{y})^2] \\
+			&= \expe [G_1 + G_2 - w_1 G1 - w_2 (G_1 + G_2 + G_3)]^2 \\
+			&= \expe [(1 - w_1 - w_2)G_1 + (1 - w_2)G_2 - w_2 G_3 ]^2 \\
+			&= (1-w_1-w_2)^2 \sigma^2 + (1 - w_2)^2 \sigma^2 + w_2^2
+		\end{align}
+		For $w_1$:
+		\begin{align}
+			&\pd{}{w_1} \mc{J} = - 2 (1 - w_1 - w_2) \sigma^2 = 0
+		\end{align}
+		For $w_2$:
+		\begin{align}
+			&\pd{}{w_2} \mc{J}
+			= - 2 (1 - w_1 - w_2) \sigma^2 
+			- 2 (1 - w_2) \sigma^2
+			+ 2 w_2 = 0 
+		\end{align}
+		Solving two equations:
+		\begin{align}
+			w_1 &= \frac{1}{\sigma ^2+1} \\
+			w_2 &= \frac{\sigma ^2}{\sigma ^2+1}
+		\end{align}
+	\end{proof}
+	
+	\subsubsection{Different $\sigma$s [0pt]}
+	\begin{proof}[Solution]
+		
+	\end{proof}
+	
+	\subsection{Dropout as Data-Dependent $L2$ Regularization}
+	\subsubsection{Expectation and variance of predictions [0pt]}
+	\begin{proof}[Solution]
+		Let
+		\begin{align}
+			\tilde{y} &= 2\left(m_{1} w_{1} x_{1}+m_{2} w_{2} x_{2}\right)
+		\end{align}
+		Then
+		\begin{align}
+			\expect{\tilde{y}} &= \expect{2\left(m_{1} w_{1} x_{1}+m_{2} w_{2} x_{2}\right)}
+		\end{align}
+	\end{proof}
+	
+	\subsection{Effect on Dropout [1pt]}
+	\begin{proof}[Solution]
+	Using bias-variance decomposition of the generalization error:
+		\begin{align}
+			\expe[\tilde{\mc{L}}]
+			&= \expe [(\tilde{y} - y)^2] \\
+			&= \expect{(\expe_m[\tilde{y}] - y)^2}
+			+ Var(\hat{y}) \\
+			&= \expe \left[(
+				\hat{y} - y
+			)^2 \right]
+			+ Var(2\left(m_{1} w_{1} x_{1}+m_{2} w_{2} x_{2}\right)) \\
+			&= \expe \left[(
+				\hat{y} - y
+			)^2 \right]
+			+ 4 Var\left[m_{1} w_{1} x_{1}+m_{2} w_{2} (x_1 + G_2 + G_3)
+			\right] \\
+			&= \expe \left[(
+				\hat{y} - y
+			)^2 \right]
+			+ 4 Var\left[(m_{1} w_{1} + m_2 w_2) x_{1} + m_{2} w_{2} (G_2 + G_3)
+			\right]
+		\end{align}
+		\todo{Should look like a regularization, but check how to derive it.}
+		Therefore, adding the dropout is equivalent to adding a regularization term in which the level of plenty ($\lambda_j$) for each $w_j$ depends on the variance of $x_j$. And such regularization would help the model achieve a better generalization error.
+	\end{proof}
 	
 	\section{Hard-Coding Recurrent Neural Networks [1pt]}
 	\begin{proof}[Solution]
@@ -193,13 +456,6 @@
 		Consider the following recurrent network:
 		\begin{align}
 			\hat{y}_t &= \sigma(\vew_{hy} \veh_t + b_y)\\
-%			\veh_t &= \sigma\left(
-%				\begin{pmatrix}
-%					\vew_{xh} \vex_t \\
-%					\vew_{hh} \veh_{t-1}	
-%				\end{pmatrix}
-%				+ \veb_h
-%			\right)
 			\veh_t &= \sigma\left(
 				\vew_{xh} \vex_t
 				+ \vew_{hh} \veh_{t-1}
@@ -229,7 +485,7 @@
 		\begin{align}
 			\vew_{hy} = 
 			\begin{pmatrix}
-				1 & 0 & 1
+				1 & -1 & 1
 			\end{pmatrix}
 			\quad
 			b_y = -0.5
