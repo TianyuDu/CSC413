@@ -119,13 +119,13 @@
 				w_2^* &= \frac{2}{\lambda +5}
 			\end{cases}
 		\end{align}
-		The solution space is parameterized by $\lambda$ as following
-		\begin{align}
-			\mc{S} := \left \{
-			\frac{4}{\lambda +5}, \frac{2}{\lambda +5}: \lambda \in \R_+
-			\right \}
-		\end{align}
-		which is a singleton uniquely determined by $\lambda$. Note that the following visualization assumes $\lambda = 1$.
+%		The solution space is parameterized by $\lambda$ as following
+%		\begin{align}
+%			\mc{S} := \left \{
+%			\frac{4}{\lambda +5}, \frac{2}{\lambda +5}: \lambda \in \R_+
+%			\right \}
+%		\end{align}
+%		which is a singleton uniquely determined by $\lambda$. Note that the following visualization assumes $\lambda = 1$.
 		\begin{figure}[H]
 			\centering
 			\small
@@ -136,9 +136,9 @@
 	
 	\subsubsection{Gradient Descent and Weight Decay [0pt]}
 	\begin{proof}[Solution]
-		The solution to gradient descent with weight decay has been derived in the previous section:
+		The solution to gradient descent with weight decay at rate $\lambda$ has been derived in the previous section:
 		\begin{align}
-			\vew^*_\tx{weight decay} = \left(\frac{4}{\lambda +5}, \frac{2}{\lambda +5}\right)
+			\vew^{*\lambda}_\tx{weight decay} = \left(\frac{4}{\lambda +5}, \frac{2}{\lambda +5}\right)
 		\end{align}
 	\end{proof}
 	
@@ -425,7 +425,7 @@
 	
 	\subsection{Effect on Dropout [1pt]}
 	\begin{proof}[Solution]
-	Using bias-variance decomposition of the generalization error:
+	Using bias-variance decomposition of the generalization error while assuming zero irreducible error:
 		\begin{align}
 			\expe[\tilde{\mc{L}}]
 			&= \expe [(\tilde{y} - y)^2] \\
@@ -438,16 +438,24 @@
 			&= \expe \left[(
 				\hat{y} - y
 			)^2 \right]
-			+ 4 Var\left[m_{1} w_{1} x_{1}+m_{2} w_{2} (x_1 + G_2 + G_3)
-			\right] \\
+			+ 4Var\left(m_{1} w_{1} x_{1}+m_{2} w_{2} x_{2}\right) \\
 			&= \expe \left[(
 				\hat{y} - y
 			)^2 \right]
-			+ 4 Var\left[(m_{1} w_{1} + m_2 w_2) x_{1} + m_{2} w_{2} (G_2 + G_3)
-			\right]
+			+ 4Var\left(m_{1} w_{1} x_{1}\right)
+			+ 4Var \left(m_{2} w_{2} x_{2}\right) \\
+			&= \expe \left[(
+				\hat{y} - y
+			)^2 \right]
+			+ Var(x_1) w_{1}^2
+			+ Var(x_2) w_{2}^2 \\
+			&= \expe \left[(
+				\hat{y} - y
+			)^2 \right]
+			+ \sigma^2 w_{1}^2
+			+ (2 \sigma^2 + 1) w_{2}^2
 		\end{align}
-		\todo{Should look like a regularization, but check how to derive it.}
-		Therefore, adding the dropout is equivalent to adding a regularization term in which the level of plenty ($\lambda_j$) for each $w_j$ depends on the variance of $x_j$. And such regularization would help the model achieve a better generalization error.
+		Therefore, adding the dropout is equivalent to adding a regularization term in which the level of plenty ($\lambda_j$) for each $w_j$ depends on the variance of $x_j$. In this case, $w_1$ is more regularized. And such regularization would help the model achieve a better generalization error.
 	\end{proof}
 	
 	\section{Hard-Coding Recurrent Neural Networks [1pt]}

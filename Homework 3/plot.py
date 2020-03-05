@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 
 
 if __name__ == "__main__":
+	plt.rcParams["figure.figsize"] = (9, 9)
 	LAMBDA = 1
 	ax1 = plt.subplot()
 	# No Decay
@@ -29,11 +30,13 @@ if __name__ == "__main__":
 	X, Y = np.meshgrid(x, y)
 	Z = LAMBDA / 2 * (X ** 2 + Y ** 2)
 	CS = ax1.contour(X, Y, Z, 30)
-	ax1.clabel(CS, inline=1, fontsize=10)
+	# ax1.clabel(CS, inline=1, fontsize=10)
 	plt.grid(True)
 	plt.legend()
 	ax1.set_xlim([-1, 2])
 	ax1.set_ylim([-1, 2])
+	ax1.set_xlabel("$w_1$")
+	ax1.set_ylabel("$w_2$")
 	plt.title(f"$\lambda$={LAMBDA}")
 	plt.savefig("./plot_q1.png", dpi=300)
 	plt.show()
