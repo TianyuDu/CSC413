@@ -144,13 +144,19 @@
 	
 	\subsection{Adaptive optimizer and Weight Decay [1pt]}
 	\begin{proof}[Solution]
-		
+		After applying $L_2$ regularization, the solution found is a scaled down version of the original solution without weight decay for some $\varphi \in \R$ depends on $\lambda$:
+		\info{Is this true in general? Show it.}
+		\begin{align}
+			\vew^{*\lambda}_\tx{weight decay} = \varphi \ \vew^{*}_\tx{without decay}
+		\end{align}
+		In the previous homework, we've shown that $\vew^{*}_\tx{without decay} \notin Row(x)$. Therefore, $\vew^{*\lambda}_\tx{weight decay} \notin Row(X)$ as well.
 	\end{proof}
 	
 	\section{Ensembles and Bias-variance Decomposition}
 	\subsection{Weight Average or Prediction Average?}
 	\subsubsection{[1pt]}
 	\begin{proof}[Solution]
+		\todo{Add bias}
 		Without loss of generality, assume the bias is zero. This is equivalent to inserting a column of ones to the $X$, so that $X \in \R^{n \times (d+1)}$, and we can ignore the bias. Suppose there are $K$ different models indexed using $j \in \{1, 2, \cdots, K\}$:
 		\begin{align}
 			h_j(\vex) = \vew_j(\mc{D}_j)\vex
@@ -335,14 +341,76 @@
 	
 	\subsection{Bagging - General Case}
 	\subsubsection{Bias under Correlation [1pt]}
+	\begin{proof}[Solution]
+		The bias does not change and is independent from $\rho$. While deriving the bias, we firstly exchanged the expectation and summation using the linearity of summation operator:
+		\begin{align}
+			\expect{
+				\bar{h}(\vex ; \mathcal{D})|\vex}
+			&= \expect{
+			\frac{1}{k} \sum_{i=1}^{k}
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex} \\
+			&= \frac{1}{k}
+			\sum_{i=1}^{k}
+			\expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex}
+		\end{align}
+		The linearity of expectation holds regardless of the correlation. Then we used the fact that $\mc{D}_i$ are identically distributed to show
+		\begin{align}
+			\frac{1}{k}
+			\sum_{i=1}^{k}
+			\expect{
+			h\left(\vex ; \mathcal{D}_{i}\right)
+			| \vex}
+			= \expect{
+			h\left(\vex ; \mathcal{D}\right)
+			| \vex}
+		\end{align}
+		this step did not assume independent distribution. The entire proof (please refer to 2.2.1 for a more detailed derivation) did not use any assumption on distributional independence, hence the original proof is still valid in the general case.
+	\end{proof}
+	
 	\subsubsection{Variance under Correlation [0pt]}
+	\begin{proof}[Solution]
+		\begin{align}
+			Var(\bar{h}) &\equiv Cov\left(h(\vex;\mc{D}_i), h(\vex;\mc{D}_i)\right) \\
+			&= Cov\left(\frac{1}{k} \sum_{i=1}^{k}
+				h\left(\vex ; \mathcal{D}_{i}\right),
+				\frac{1}{k} \sum_{i=1}^{k}
+				h\left(\vex ; \mathcal{D}_{i}\right)\right) \\
+			&= \frac{1}{k^2} Cov\left(\sum_{i=1}^{k}
+				h\left(\vex ; \mathcal{D}_{i}\right),
+				\sum_{i=1}^{k}
+				h\left(\vex ; \mathcal{D}_{i}\right)\right) \\
+			&= \frac{1}{k^2} \sum_{i=1}^{k} \sum_{j=1}^{k}
+			Cov\left(
+				h\left(\vex ; \mathcal{D}_{j}\right),
+				h\left(\vex ; \mathcal{D}_{j}\right)\right) \\
+			&= \frac{1}{k^2} \sum_{i=1}^{k} \sum_{j=1}^{k}
+			Cov\left(
+				h\left(\vex ; \mathcal{D}_{j}\right),
+				h\left(\vex ; \mathcal{D}_{j}\right)\right) \\
+			&= \frac{1}{k^2} (k \sigma^2 + (k^2-k) \rho \sigma^2) \\
+			&= \left(
+			\frac{1}{k} + \rho - \frac{\rho}{k}
+			\right) \sigma^2 \\
+			&= \left(
+			\rho + \frac{1 - \rho}{k}
+			\right) \sigma^2
+		\end{align}
+	\end{proof}
+	
 	\subsubsection{Intuitions on Bagging [1pt]}
+	\begin{proof}{Solution}
+		When $\rho = 1$, that is, all bootstrapped datasets are perfectly correlated. In fact, all datasets are identical, the variance is independent from $k$, and increasing number of estimators, $k$, does not help reduce the variance.
+		
+		However, For any $\rho < 1$, increasing number of estimators in the bagging, $k$, helps reduce the variance. In particular, when $\rho = 0$, which is the uncorrelated dataset case, the effect is most significant: the variance shrinks linearly in $k$. 
+	\end{proof}
 	
 	\section{Generalization and Dropout}
 	\subsection{Regression Coefficients}
 	\subsubsection{Regression from $X_1$ [0pt]}
 	\begin{proof}[Solution]
-		
 	\end{proof}
 	
 	\subsubsection{Regression from $X_2$ [1pt]}
