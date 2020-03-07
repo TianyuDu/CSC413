@@ -144,32 +144,63 @@
 	
 	\subsection{Adaptive optimizer and Weight Decay [1pt]}
 	\begin{proof}[Solution]
-		After applying $L_2$ regularization, the solution found is a scaled down version of the original solution without weight decay for some $\varphi \in \R$ depends on $\lambda$:
-		\info{Is this true in general? Show it.}
+		Note that the original loss function,
 		\begin{align}
-			\vew^{*\lambda}_\tx{weight decay} = \varphi \ \vew^{*}_\tx{without decay}
+			\mathcal{J}(\hat{\mathbf{w}})=\frac{1}{2 n}\|X \hat{\mathbf{w}}-\mathbf{t}\|_{2}^{2}
 		\end{align}
-		In the previous homework, we've shown that $\vew^{*}_\tx{without decay} \notin Row(x)$. Therefore, $\vew^{*\lambda}_\tx{weight decay} \notin Row(X)$ as well.
+		is a convex function since its a composite of convex function $\norm{\cdot}_2^2$ and linear function $X \hat{\vew} - \textbf{t}$. Further, note that for any $\theta \in (0, 1)$ and $\vex \neq \vey$:
+		\begin{align}
+			&\theta \norm{\vex}_2^2 + (1 - \theta) \norm{\vey}_2^2 - \norm{\theta \vex + (1 - \theta) \vey}_2^2 \\
+			&= \theta \norm{\vex}_2^2 + (1 - \theta) \norm{\vey}_2^2
+			- \theta^2 \norm{\vex}_2^2 - (1 - \theta)^2 \norm{\vey}_2^2 - 2 \theta(1 - \theta) \inner{\vex}{\vey} \\
+			&= \theta(1 - \theta) \norm{\vex}_2^2 + \theta (1 - \theta) \norm{\vey}_2^2
+			- 2 \theta(1 - \theta) \inner{\vex}{\vey} \\
+			&= \theta (1 - \theta) (\norm{\vex}_2^2 - 2\inner{\vex}{\vey} + \norm{\vey}_2^2) \\
+			&= \theta (1 - \theta) \norm{\vex - \vey}_2^2 > 0
+		\end{align}
+		Therefore, $\norm{\vew}_2^2$ is strictly convex. The regularized loss function is a sum of convex and strictly convex functions, so it is strictly convex as well:
+		\begin{align}
+			\mathcal{J}(\hat{\mathbf{w}})=\frac{1}{2 n}\|X \hat{\mathbf{w}}-\mathbf{t}\|_{2}^{2}+\frac{\lambda}{2} \hat{\mathbf{w}}^{\top} \hat{\mathbf{w}}
+		\end{align}
+		Note that a strictly convex objective function has an (unique) global minimal, say $\vew^*$. Hence, conventional gradient descent methods, say SGD, will converge to $\vew^*$. Consider a SGD starting from $\vew_0 = \textbf{0}$, obviously
+		\begin{align}
+			\vew_0 \in Row(X)
+		\end{align}
+		and based on what we've shown in the previous homework,
+		\begin{align}
+			(X^T \vew - \textbf{t})^T X \in Row(X)
+		\end{align}
+		Therefore,
+		\begin{align}
+			\vew_1 = \vew_0 - \alpha (X^T \vew_0 - \textbf{t})^T X \in Row(X)
+		\end{align}
+		By induction, 
+		\begin{align}
+			\vew_{t+1} = \vew_t - \alpha (X^T \vew_t - \textbf{t})^T X \in Row(X)
+		\end{align}
+		Therefore, the weight SGD converges to $\vew^* \in Row(X)$. Since the objective function is strictly, so the minimizer is unique. Assuming Adagrad converges to the optimal solution, then Adagrad must converge to $\vew^*$, which is in $Row(X)$. Hence, Adagrad with regularization converges to $Row(X)$.
 	\end{proof}
+	
 	
 	\section{Ensembles and Bias-variance Decomposition}
 	\subsection{Weight Average or Prediction Average?}
 	\subsubsection{[1pt]}
 	\begin{proof}[Solution]
-		\todo{Add bias}
-		Without loss of generality, assume the bias is zero. This is equivalent to inserting a column of ones to the $X$, so that $X \in \R^{n \times (d+1)}$, and we can ignore the bias. Suppose there are $K$ different models indexed using $j \in \{1, 2, \cdots, K\}$:
+		Suppose there are $K$ different models indexed using $j \in \{1, 2, \cdots, K\}$:
 		\begin{align}
-			h_j(\vex) = \vew_j(\mc{D}_j)\vex
+			h_j(\vex) = \vew_j(\mc{D}_j)\vex + b_j(\mc{D}_j)
 		\end{align}
 		where $\mc{D}_j$ are i.i.d. realization of datasets. Let $\overline{h}(\vex)$ denote the weight average ensemble:
 		\begin{align}
-			\overline{h}(\vex) &= \overline{\vew} \vex\\
-			&= \sum_{j=1}^K \vew_j(\mc{D}_j)\vex
+			\overline{h}(\vex) &= \overline{\vew} \vex + \overline{b} \\
+			&= \frac{1}{K} \left(\sum_{j=1}^K \vew_j(\mc{D}_j) \right) \vex + \frac{1}{K} \sum_{j=1}^K b_j(\mc{D}_j) \\
+			&= \frac{1}{K} \left(\sum_{j=1}^K \vew_j(\mc{D}_j) \vex \right) + \frac{1}{K} \sum_{j=1}^K b_j(\mc{D}_j) \\
+			&= \frac{1}{K} \left(
+			\vew_j(\mc{D}_j) \vex + b_j(\mc{D}_j)
+			\right) \\
+			&= \frac{1}{K} \sum_{j=1}^K h_j(\vex)
 		\end{align}
-		And the prediction average at dataset point \vex is simply
-		\begin{align}
-			\sum_{j=1}^K h_j(\vex)
-		\end{align}
+		which is the same as the prediction average at query point \vex.
 		Therefore, the prediction from weight-average and prediction-average ensembles are the same. Hence, the expected generalization error should be the same.
 	\end{proof}
 	
@@ -451,7 +482,7 @@
 		So that,
 		\begin{align}
 			\mc{J} &= \expe_{(x_1, x_2, y) \sim (X_1, X_2, Y)} [(y - \hat{y})^2] \\
-			&= \expe [G_1 + G_2 - w_1 G1 - w_2 (G_1 + G_2 + G_3)]^2 \\
+			&= \expe [G_1 + G_2 - w_1 G_1 - w_2 (G_1 + G_2 + G_3)]^2 \\
 			&= \expe [(1 - w_1 - w_2)G_1 + (1 - w_2)G_2 - w_2 G_3 ]^2 \\
 			&= (1-w_1-w_2)^2 \sigma^2 + (1 - w_2)^2 \sigma^2 + w_2^2
 		\end{align}
@@ -471,11 +502,23 @@
 			w_1 &= \frac{1}{\sigma ^2+1} \\
 			w_2 &= \frac{\sigma ^2}{\sigma ^2+1}
 		\end{align}
+		The solution does not generalize well if $\sigma$ changes since both $w_1$ and $w_2$ depend on and are sensitive to $\sigma$.
 	\end{proof}
 	
 	\subsubsection{Different $\sigma$s [0pt]}
 	\begin{proof}[Solution]
-		
+		The expected loss can be re-written using law of total expectation as
+		\begin{align}
+			\mc{L}^2 &= \frac{1}{2} \expe_{(x_1, x_2, y) \sim (X_1, X_2, Y)} [(y - \hat{y})^2|\sigma=\sigma_1]
+			+ \frac{1}{2} \expe_{(x_1, x_2, y) \sim (X_1, X_2, Y)} [(y - \hat{y})^2|\sigma=\sigma_2]
+		\end{align}
+		Therefore,	
+		\begin{align}
+			\sigma_*^2 &= \frac{\sigma_1^2 + \sigma_2^2}{2} \\
+			\tx{and }
+			w_1 &= \frac{1}{\sigma_*^2+1} \\
+			w_2 &= \frac{\sigma_*^2}{\sigma_*^2+1}
+		\end{align}
 	\end{proof}
 	
 	\subsection{Dropout as Data-Dependent $L2$ Regularization}
@@ -521,14 +564,38 @@
 				\hat{y} - y
 			)^2 \right]
 			+ \sigma^2 w_{1}^2
+			+ (2 \sigma^2 + 1) w_{2}^2 \\
+			&= (1-w_1-w_2)^2 \sigma^2 + (1 - w_2)^2 \sigma^2 + w_2^2
+			+ \sigma^2 w_{1}^2
 			+ (2 \sigma^2 + 1) w_{2}^2
 		\end{align}
+		Solving the first order condition $\nabla_{\vew} \mc{L} = 0$ gives
+		\begin{align}
+			\begin{cases}
+				w_1 &= \frac{2 + 2 \sigma^2}{4+7\sigma^2} \\
+				w_2 &= \frac{3 \sigma^2}{4+7\sigma^2}
+			\end{cases}
+		\end{align}
+		The squared-norm $\vew_\tx{dropped out}$ is
+		\begin{align}
+			\norm{\vew_\tx{dropped out}}_2^2 = \frac{13 \sigma ^4+8 \sigma ^2+4}{\left(7 \sigma ^2+4\right)^2}
+		\end{align}
+		For the original solution:
+		\begin{align}
+			\norm{\vew_\tx{regular}}_2^2 = \frac{\sigma ^4+1}{\left(\sigma ^2+1\right)^2}
+		\end{align}
+		The ratio of two norms is
+		\begin{align}
+			r = \frac{\norm{\vew_\tx{dropped out}}_2^2}{\norm{\vew_\tx{regular}}_2^2} = \frac{\left(\sigma ^2+1\right)^2 \left(13 \sigma ^4+8 \sigma ^2+4\right)}{\left(7 \sigma ^2+4\right)^2 \left(\sigma ^4+1\right)}
+		\end{align}
+		For $\sigma \geq 0$, $r(\sigma)$ attains its maximal value of 0.417 at $\sigma \approx 1.11$. Hence, adding the dropout always reduce the norm of solution $\vew^*$, but does not necessarily reduce every entry in $\vew^*$.
 		Therefore, adding the dropout is equivalent to adding a regularization term in which the level of plenty ($\lambda_j$) for each $w_j$ depends on the variance of $x_j$. In this case, $w_1$ is more regularized. And such regularization would help the model achieve a better generalization error.
 	\end{proof}
 	
 	\section{Hard-Coding Recurrent Neural Networks [1pt]}
 	\begin{proof}[Solution]
-		Let $\sigma = \frac{1}{1 + \exp(-z)}$, and $\vex_t = (x_1^t, x_2^t)$ denotes the input feature at time $t$. Note that when weights are sufficient large in scale, $\sigma$ behaves like hard threshold function.
+		Let $\sigma = \frac{1}{1 + \exp(-100\times z)}$, so that the sigmoid function behaves like an hard threshold indicator function $\id{x \geq 0}$. In the following part of my answer, I am considering $\sigma$ as a threshold function.
+		Let $\vex_t = (x_1^t, x_2^t)$ denotes the input feature at time $t$. Note that when weights are sufficient large in scale, $\sigma$ behaves like hard threshold function.
 		Consider the following recurrent network:
 		\begin{align}
 			\hat{y}_t &= \sigma(\vew_{hy} \veh_t + b_y)\\
