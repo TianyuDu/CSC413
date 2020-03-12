@@ -1,15 +1,15 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 FEB 2020 18:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  1 MAR 2020 14:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**a2-writeup.tex
-(./a2-writeup.tex
+**report.tex
+(./report.tex
 LaTeX2e <2018-12-01>
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
-(/usr/local/texlive/2019/texmf-dist/tex/latex/base/size12.clo
-File: size12.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
 \c@part=\count80
 \c@section=\count81
@@ -574,7 +574,10 @@ LaTeX Info: Redefining \addtolength on input line 81.
 \calc@Cskip=\skip58
 )
 \c@@todonotes@numberoftodonotes=\count298
-)) (/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
+)) (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/mathrsfs.sty
+Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
+\symrsfs=\mathgroup6
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count299
 \float@exts=\toks48
@@ -677,155 +680,205 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 282.
 )
 \Hy@SectionHShift=\skip59
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footers
+\f@nch@headwidth=\skip60
+\f@nch@O@elh=\skip61
+\f@nch@O@erh=\skip62
+\f@nch@O@olh=\skip63
+\f@nch@O@orh=\skip64
+\f@nch@O@elf=\skip65
+\f@nch@O@erf=\skip66
+\f@nch@O@olf=\skip67
+\f@nch@O@orf=\skip68
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/chngcntr/chngcntr.sty
 Package: chngcntr 2018/04/09 v1.1a change counter resetting
 Package chngcntr Info: \counterwithout already defined.
 (chngcntr)             Quitting chngcntr on input line 21.
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/centernot.sty
 Package: centernot 2016/05/16 v1.4 Centers the not symbol horizontally (HO)
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/02/04 v3.8 Customized lists
+\enitkv@toks@=\toks50
+\labelindent=\skip69
+\enit@outerparindent=\dimen258
+\enit@toks=\toks51
+\enit@inbox=\box61
+\enit@count@id=\count310
+\enitdp@description=\count311
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2018/04/16 v5.8 Page Geometry
+\Gm@cnth=\count312
+\Gm@cntv=\count313
+\c@Gm@tempcnt=\count314
+\Gm@bindingoffset=\dimen259
+\Gm@wd@mp=\dimen260
+\Gm@odd@mp=\dimen261
+\Gm@even@mp=\dimen262
+\Gm@layoutwidth=\dimen263
+\Gm@layoutheight=\dimen264
+\Gm@layouthoffset=\dimen265
+\Gm@layoutvoffset=\dimen266
+\Gm@dimlist=\toks52
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/tkz-graph/tkz-graph.sty
+Package: tkz-graph 2018/09/19 ctan v 1.00 d base for graphs
+ (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
+ (/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2019/04/04 v3.1.2 (3.1.2)
+\arrowsize=\dimen267
+))
+\c@tkz@gr@a=\count315
+\c@tkz@gr@b=\count316
+\c@tkz@gr@c=\count317
+\c@tkz@gr@e=\count318
+\c@tkz@gr@d=\count319
+\c@tkz@gr@p=\count320
+\c@tkz@gr@i=\count321
+\c@tkz@gr@n=\count322
+\c@tkz@gr@ta=\count323
+\c@tkz@gr@tb=\count324
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen268
+\captionmargin@=\dimen269
+\captionwidth=\dimen270
+\caption@tempdima=\dimen271
+\caption@indent=\dimen272
+\caption@parindent=\dimen273
+\caption@hangindent=\dimen274
+)
+\c@caption@flags=\count325
+\c@ContinuedFloat=\count326
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2018/05/01 v1.1-162 Sub-captions (AR)
+\c@subfigure=\count327
+\c@subtable=\count328
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2016/04/27 v1.618033 publication quality tables
+\heavyrulewidth=\dimen275
+\lightrulewidth=\dimen276
+\cmidrulewidth=\dimen277
+\belowrulesep=\dimen278
+\belowbottomsep=\dimen279
+\aboverulesep=\dimen280
+\abovetopsep=\dimen281
+\cmidrulesep=\dimen282
+\cmidrulekern=\dimen283
+\defaultaddspace=\dimen284
+\@cmidla=\count329
+\@cmidlb=\count330
+\@aboverulesep=\dimen285
+\@belowrulesep=\dimen286
+\@thisruleclass=\count331
+\@lastruleclass=\count332
+\@thisrulewidth=\dimen287
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/datetime/datetime.sty
 Package: datetime 2015/03/20 v2.60 Date Time Package
- (/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2018/08/19 v2.5f e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count310
+\etb@tempcnta=\count333
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fmtcount.sty
 Package: fmtcount 2017/12/24 v3.05
  (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fcprefix.sty
 Package: fcprefix 2012/09/28
  (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fcnumparser.sty
 Package: fcnumparser 2017/06/15
-\fc@digit@counter=\count311
+\fc@digit@counter=\count334
 ))
-\c@padzeroesN=\count312
-\fc@tmpcatcode=\count313
+\c@padzeroesN=\count335
+\fc@tmpcatcode=\count336
  (/usr/local/texlive/2019/texmf-dist/tex/latex/fmtcount/fc-english.def
 File: fc-english.def 2016/01/12
 )
-\@DT@modctr=\count314
-\@ordinalctr=\count315
-\@orgargctr=\count316
-\@strctr=\count317
-\@tmpstrctr=\count318
-\@DT@loopN=\count319
-\@DT@X=\count320
+\@DT@modctr=\count337
+\@ordinalctr=\count338
+\@orgargctr=\count339
+\@strctr=\count340
+\@tmpstrctr=\count341
+\@DT@loopN=\count342
+\@DT@X=\count343
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/datetime/datetime-defaults.sty
 Package: datetime-defaults 2013/09/10
 )
-\@day=\count321
-\@month=\count322
-\@year=\count323
-\c@HOUR=\count324
-\c@HOURXII=\count325
-\c@MINUTE=\count326
-\c@TOHOUR=\count327
-\c@TOMINUTE=\count328
-\c@SECOND=\count329
-\currenthour=\count330
-\currentminute=\count331
-\currentsecond=\count332
+\@day=\count344
+\@month=\count345
+\@year=\count346
+\c@HOUR=\count347
+\c@HOURXII=\count348
+\c@MINUTE=\count349
+\c@TOHOUR=\count350
+\c@TOMINUTE=\count351
+\c@SECOND=\count352
+\currenthour=\count353
+\currentminute=\count354
+\currentsecond=\count355
 Package datetime Info: No datetime.cfg file found, using default settings on input line 308.
-\@dtctr=\count333
-\dayofyear=\count334
-\dayofweek=\count335
+\@dtctr=\count356
+\dayofyear=\count357
+\dayofweek=\count358
 LaTeX Info: Redefining \today on input line 736.
-\dt@a=\toks50
-\dt@b=\toks51
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/enumitem/enumitem.sty
-Package: enumitem 2019/02/04 v3.8 Customized lists
-\enitkv@toks@=\toks52
-\labelindent=\skip60
-\enit@outerparindent=\dimen258
-\enit@toks=\toks53
-\enit@inbox=\box61
-\enit@count@id=\count336
-\enitdp@description=\count337
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty
-Package: booktabs 2016/04/27 v1.618033 publication quality tables
-\heavyrulewidth=\dimen259
-\lightrulewidth=\dimen260
-\cmidrulewidth=\dimen261
-\belowrulesep=\dimen262
-\belowbottomsep=\dimen263
-\aboverulesep=\dimen264
-\abovetopsep=\dimen265
-\cmidrulesep=\dimen266
-\cmidrulekern=\dimen267
-\defaultaddspace=\dimen268
-\@cmidla=\count338
-\@cmidlb=\count339
-\@aboverulesep=\dimen269
-\@belowrulesep=\dimen270
-\@thisruleclass=\count340
-\@lastruleclass=\count341
-\@thisrulewidth=\dimen271
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2018/04/16 v5.8 Page Geometry
-\Gm@cnth=\count342
-\Gm@cntv=\count343
-\c@Gm@tempcnt=\count344
-\Gm@bindingoffset=\dimen272
-\Gm@wd@mp=\dimen273
-\Gm@odd@mp=\dimen274
-\Gm@even@mp=\dimen275
-\Gm@layoutwidth=\dimen276
-\Gm@layoutheight=\dimen277
-\Gm@layouthoffset=\dimen278
-\Gm@layoutvoffset=\dimen279
-\Gm@dimlist=\toks54
+\dt@a=\toks53
+\dt@b=\toks54
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/setspace/setspace.sty
 Package: setspace 2011/12/19 v6.7a set line spacing
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count345
+\lst@mode=\count359
 \lst@gtempboxa=\box62
 \lst@token=\toks55
-\lst@length=\count346
-\lst@currlwidth=\dimen280
-\lst@column=\count347
-\lst@pos=\count348
-\lst@lostspace=\dimen281
-\lst@width=\dimen282
-\lst@newlines=\count349
-\lst@lineno=\count350
-\lst@maxwidth=\dimen283
+\lst@length=\count360
+\lst@currlwidth=\dimen288
+\lst@column=\count361
+\lst@pos=\count362
+\lst@lostspace=\dimen289
+\lst@width=\dimen290
+\lst@newlines=\count363
+\lst@lineno=\count364
+\lst@maxwidth=\dimen291
  (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2019/02/27 1.8b (Carsten Heinz)
-\c@lstnumber=\count351
-\lst@skipnumbers=\count352
+\c@lstnumber=\count365
+\lst@skipnumbers=\count366
 \lst@framebox=\box63
-)
-(/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/listings.cfg
 File: listings.cfg 2019/02/27 1.8b listings configuration
 ))
 Package: listings 2019/02/27 1.8b (Carsten Heinz)
- (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.aux)
-\openout1 = `a2-writeup.aux'.
+ (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework 2/.texpadtmp/report.aux)
+\openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
  (/usr/local/texlive/2019/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count353
-\scratchdimen=\dimen284
+\scratchcounter=\count367
+\scratchdimen=\dimen292
 \scratchbox=\box64
-\nofMPsegments=\count354
-\nofMParguments=\count355
+\nofMPsegments=\count368
+\nofMParguments=\count369
 \everyMPshowfont=\toks56
-\MPscratchCnt=\count356
-\MPscratchDim=\dimen285
-\MPnumerator=\count357
-\makeMPintoPDFobject=\count358
+\MPscratchCnt=\count370
+\MPscratchDim=\dimen293
+\MPnumerator=\count371
+\makeMPintoPDFobject=\count372
 \everyMPtoPDFconversion=\toks57
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
@@ -839,24 +892,21 @@ Package grfext Info: Graphics extension search list:
  (/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 )) ABD: EveryShipout initializing macros
-
-Package todonotes Warning: The length marginparwidth is less than 2cm and will most likely cause issues with the appearance of inserted todonotes. The issue can be solved by adding a line like \setlength {\marginparwidth }{2cm} prior to loading the todonotes package. on input line 65.
-
 \AtBeginShipoutBox=\box65
-Package hyperref Info: Link coloring OFF on input line 65.
-(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
+Package hyperref Info: Link coloring OFF on input line 66.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
  (/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count359
+\c@section@level=\count373
 )
-LaTeX Info: Redefining \ref on input line 65.
-LaTeX Info: Redefining \pageref on input line 65.
-LaTeX Info: Redefining \nameref on input line 65.
- (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.out) (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.out)
+LaTeX Info: Redefining \ref on input line 66.
+LaTeX Info: Redefining \pageref on input line 66.
+LaTeX Info: Redefining \nameref on input line 66.
+ (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework 2/.texpadtmp/report.out) (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework 2/.texpadtmp/report.out)
 \@outlinefile=\write4
-\openout4 = `a2-writeup.out'.
+\openout4 = `report.out'.
 
 
 *geometry* driver: auto-detecting
@@ -878,12 +928,12 @@ LaTeX Info: Redefining \nameref on input line 65.
 * \topmargin=-37.0pt
 * \headheight=12.0pt
 * \headsep=25.0pt
-* \topskip=12.0pt
+* \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=44.0pt
-* \marginparsep=10.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
 * \columnsep=10.0pt
-* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -893,134 +943,575 @@ LaTeX Info: Redefining \nameref on input line 65.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count360
-LaTeX Font Info:    Try loading font information for U+msa on input line 67.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count374
+LaTeX Font Info:    Try loading font information for U+msa on input line 68.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 67.
+LaTeX Font Info:    Try loading font information for U+msb on input line 68.
  (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
-File: lstlang1.sty 2019/02/27 1.8b listings language file
-) [1
+)
+LaTeX Font Info:    Try loading font information for U+rsfs on input line 68.
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
+File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
+)
+./report.tex:88: Undefined control sequence.
+<argument>  \vew _t &= X^T \ver 
+                                _t\quad \ver _t \in \R ^n \\ \hat {\vew } &=...
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5] [6]
-<figures/partb_q2.png, id=234, 321.6015pt x 333.8874pt>
-File: figures/partb_q2.png Graphic file (type png)
-<use figures/partb_q2.png>
-Package pdftex.def Info: figures/partb_q2.png  used on input line 356.
-(pdftex.def)             Requested size: 469.75502pt x 487.711pt.
- [7] [8 <./figures/partb_q2.png>]
-<figures/unet_output_bs_50.png, id=290, 315.45856pt x 118.88416pt>
-File: figures/unet_output_bs_50.png Graphic file (type png)
-<use figures/unet_output_bs_50.png>
-Package pdftex.def Info: figures/unet_output_bs_50.png  used on input line 387.
-(pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
-<figures/unet_output_bs_100.png, id=291, 315.45856pt x 118.88416pt>
-File: figures/unet_output_bs_100.png Graphic file (type png)
-<use figures/unet_output_bs_100.png>
-Package pdftex.def Info: figures/unet_output_bs_100.png  used on input line 388.
-(pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
-<figures/unet_output_bs_500.png, id=292, 315.45856pt x 118.88416pt>
-File: figures/unet_output_bs_500.png Graphic file (type png)
-<use figures/unet_output_bs_500.png>
-Package pdftex.def Info: figures/unet_output_bs_500.png  used on input line 389.
-(pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
-<figures/unet_output_bs_1000.png, id=293, 315.45856pt x 118.88416pt>
-File: figures/unet_output_bs_1000.png Graphic file (type png)
-<use figures/unet_output_bs_1000.png>
-Package pdftex.def Info: figures/unet_output_bs_1000.png  used on input line 390.
-(pdftex.def)             Requested size: 469.75502pt x 177.04326pt.
- [9]
-Overfull \vbox (83.74303pt too high) has occurred while \output is active []
+./report.tex:88: Undefined control sequence.
+<argument>  \vew _t &= X^T \ver _t\quad \ver 
+                                             _t \in \R ^n \\ \hat {\vew } &=...
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
- [10 <./figures/unet_output_bs_50.png> <./figures/unet_output_bs_100.png> <./figures/unet_output_bs_500.png> <./figures/unet_output_bs_1000.png>]
-<figures/unet_learning_bs_50.png, id=311, 321.6015pt x 333.8874pt>
-File: figures/unet_learning_bs_50.png Graphic file (type png)
-<use figures/unet_learning_bs_50.png>
-Package pdftex.def Info: figures/unet_learning_bs_50.png  used on input line 396.
-(pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
-<figures/unet_learning_bs_100.png, id=312, 321.6015pt x 333.8874pt>
-File: figures/unet_learning_bs_100.png Graphic file (type png)
-<use figures/unet_learning_bs_100.png>
-Package pdftex.def Info: figures/unet_learning_bs_100.png  used on input line 397.
-(pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
-<figures/unet_learning_bs_500.png, id=313, 321.6015pt x 333.8874pt>
-File: figures/unet_learning_bs_500.png Graphic file (type png)
-<use figures/unet_learning_bs_500.png>
-Package pdftex.def Info: figures/unet_learning_bs_500.png  used on input line 403.
-(pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
-<figures/unet_learning_bs_1000.png, id=314, 321.6015pt x 333.8874pt>
-File: figures/unet_learning_bs_1000.png Graphic file (type png)
-<use figures/unet_learning_bs_1000.png>
-Package pdftex.def Info: figures/unet_learning_bs_1000.png  used on input line 404.
-(pdftex.def)             Requested size: 211.38832pt x 219.4646pt.
- [11 <./figures/unet_learning_bs_50.png> <./figures/unet_learning_bs_100.png> <./figures/unet_learning_bs_500.png> <./figures/unet_learning_bs_1000.png>]
-<figures/train0.png, id=331, 577.07594pt x 181.3977pt>
-File: figures/train0.png Graphic file (type png)
-<use figures/train0.png>
-Package pdftex.def Info: figures/train0.png  used on input line 426.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
-<figures/train1.png, id=332, 577.07594pt x 181.3977pt>
-File: figures/train1.png Graphic file (type png)
-<use figures/train1.png>
-Package pdftex.def Info: figures/train1.png  used on input line 427.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
-<figures/train2.png, id=333, 577.07594pt x 181.3977pt>
-File: figures/train2.png Graphic file (type png)
-<use figures/train2.png>
-Package pdftex.def Info: figures/train2.png  used on input line 428.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
-<figures/train3.png, id=334, 577.07594pt x 181.3977pt>
-File: figures/train3.png Graphic file (type png)
-<use figures/train3.png>
-Package pdftex.def Info: figures/train3.png  used on input line 429.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
- [12]
-<figures/val0.png, id=347, 577.07594pt x 181.3977pt>
-File: figures/val0.png Graphic file (type png)
-<use figures/val0.png>
-Package pdftex.def Info: figures/val0.png  used on input line 435.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
-<figures/val1.png, id=348, 577.07594pt x 181.3977pt>
-File: figures/val1.png Graphic file (type png)
-<use figures/val1.png>
-Package pdftex.def Info: figures/val1.png  used on input line 436.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
-<figures/val2.png, id=349, 577.07594pt x 181.3977pt>
-File: figures/val2.png Graphic file (type png)
-<use figures/val2.png>
-Package pdftex.def Info: figures/val2.png  used on input line 437.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
-<figures/val3.png, id=350, 577.07594pt x 181.3977pt>
-File: figures/val3.png Graphic file (type png)
-<use figures/val3.png>
-Package pdftex.def Info: figures/val3.png  used on input line 438.
-(pdftex.def)             Requested size: 469.75502pt x 147.66481pt.
- [13 <./figures/train0.png> <./figures/train1.png> <./figures/train2.png> <./figures/train3.png>] [14 <./figures/val0.png> <./figures/val1.png> <./figures/val2.png> <./figures/val3.png>] [15]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 450.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 450.
- (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 450.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 450.
-Package rerunfilecheck Info: File `a2-writeup.out' has not changed.
+./report.tex:88: Undefined control sequence.
+<recently read> \ver 
+                     
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<argument> \ver 
+                
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<recently read> \ver 
+                     
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<argument> \ver 
+                
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<argument>  \vew _t &= X^T \ver 
+                                _t\quad \ver _t \in \R ^n \\ \hat {\vew } &=...
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<argument>  \vew _t &= X^T \ver _t\quad \ver 
+                                             _t \in \R ^n \\ \hat {\vew } &=...
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<recently read> \ver 
+                     
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<argument> \ver 
+                
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<recently read> \ver 
+                     
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:88: Undefined control sequence.
+<argument> \ver 
+                
+l.88 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:89: Undefined control sequence.
+<recently read> \ver 
+                     
+l.89 ...then only the $i^{th}$ components of $\ver
+                                                  _t$ and $\ver_{t+1}$ are d...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:89: Undefined control sequence.
+<recently read> \ver 
+                     
+l.89 ... $i^{th}$ components of $\ver_t$ and $\ver
+                                                  _{t+1}$ are different, and...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:93: Undefined control sequence.
+<recently read> \ver 
+                     
+l.93 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:93: Undefined control sequence.
+<argument> \ver 
+                
+l.93 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:93: Undefined control sequence.
+<recently read> \ver 
+                     
+l.93 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:93: Undefined control sequence.
+<argument> \ver 
+                
+l.93 		\end{align}
+                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> ... \cdots , n\} \\ \iff \nabla _{\ver 
+                                                  } \norm {X X^T \hat {\ver ...
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> ... \cdots , n\} \\ \iff \nabla _{\ver 
+                                                  } \norm {X X^T \hat {\ver ...
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<recently read> \ver 
+                     
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+./report.tex:108: Undefined control sequence.
+<argument> \ver 
+                
+l.108 		\end{align}
+                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1
+
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 275.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 275.
+ (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework 2/.texpadtmp/report.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 275.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 275.
+Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 450.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 275.
  ) 
 Here is how much of TeX's memory you used:
- 31445 strings out of 492616
- 581795 string characters out of 6129482
- 1126539 words of memory out of 5000000
- 34664 multiletter control sequences out of 15000+600000
- 544303 words of font info for 70 fonts, out of 8000000 for 9000
+ 33046 strings out of 492616
+ 618048 string characters out of 6129482
+ 790379 words of memory out of 5000000
+ 36436 multiletter control sequences out of 15000+600000
+ 543158 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,11n,83p,1026b,2069s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb>
-Output written on "/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 2/.texpadtmp/a2-writeup.pdf" (15 pages, 1853860 bytes).
+ 69i,17n,92p,988b,768s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
+Output written on "/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Homework 2/.texpadtmp/report.pdf" (4 pages, 186311 bytes).
 PDF statistics:
- 477 PDF objects out of 1000 (max. 8388607)
- 391 compressed objects within 4 object streams
- 237 named destinations out of 1000 (max. 500000)
- 218 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 238 PDF objects out of 1000 (max. 8388607)
+ 196 compressed objects within 2 object streams
+ 57 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 
