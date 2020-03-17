@@ -1,0 +1,21 @@
+\BOOKMARK [1][-]{section.1}{Part 1: Gated Recurrent Units}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{}{section.1}% 2
+\BOOKMARK [2][-]{subsection.1.2}{}{section.1}% 3
+\BOOKMARK [2][-]{subsection.1.3}{}{section.1}% 4
+\BOOKMARK [1][-]{section.2}{Additive Attention}{}% 5
+\BOOKMARK [2][-]{subsection.2.1}{}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.2}{}{section.2}% 7
+\BOOKMARK [1][-]{section.3}{Scaled Dot Product Attention}{}% 8
+\BOOKMARK [2][-]{subsection.3.1}{Implementations}{section.3}% 9
+\BOOKMARK [3][-]{subsubsection.3.1.1}{ScaledDotAttention}{subsection.3.1}% 10
+\BOOKMARK [3][-]{subsubsection.3.1.2}{CausalScaledDotAttention}{subsection.3.1}% 11
+\BOOKMARK [3][-]{subsubsection.3.1.3}{TransformerEncoder}{subsection.3.1}% 12
+\BOOKMARK [3][-]{subsubsection.3.1.4}{TransformerDecoder}{subsection.3.1}% 13
+\BOOKMARK [2][-]{subsection.3.2}{Question 5: Training and Validation Plots}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.3}{Question 6: Non-causal Decoder}{section.3}% 15
+\BOOKMARK [2][-]{subsection.3.4}{Question 7: Advantages and Disadvantages of Additive Attentions and Scaled Dot Product Attention}{section.3}% 16
+\BOOKMARK [1][-]{section.4}{BERT}{}% 17
+\BOOKMARK [2][-]{subsection.4.1}{Question 1}{section.4}% 18
+\BOOKMARK [2][-]{subsection.4.2}{Question 2}{section.4}% 19
+\BOOKMARK [2][-]{subsection.4.3}{Question 3}{section.4}% 20
+\BOOKMARK [2][-]{subsection.4.4}{Question 4}{section.4}% 21
