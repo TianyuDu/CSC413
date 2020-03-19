@@ -124,7 +124,7 @@ translated:	otay-othay
 	\begin{align}
 		\tilde{\alpha}_i^{(t)} &= f(Q_i, K_i) = W_2\ \tx{ReLU}(W_1 [Q_i, K_i] + b_1) + b_2\\
 		\alpha_i^{(t)} &= \text{softmax}(\tilde{\alpha}^{(t)})_i = \frac{\exp(\tilde{\alpha}_i^{(t)})}{\sum_{t=1}^\texttt{seq\_len} \exp(\tilde{\alpha}_i^{(t)})} \\
-		c_t &= \sum_{t=1}^\texttt{seq\_len} \alpha_i^{(t)} K_i
+		c_t &= \sum_{i	=1}^\texttt{seq\_len} \alpha_i^{(t)} K_i
 	\end{align}
 	\subsection{}
 \begin{lstlisting}[language=python]
@@ -146,18 +146,7 @@ class RNNAttentionDecoder(nn.Module):
 
         
     def forward(self, inputs, annotations, hidden_init):
-        """Forward pass of the attention-based decoder RNN.
-
-        Arguments:
-            inputs: Input token indexes across a batch for all the time step. (batch_size x decoder_seq_len)
-            annotations: The encoder hidden states for each step of the input.
-                         sequence. (batch_size x seq_len x hidden_size)
-            hidden_init: The final hidden states from the encoder, across a batch. (batch_size x hidden_size)
-
-        Returns:
-            output: Un-normalized scores for each token in the vocabulary, across a batch for all the decoding time steps. (batch_size x decoder_seq_len x vocab_size)
-            attentions: The stacked attention weights applied to the encoder annotations (batch_size x encoder_seq_len x decoder_seq_len)
-        """
+        """..."""
         
         batch_size, seq_len = inputs.size()
         embed = self.embedding(inputs)  # batch_size x seq_len x hidden_size        
@@ -196,6 +185,7 @@ class RNNAttentionDecoder(nn.Module):
 \end{lstlisting}
 \section{Scaled Dot Product Attention}
 \subsection{Implementations}
+\paragraph{Note} Please refer to codes after \texttt{FILL THIS IN} for my implementation. I have removed some codes that are already provided in the starter code.
 \subsubsection{\texttt{ScaledDotAttention}}
 \begin{lstlisting}[language=python]
 class ScaledDotAttention(nn.Module):
@@ -408,6 +398,7 @@ Epoch:  99 | Train loss: 0.000 | Val loss: 0.001 | Gen: - - - - -
 \subsection{Question 7: Advantages and Disadvantages of Additive Attentions and Scaled Dot Product Attention}
 \par It seems that the scaled dot attention is better at translating long vocabularies, since a transformer takes the entire sequence of characters once, and can better exploit the correlation between characters distant apart from each other. Additive attention models is based on recurrent neural networks, and RNNs may suffer from vanishing and exploding gradient problems, depends on the specific types of RNN cell used. Therefore, RNN together with additive attentions works better for short vocabularies.
 
+
 \section{BERT}
 \subsection{Question 1}
 \par The \texttt{BertCSC413\_MLP} class uses 512 hidden neurones (in contrast to the 768 hidden neurones in the original implementation), and a sigmoid activation function (in contrast to the ReLU activation).
@@ -420,7 +411,51 @@ Epoch:  99 | Train loss: 0.000 | Val loss: 0.001 | Gen: - - - - -
 \end{figure}
 \par These inference tasks involves both standard usages of binary operator (i.e., number + operator + number) and longer compound usages (i.e., using multiple binary operators consecutively). Moreover, three types of representations of numbers are used: plain English(e.g., three), plain numerical (e.g., 3), and English multipliers (e.g., thousand). Interestingly, the model processes ambiguous compound operations differently, for example \texttt{"three minus two minus eight"} is interpreted as $3-2-8 < 0$, but \texttt{"one minus one minus one"} as $1 - (1 - 1) > 0$.
 \subsection{Question 4}
-\par I changed some hyper-parameters to the training of \texttt{model\_finetune\_bert} by reducing the learning rate while increasing the number of training epochs. Specifically, learning rate is changed to \texttt{5e-6} (originally \texttt{2e-5}) and the model is now trained for 6 epochs (originally 4 epochs). The (overall) validation accuracy improved from 97\% to 98\%. The number of incorrect predictions in validation set reduced from two instances to one instance. The detailed training logs and validation reports are attached below:
+\par I changed some hyper-parameters to the training of \texttt{model\_finetune\_bert} by reducing the learning rate while increasing the number of training epochs. Specifically, learning rate is changed to \texttt{5e-5} (originally \texttt{2e-5}) and the model is now trained for 10 epochs (originally 4 epochs). The (overall) validation accuracy improved from 97\% to 98\%, and now the model correctly classifies all samples with negative signs (originally 95.7\%).
+
+\paragraph{Implementation} The code executed, note that I added two keyword arguments to the \texttt{train\_model} method.
+\begin{lstlisting}[language=Python]
+model_finetune_bert_new = BertCSC413_MLP.from_pretrained(
+    "bert-base-uncased", 
+    num_labels = 3,    
+    output_attentions = False, 
+    output_hidden_states = False
+)
+finttune_bert_loss_vals_new = train_model(model_finetune_bert_new, lr=3e-5, epochs=10)
+eval_testdata(model_finetune_bert_new, show_all_predictions=False)
+\end{lstlisting}
+
+\paragraph{Validation Logs} The detailed validation logs:
+\begin{lstlisting}
+==========================================================
+				  Old Hyperparameters
+==========================================================
+Predicting labels for 160 test sentences...
+Number of expressions with negative result 47 
+ 45  predicted correctly , accuracy  0.9574468085106383 
+
+Number of expressions with 0 result 2 
+ 0  predicted correctly , accuracy  0.0 
+
+Number of expressions with positive result 111 
+ 111  predicted correctly , accuracy  1.0 
+
+==========================================================
+				  New Hyperparameters
+==========================================================
+
+Predicting labels for 160 test sentences...
+Number of expressions with negative result 47 
+ 47  predicted correctly , accuracy  1.0 
+
+Number of expressions with 0 result 2 
+ 0  predicted correctly , accuracy  0.0 
+
+Number of expressions with positive result 111 
+ 111  predicted correctly , accuracy  1.0 
+\end{lstlisting}
+
+\paragraph{Training Logs} The detailed training logs are attached below:
 \begin{lstlisting}
 ==========================================================
 				  Old Hyperparameters
@@ -462,85 +497,100 @@ Running Validation...
   Validation took: 0:00:01
 
 Training complete!
-
-Predicting labels for 160 test sentences...
-Number of expressions with negative result 47 
- 45  predicted correctly , accuracy  0.9574468085106383 
-
-Number of expressions with 0 result 2 
- 0  predicted correctly , accuracy  0.0 
-
-Number of expressions with positive result 111 
- 111  predicted correctly , accuracy  1.0 
-
 ==========================================================
 				  New Hyperparameters
 ==========================================================
-======== Epoch 1 / 6 ========
+======== Epoch 1 / 10 ========
 Training...
 
-  Average training loss: 0.49
+  Average training loss: 0.74
+  Training epcoh took: 0:01:27
+Running Validation...
+  Accuracy: 0.73
+  Validation took: 0:00:02
+
+======== Epoch 2 / 10 ========
+Training...
+
+  Average training loss: 0.47
+  Training epcoh took: 0:01:27
+Running Validation...
+  Accuracy: 0.95
+  Validation took: 0:00:02
+
+======== Epoch 3 / 10 ========
+Training...
+
+  Average training loss: 0.29
+  Training epcoh took: 0:01:28
+Running Validation...
+  Accuracy: 0.98
+  Validation took: 0:00:01
+
+======== Epoch 4 / 10 ========
+Training...
+
+  Average training loss: 0.21
+  Training epcoh took: 0:01:28
+Running Validation...
+  Accuracy: 0.98
+  Validation took: 0:00:02
+
+======== Epoch 5 / 10 ========
+Training...
+
+  Average training loss: 0.18
   Training epcoh took: 0:01:27
 Running Validation...
   Accuracy: 0.98
   Validation took: 0:00:01
 
-======== Epoch 2 / 6 ========
+======== Epoch 6 / 10 ========
 Training...
 
-  Average training loss: 0.45
-  Training epcoh took: 0:01:26
+  Average training loss: 0.15
+  Training epcoh took: 0:01:28
 Running Validation...
   Accuracy: 0.98
-  Validation took: 0:00:01
+  Validation took: 0:00:02
 
-======== Epoch 3 / 6 ========
+======== Epoch 7 / 10 ========
 Training...
 
-  Average training loss: 0.41
-  Training epcoh took: 0:01:26
+  Average training loss: 0.13
+  Training epcoh took: 0:01:28
 Running Validation...
   Accuracy: 0.98
-  Validation took: 0:00:01
+  Validation took: 0:00:02
 
-======== Epoch 4 / 6 ========
+======== Epoch 8 / 10 ========
 Training...
 
-  Average training loss: 0.38
+  Average training loss: 0.13
+  Training epcoh took: 0:01:28
+Running Validation...
+  Accuracy: 0.98
+  Validation took: 0:00:02
+
+======== Epoch 9 / 10 ========
+Training...
+
+  Average training loss: 0.12
   Training epcoh took: 0:01:28
 Running Validation...
   Accuracy: 0.98
   Validation took: 0:00:01
 
-======== Epoch 5 / 6 ========
+======== Epoch 10 / 10 ========
 Training...
 
-  Average training loss: 0.37
-  Training epcoh took: 0:01:29
-Running Validation...
-  Accuracy: 0.98
-  Validation took: 0:00:01
-
-======== Epoch 6 / 6 ========
-Training...
-
-  Average training loss: 0.36
+  Average training loss: 0.12
   Training epcoh took: 0:01:28
 Running Validation...
   Accuracy: 0.98
-  Validation took: 0:00:01
+  Validation took: 0:00:02
 
 Training complete!
-
-Predicting labels for 160 test sentences...
-Number of expressions with negative result 47 
- 47  predicted correctly , accuracy  1.0 
-
-Number of expressions with 0 result 2 
- 0  predicted correctly , accuracy  0.0 
-
-Number of expressions with positive result 111 
- 110  predicted correctly , accuracy  0.990990990990991
 \end{lstlisting}
 \end{document}
 
