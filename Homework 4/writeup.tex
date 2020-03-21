@@ -1,0 +1,340 @@
+\documentclass{article}
+\usepackage{spikey}
+\usepackage{amsmath}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{soul}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{chngcntr}
+\usepackage{centernot}
+\usepackage[shortlabels]{enumitem}
+\usepackage[margin=1truein]{geometry}
+\usepackage{tkz-graph}
+\usepackage{dsfont}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage[yyyymmdd,hhmmss]{datetime}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+
+\usepackage{setspace}
+\linespread{1.15}
+\usepackage[margin=1truein]{geometry}
+
+\counterwithin{equation}{section}
+\counterwithin{figure}{section}
+
+\usepackage{listings}
+ 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codeblue}{rgb}{0.3,0.5,0.8}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1,1,1}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=4
+}
+
+\lstset{style=mystyle}
+
+\title{CSC413: Homework 4}
+\date{\today\ at \currenttime}
+\author{Tianyu Du (1003801647)}
+\begin{document}
+	\maketitle
+	\section{Architectural Choice v.s. Vanishing / Exploding Gradients}
+	\subsection{Warmup: A Single Neuron RNN}
+	\subsubsection{Effect of Activation - Sigmoid [1pt]}
+	\begin{proof}[Solution]
+		Obviously, $\abs{\pd{f(x)}{x}} \geq 0$. Note the function can be written as
+		\begin{align}
+			f(x) = \cdots \sigma(W_2 \sigma(W_1 x + b_1) + b_2) \cdots
+		\end{align}
+		Define the pre-activations to be
+		\begin{align}
+			a_1 &= W_1 x + b_1 \\
+			a_2 &= W_2 \sigma(a_1) + b_2 \\
+			&\vdots \\
+			a_n &= W_n\sigma(a_{n-1}) + b_n \\
+			f(x) &= W_{n+1} \sigma(a_n) + b_{n+1}
+		\end{align}
+		Because $\sigma'(x) = \sigma(x) (1 - \sigma(x))$,
+		\begin{align}
+			\pd{\sigma(a_1(x))}{x} &= \pd{}{x} \sigma(W_1 x + b) = W_1 \sigma(a_1) (1 - \sigma(a_1)) \\
+			\pd{\sigma(a_n)}{a_{n-1}} &= \pd{}{a_{n-1}} W_n \sigma(a_{n-1}) + b_n = W_n \sigma(a_{n-1}) (1 - \sigma(a_{n-1}))
+		\end{align}
+		Therefore,
+		\begin{align}
+			\pd{f(x)}{x} &= \left(\prod_{i=1}^n W_i\right) \left( \prod_{i=1}^n \sigma'(a_i) \right) \\
+			&= \prod_{i=1}^n \sigma'(a_i) \tx{ because $W_i= 1$ for every $i$} \label{result}\\
+			&= \prod_{i=1}^n \sigma(a_i) (1 - \sigma(a_i))
+		\end{align}
+		Since $\sigma(x) \in (0, 1)$, hence $0 \leq \sigma(x)(1-\sigma(x)) \leq \frac{1}{4}$, therefore,
+		\begin{align}
+			0 \leq \pd{f(x)}{x} = \prod_{i=1}^n \sigma(a_i) (1 - \sigma(a_i)) \leq \left(\frac{1}{4}\right)^n
+		\end{align}
+		Therefore,
+		\begin{align}
+			0 \leq \abs{\pd{f(x)}{x}} \leq \left(\frac{1}{4}\right)^n
+		\end{align}
+		The sigmoid activation solves the gradient exploding problem, but it is still for the model to suffer from gradient vanishing problem.
+	\end{proof}
+	\subsubsection{Effect of Activation - Tanh [1pt]}
+	\begin{proof}[Solution]
+		Note that $\tanh(x) \in [0, 1]$ and $\tanh'(x) = 1 - \tanh^2(x)$. Therefore, $\tanh'(x) \in [0, 1]$. Using the result from equation (\ref{result}),
+		\begin{align}
+			\pd{f(x)}{x} = \prod_{i=1}^n \tanh'(a_i) = \prod_{i=1}^n (1 - \tanh^2(a_i))
+		\end{align}
+		Hence,
+		\begin{align}
+			0 \leq \pd{f(x)}{x} \leq 1
+		\end{align}
+		So that
+		\begin{align}
+			0 \leq \abs{\pd{f(x)}{x}} \leq 1
+		\end{align}
+		The tanh activation solves the gradient exploding problem, but it is still for the model to suffer from gradient vanishing problem.
+	\end{proof}
+
+	\subsection{Matrices and RNN}
+	\subsubsection{Gradient through RNN [1pt]}
+	\begin{proof}[Solution]
+		Note that for any $x \in \R$, $\tanh'(x) = 1 - \tanh^2(x)$.
+		\begin{align}
+			\pd{x_{t+1}}{x_t} &= \pd{}{x_t} \tanh(W x_t) \\
+			&= (1 - \tanh^2(W x_t)) W
+		\end{align}
+		$(1 - \tanh^2(W x_t))$ is a diagonal matrix with diagonal entries in $[0, 1]$. And all singular values of $(1 - \tanh^2(W x_t))$ is therefore in $[0, 1]$. Let $A = (1 - \tanh^2(W x_t))$ and $B = W$, by the hint,
+		\begin{align}
+			\sigma_{max}\left(\pd{x_{t+1}}{x_t} \right)
+			&\leq \sigma_{max}(1 - \tanh^2(W x_t)) \sigma_{max}(W) \\
+			&=\sigma_{max}(1 - \tanh^2(W x_t)) \frac{1}{2} \\
+			&\leq \frac{1}{2}
+		\end{align}
+		By chain rule, the input-output Jacobian is
+		\begin{align}
+			\pd{x_n}{x_1} = \prod_{t=1}^{n-1} \pd{x_{t+1}}{x_t}
+		\end{align}
+		Applying the hint inductively,
+		\begin{align}
+			\sigma_{max} \left(\prod_{t=1}^{n-1} \pd{x_{t+1}}{x_t} \right)
+			&\leq \prod_{t=1}^{n-1} \sigma_{max}\left(\pd{x_{t+1}}{x_t}\right) \\
+			&=  \left(\frac{1}{2}\right)^{n-1}
+		\end{align}
+		
+		\todo{Still have to show $0 \leq \sigma_{\max }\left(\frac{\partial x_{n}}{\partial x_{1}}\right)$}
+	\end{proof}
+	\subsubsection{Gradient through Residual / GRU / LSTM Layers [0pt]}
+	\begin{proof}[Solution]
+		Note that 
+		\begin{align}
+			\pd{z_{t+1}}{z_t} &= \pd{z_t + f_t(z_t)}{z_t} \\
+			&= \mathbf{1}_n  + \pd{f_t(z_t)}{z_t}
+		\end{align}
+		Note that all singular values of identity matrix are one. Let $A = \pd{f_t(z_t)}{z_t}$ and $B = \mathbf{1}_n$, then apply the lemma in hint, $\forall i \in \{1, \cdots, \frac{n}{2}\}$:
+		\begin{align}
+			\sigma_i\left(\pd{z_{t+1}}{z_t}\right) &\geq \abs{\sigma_i(A) - \sigma_{max}(B)} \\
+			&= \abs{\sigma_i(A) - 1} \\
+			&= 1 - \sigma_i(A) \tx{ because } \sigma_i \ll 1
+		\end{align}
+		For $i=1$,
+		\begin{align}
+			\sigma_{1}\left(\pd{z_{t+1}}{z_t}\right) &= \sigma_{min}\left(\pd{z_{t+1}}{z_t}\right) \\
+			&\geq 1 - \sigma_{min} \left(\pd{f_t(z_t)}{z_t}\right) \\
+			&\geq 1 - \sigma_{small}
+		\end{align}
+		Similarly, $\forall i \in \{\frac{n}{2}, \cdots, 1\}$,
+		\begin{align}
+			\sigma_i\left(\pd{z_{t+1}}{z_t}\right) &\geq \abs{\sigma_i(A) - \sigma_{max}(B)} \\
+			&= \abs{\sigma_i(A) - 1} \\
+			&= \sigma_i(A) - 1 \tx{ because } \sigma_i \gg 2
+		\end{align}
+		In particular, take $i = n$,
+		\begin{align}
+			\sigma_{n}\left(\pd{z_{t+1}}{z_t}\right) &= \sigma_{max}\left(\pd{z_{t+1}}{z_t}\right) \\
+			&\geq \sigma_{max} \left(\pd{f_t(z_t)}{z_t}\right) - 1 \\
+			&\geq \sigma_{big} - 1
+		\end{align}
+		Therefore,
+		\begin{align}
+			\sigma_{min}\left(\pd{z_{t+1}}{z_t}\right) &\gg 0 \\
+			\sigma_{max}\left(\pd{z_{t+1}}{z_t}\right) &\gg 1
+		\end{align}
+	\end{proof}
+	
+	\subsubsection{Benefits of Residual Connections [1pt]}
+	\begin{proof}[Solution]
+		In the previous part, we've shown that the singular values of Jacobian matrix in each layer is bounded below and bounded away from zero. Hence, as the number of layers, $n$, grows the gradient does not vanish as fast as before, the gradient vanishing problem is solved. However, the residual connection does not help bound singular values from above, therefore, it is still possible for the gradient to explode as $n$ grows large. The gradient exploding problem is \ul{not} solved.
+	\end{proof}
+	
+	\subsection{Batch Normalization}
+	\subsubsection{Gradients of Batch Norm [0pt]}
+	\begin{proof}[Solution]
+		\begin{align}
+			\pd{y_i}{x_i} &= \gamma \pd{\hat{x}_i}{x_i} \\
+			&= \gamma \pd{}{x_i} \frac{x_i - \mu_\mc{B}}{\sqrt{\sigma_\mc{B}^2 + \epsilon}} \\
+			&= \frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\pd{x_i - \mu_\mc{B}}{x_i}\sqrt{\sigma_\mc{B}^2 + \epsilon}
+			- \pd{\sqrt{\sigma_\mc{B}^2 + \epsilon}}{x_i}(x_i - \mu_\mc{B})
+			\right] \\
+			&= \frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\left(1 - \frac{1}{m}\right)
+			\sqrt{\sigma_\mc{B}^2 + \epsilon}
+			- \frac{1}{2} \frac{(x_i - \mu_\mc{B})}{\sqrt{\sigma_\mc{B}^2 + \epsilon}} \pd{\sigma_\mc{B}^2}{x_i}
+			\right] \\
+			&= \frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\frac{m-1}{m}
+			\sqrt{\sigma_\mc{B}^2 + \epsilon}
+			- \frac{1}{2} \frac{(x_i - \mu_\mc{B})}{\sqrt{\sigma_\mc{B}^2 + \epsilon}}
+			\frac{1}{m} \sum_{j=1}^m 2 (x_j - \mu_\mc{B}) \pd{x_j - \mu_\mc{B}}{x_i}
+			\right] \\
+			&=\frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\frac{m-1}{m}
+			\sqrt{\sigma_\mc{B}^2 + \epsilon}
+			- \frac{1}{2} \frac{(x_i - \mu_\mc{B})}{\sqrt{\sigma_\mc{B}^2 + \epsilon}}
+			\frac{1}{m} \left( \sum_{j=1}^m 2(x_j - \mu_\mc{B}) \left(- \frac{1}{m}\right)
+			+ 2 (x_i - \mu_\mc{B})
+			\right)
+			\right] \\
+			&=\frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\frac{m-1}{m}
+			\sqrt{\sigma_\mc{B}^2 + \epsilon}
+			- \frac{1}{2} \frac{(x_i - \mu_\mc{B})}{\sqrt{\sigma_\mc{B}^2 + \epsilon}}
+			\left(
+			2 \frac{(x_i - \mu_\mc{B})}{m}
+			\right)
+			\right] \\
+			&=\frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\frac{m-1}{m}
+			\sqrt{\sigma_\mc{B}^2 + \epsilon}
+			- \frac{1}{m} \frac{(x_i - \mu_\mc{B})^2}{\sqrt{\sigma_\mc{B}^2 + \epsilon}}
+			\right] \\
+			&=\frac{\gamma}{\sigma_\mc{B}^2 + \epsilon} \left[
+			\frac{m-1}{m}
+			\frac{\sigma_\mc{B}^2 + \epsilon}{\sqrt{\sigma_\mc{B}^2 + \epsilon}}
+			- \frac{1}{m} \frac{(x_i - \mu_\mc{B})^2}{\sqrt{\sigma_\mc{B}^2 + \epsilon}}
+			\right]
+		\end{align}
+		\todo{Not Finished.}
+	\end{proof}
+	
+	\subsubsection{Batch Normalization and ResNet [1pt]}
+	\todo{Unsure}
+	\begin{proof}[Solution]
+		The batch normalization layer aims to bound the magnitude of gradient flow $\pd{y_i}{x_i}$ to prevent exploding / vanishing gradient. In the first setup, if we add the residual connection after the batch normalization, the gradient is still possible to explode. Therefore, we should use the second setting.
+	\end{proof}
+	
+	\section{Auto-regressive Models}
+	\subsection{WaveNet}
+	\subsubsection{Connections [0pt]}
+	
+	\subsubsection{Parallelism [0pt]}
+	
+	\subsubsection{Discussion [0pt]}
+	
+	\subsection{PixelCNN}
+	\subsubsection{Connections [1pt]}
+	\begin{proof}[Solution]
+		Assuming zero padding, the output and input sizes of each layer in PixelCNN are the same. Between any two layers, there are 4 connections in a typical $3 \times 3$ convolution filter, the same filter is applied $H \times W$ times for each input and output channel. Therefore, the number of connections in a typical layer is $\mc{O}(4 k^2 H \times W) = \mc{O}(k^2 H \times W)$. Given that there are $d$ layers, the total number of connections is
+		\begin{align}
+			\mc{O}(d k^2 H \times W)
+		\end{align}
+	\end{proof}
+	
+	\subsubsection{Parallelism [1pt]}
+	\begin{proof}[Solution]
+		Operations of all $k^2$ in-out channel pairs can be run in parallel. Further, for each of these in-out channel pairs, the operations of computing convolution by applying filters on the $H \times W$ pixels can be executed in parallel. However, computing output of each layer requires the output from its previous layer, this cannot be run in parallel. Therefore, the minimum number of the sequential is 
+		\begin{align}
+			\mc{O}(d)
+		\end{align}
+	\end{proof}
+	
+	\subsection{Multidimensional RNN}
+	\subsubsection{Connections [1pt]}
+	\begin{proof}[Solution]
+		Since $\vex^{(i, j)}, \veh^{(i, j)} \in \R^k$, therefore, for each single hidden neurone,
+		\begin{align}
+			\mathbf{h}^{(i, j)}=\phi\left(\mathbf{W}_{\mathrm{in}}^{\top} \mathbf{x}^{(i, j)}+\mathbf{W}_{\mathrm{W}}^{\top} \mathbf{h}^{(i-1, j)}+\mathbf{W}_{\mathrm{N}}^{\top} \mathbf{h}^{(i, j-1)}\right)
+		\end{align}
+		Each of these three matrix vector products involves $k^2$ connections. The total number of connections involved in the computation of $\veh^{(i, j)}$ is $3k^2$. Between two layers, there are $H \times W$ such hidden neurones to be computed, therefore, the number of connections is $\mc{O}(3 k^2 H \times W)$. Given there are $d$ layers, the total number of connections is 
+		\begin{align}
+			\mc{O}(d k^2 H \times W)
+		\end{align}
+	\end{proof}
+	\subsubsection{Parallelism [0pt]}
+	\begin{proof}[Solution]
+		Within each layer, the computation of $\veh^{(i, j)}$ are interdependent, and cannot be run in parallel. However, the matrix vector products can be executed in parallel. Therefore, for the entire model with $d$ layers, the number of sequential operations requires is
+		\begin{align}
+			\mc{O}(d H \times W)
+		\end{align}
+	\end{proof}
+	\subsubsection{Discussion [1pt]}
+	\begin{proof}[Solution] \quad \\
+		PixelCNN:
+		\begin{enumerate}[(i)]
+			\item Pro (1): Better parallelization potentials since all operations within one layer can be run in parallel.
+			\item Con (1): Pixel CNN has small context window, for $k=3$, the model is only looking at 4 other pixels.
+		\end{enumerate}
+		MDRNN:
+		\begin{enumerate}[(i)]
+			\item Pro (1): MDRNN has a larger context window, each of $\veh^{(i, j)}$ takes information from both the current pixel and previous hidden neurones, $\veh^{(i-1, j)}$ and $\veh^{(i, j-1)}$. These two previous hidden neurones contain information from previous pixels as well. By induction, $\veh^{(i, j)}$ is looking at information from all previous pixels. Effectively, the context window is infinitely large.
+			\item Pro (2): MDRNN has lower memory cost, after computing $\veh^{(i, j)}$, the activation of previous hidden units, $\veh^{(i-1, j)}$ and $\veh^{(i, j-1)}$ can be discarded from memory, this leads to better memory efficiency.
+			\item Con (1): MDRNN has worse parallelization potential since operations within each layer cannot be fully run in parallel.
+		\end{enumerate}
+	\end{proof}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

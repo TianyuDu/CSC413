@@ -1,0 +1,23 @@
+\BOOKMARK [1][-]{section.1}{Architectural Choice v.s. Vanishing / Exploding Gradients}{}% 1
+\BOOKMARK [2][-]{subsection.1.1}{Warmup: A Single Neuron RNN}{section.1}% 2
+\BOOKMARK [3][-]{subsubsection.1.1.1}{Effect of Activation - Sigmoid [1pt]}{subsection.1.1}% 3
+\BOOKMARK [3][-]{subsubsection.1.1.2}{Effect of Activation - Tanh [1pt]}{subsection.1.1}% 4
+\BOOKMARK [2][-]{subsection.1.2}{Matrices and RNN}{section.1}% 5
+\BOOKMARK [3][-]{subsubsection.1.2.1}{Gradient through RNN [1pt]}{subsection.1.2}% 6
+\BOOKMARK [3][-]{subsubsection.1.2.2}{Gradient through Residual / GRU / LSTM Layers [0pt]}{subsection.1.2}% 7
+\BOOKMARK [3][-]{subsubsection.1.2.3}{Benefits of Residual Connections [1pt]}{subsection.1.2}% 8
+\BOOKMARK [2][-]{subsection.1.3}{Batch Normalization}{section.1}% 9
+\BOOKMARK [3][-]{subsubsection.1.3.1}{Gradients of Batch Norm [0pt]}{subsection.1.3}% 10
+\BOOKMARK [3][-]{subsubsection.1.3.2}{Batch Normalization and ResNet [1pt]}{subsection.1.3}% 11
+\BOOKMARK [1][-]{section.2}{Auto-regressive Models}{}% 12
+\BOOKMARK [2][-]{subsection.2.1}{WaveNet}{section.2}% 13
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Connections [0pt]}{subsection.2.1}% 14
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Parallelism [0pt]}{subsection.2.1}% 15
+\BOOKMARK [3][-]{subsubsection.2.1.3}{Discussion [0pt]}{subsection.2.1}% 16
+\BOOKMARK [2][-]{subsection.2.2}{PixelCNN}{section.2}% 17
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Connections [1pt]}{subsection.2.2}% 18
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Parallelism [1pt]}{subsection.2.2}% 19
+\BOOKMARK [2][-]{subsection.2.3}{Multidimensional RNN}{section.2}% 20
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Connections [1pt]}{subsection.2.3}% 21
+\BOOKMARK [3][-]{subsubsection.2.3.2}{Parallelism [0pt]}{subsection.2.3}% 22
+\BOOKMARK [3][-]{subsubsection.2.3.3}{Discussion [1pt]}{subsection.2.3}% 23
