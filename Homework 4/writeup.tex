@@ -144,8 +144,10 @@
 			&\leq \prod_{t=1}^{n-1} \sigma_{max}\left(\pd{x_{t+1}}{x_t}\right) \\
 			&=  \left(\frac{1}{2}\right)^{n-1}
 		\end{align}
-		
-		\todo{Still have to show $0 \leq \sigma_{\max }\left(\frac{\partial x_{n}}{\partial x_{1}}\right)$}
+		Also, since singular values are non-negative,
+		\begin{align}
+			0 \leq \sigma_{\max }\left(\frac{\partial x_{n}}{\partial x_{1}}\right) \leq\left(\frac{1}{2}\right)^{n}
+		\end{align}
 	\end{proof}
 	\subsubsection{Gradient through Residual / GRU / LSTM Layers [0pt]}
 	\begin{proof}[Solution]
