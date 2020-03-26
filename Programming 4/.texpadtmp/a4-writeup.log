@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 MAR 2020 15:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  26 MAR 2020 18:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -960,58 +960,185 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 68.
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2019/02/27 1.8b listings language file
-) [1
+)
+<./samples_cyclegan_Q1/sample-000200-X-Y.png, id=83, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q1/sample-000200-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q1/sample-000200-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q1/sample-000200-X-Y.png  used on input line 86.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q1/sample-000200-Y-X.png, id=84, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q1/sample-000200-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q1/sample-000200-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q1/sample-000200-Y-X.png  used on input line 87.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q1/sample-005000-X-Y.png, id=85, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q1/sample-005000-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q1/sample-005000-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q1/sample-005000-X-Y.png  used on input line 92.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q1/sample-005000-Y-X.png, id=86, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q1/sample-005000-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q1/sample-005000-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q1/sample-005000-Y-X.png  used on input line 93.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+ [1
 
-{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
-<./tsne.png, id=230, 665.48625pt x 577.15625pt>
+{/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./samples_cyclegan_Q1/sample-000200-X-Y.png (PNG copy)> <./samples_cyclegan_Q1/sample-000200-Y-X.png (PNG copy)>]
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 98.
+<./samples_cyclegan_Q2_seed42/sample-000200-X-Y.png, id=106, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q2_seed42/sample-000200-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q2_seed42/sample-000200-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q2_seed42/sample-000200-X-Y.png  used on input line 102.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q2_seed42/sample-000200-Y-X.png, id=107, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q2_seed42/sample-000200-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q2_seed42/sample-000200-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q2_seed42/sample-000200-Y-X.png  used on input line 103.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q2_seed42/sample-005000-X-Y.png, id=108, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q2_seed42/sample-005000-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q2_seed42/sample-005000-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q2_seed42/sample-005000-X-Y.png  used on input line 108.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q2_seed42/sample-005000-Y-X.png, id=109, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q2_seed42/sample-005000-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q2_seed42/sample-005000-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q2_seed42/sample-005000-Y-X.png  used on input line 109.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0/sample-000200-X-Y.png, id=110, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0/sample-000200-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0/sample-000200-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0/sample-000200-X-Y.png  used on input line 119.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0/sample-000200-Y-X.png, id=111, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0/sample-000200-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0/sample-000200-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0/sample-000200-Y-X.png  used on input line 120.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0/sample-005000-X-Y.png, id=112, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0/sample-005000-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0/sample-005000-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0/sample-005000-X-Y.png  used on input line 125.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0/sample-005000-Y-X.png, id=113, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0/sample-005000-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0/sample-005000-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0/sample-005000-Y-X.png  used on input line 126.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+ [2 <./samples_cyclegan_Q1/sample-005000-X-Y.png (PNG copy)> <./samples_cyclegan_Q1/sample-005000-Y-X.png (PNG copy)> <./samples_cyclegan_Q2_seed42/sample-000200-X-Y.png (PNG copy)> <./samples_cyclegan_Q2_seed42/sample-000200-Y-X.png (PNG copy)> <./samples_cyclegan_Q2_seed42/sample-005000-X-Y.png (PNG copy)> <./samples_cyclegan_Q2_seed42/sample-005000-Y-X.png (PNG copy)>]
+<./samples_cyclegan_Q3_lambda0_03/sample-000200-X-Y.png, id=127, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_03/sample-000200-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_03/sample-000200-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_03/sample-000200-X-Y.png  used on input line 133.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_03/sample-000200-Y-X.png, id=128, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_03/sample-000200-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_03/sample-000200-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_03/sample-000200-Y-X.png  used on input line 134.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_03/sample-005000-X-Y.png, id=129, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_03/sample-005000-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_03/sample-005000-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_03/sample-005000-X-Y.png  used on input line 139.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_03/sample-005000-Y-X.png, id=130, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_03/sample-005000-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_03/sample-005000-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_03/sample-005000-Y-X.png  used on input line 140.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_3/sample-000200-X-Y.png, id=131, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_3/sample-000200-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_3/sample-000200-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_3/sample-000200-X-Y.png  used on input line 147.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_3/sample-000200-Y-X.png, id=132, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_3/sample-000200-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_3/sample-000200-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_3/sample-000200-Y-X.png  used on input line 148.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_3/sample-005000-X-Y.png, id=133, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_3/sample-005000-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_3/sample-005000-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_3/sample-005000-X-Y.png  used on input line 153.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda0_3/sample-005000-Y-X.png, id=134, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda0_3/sample-005000-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda0_3/sample-005000-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda0_3/sample-005000-Y-X.png  used on input line 154.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+ [3 <./samples_cyclegan_Q3_lambda0/sample-000200-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda0/sample-000200-Y-X.png (PNG copy)> <./samples_cyclegan_Q3_lambda0/sample-005000-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda0/sample-005000-Y-X.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_03/sample-000200-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_03/sample-000200-Y-X.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_03/sample-005000-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_03/sample-005000-Y-X.png (PNG copy)>]
+<./samples_cyclegan_Q3_lambda1/sample-000200-X-Y.png, id=145, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda1/sample-000200-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda1/sample-000200-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda1/sample-000200-X-Y.png  used on input line 161.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda1/sample-000200-Y-X.png, id=146, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda1/sample-000200-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda1/sample-000200-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda1/sample-000200-Y-X.png  used on input line 162.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda1/sample-005000-X-Y.png, id=147, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda1/sample-005000-X-Y.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda1/sample-005000-X-Y.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda1/sample-005000-X-Y.png  used on input line 167.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+<./samples_cyclegan_Q3_lambda1/sample-005000-Y-X.png, id=148, 321.2pt x 160.6pt>
+File: ./samples_cyclegan_Q3_lambda1/sample-005000-Y-X.png Graphic file (type png)
+<use ./samples_cyclegan_Q3_lambda1/sample-005000-Y-X.png>
+Package pdftex.def Info: ./samples_cyclegan_Q3_lambda1/sample-005000-Y-X.png  used on input line 168.
+(pdftex.def)             Requested size: 211.38832pt x 105.69734pt.
+ [4 <./samples_cyclegan_Q3_lambda0_3/sample-000200-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_3/sample-000200-Y-X.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_3/sample-005000-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda0_3/sample-005000-Y-X.png (PNG copy)> <./samples_cyclegan_Q3_lambda1/sample-000200-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda1/sample-000200-Y-X.png (PNG copy)> <./samples_cyclegan_Q3_lambda1/sample-005000-X-Y.png (PNG copy)> <./samples_cyclegan_Q3_lambda1/sample-005000-Y-X.png (PNG copy)>]
+<./tsne.png, id=159, 665.48625pt x 577.15625pt>
 File: ./tsne.png Graphic file (type png)
 <use ./tsne.png>
-Package pdftex.def Info: ./tsne.png  used on input line 266.
+Package pdftex.def Info: ./tsne.png  used on input line 188.
 (pdftex.def)             Requested size: 328.82707pt x 285.18683pt.
- [4] [5 <./tsne.png>]
-<./foldingchair_vendingmachine.png, id=294, 1134.2375pt x 295.1025pt>
+ [5 <./tsne.png>]
+<./foldingchair_vendingmachine.png, id=174, 1134.2375pt x 295.1025pt>
 File: ./foldingchair_vendingmachine.png Graphic file (type png)
 <use ./foldingchair_vendingmachine.png>
-Package pdftex.def Info: ./foldingchair_vendingmachine.png  used on input line 326.
+Package pdftex.def Info: ./foldingchair_vendingmachine.png  used on input line 248.
 (pdftex.def)             Requested size: 328.82707pt x 85.5505pt.
-<./hotpot_bookshop.png, id=295, 1134.2375pt x 295.1025pt>
+<./hotpot_bookshop.png, id=175, 1134.2375pt x 295.1025pt>
 File: ./hotpot_bookshop.png Graphic file (type png)
 <use ./hotpot_bookshop.png>
-Package pdftex.def Info: ./hotpot_bookshop.png  used on input line 333.
+Package pdftex.def Info: ./hotpot_bookshop.png  used on input line 255.
 (pdftex.def)             Requested size: 328.82707pt x 85.5505pt.
-<./gokart_cheeseburger.png, id=296, 1134.2375pt x 295.1025pt>
+<./gokart_cheeseburger.png, id=176, 1134.2375pt x 295.1025pt>
 File: ./gokart_cheeseburger.png Graphic file (type png)
 <use ./gokart_cheeseburger.png>
-Package pdftex.def Info: ./gokart_cheeseburger.png  used on input line 340.
+Package pdftex.def Info: ./gokart_cheeseburger.png  used on input line 262.
 (pdftex.def)             Requested size: 328.82707pt x 85.5505pt.
-<./ox_chessburger.png, id=297, 1134.2375pt x 295.1025pt>
+ [6 <./foldingchair_vendingmachine.png> <./hotpot_bookshop.png>]
+<./ox_chessburger.png, id=206, 1134.2375pt x 295.1025pt>
 File: ./ox_chessburger.png Graphic file (type png)
 <use ./ox_chessburger.png>
-Package pdftex.def Info: ./ox_chessburger.png  used on input line 347.
+Package pdftex.def Info: ./ox_chessburger.png  used on input line 269.
 (pdftex.def)             Requested size: 328.82707pt x 85.5505pt.
- [6 <./foldingchair_vendingmachine.png> <./hotpot_bookshop.png> <./gokart_cheeseburger.png> <./ox_chessburger.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 349.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 349.
- (/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 4/.texpadtmp/a4-writeup.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 349.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 349.
+ [7 <./gokart_cheeseburger.png> <./ox_chessburger.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 271.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 271.
+
+(/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 4/.texpadtmp/a4-writeup.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 271.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 271.
 Package rerunfilecheck Info: File `a4-writeup.out' has not changed.
 (rerunfilecheck)             Checksum: <no file>.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 349.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 271.
  ) 
 Here is how much of TeX's memory you used:
- 33640 strings out of 492616
- 623790 string characters out of 6129482
- 1253771 words of memory out of 5000000
- 36858 multiletter control sequences out of 15000+600000
+ 33612 strings out of 492616
+ 628592 string characters out of 6129482
+ 1023014 words of memory out of 5000000
+ 36963 multiletter control sequences out of 15000+600000
  543148 words of font info for 68 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,8n,92p,992b,2072s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 69i,9n,92p,992b,1329s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb>
-Output written on "/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 4/.texpadtmp/a4-writeup.pdf" (6 pages, 3534946 bytes).
+Output written on "/Users/tianyudu/Documents/UToronto/Course/CSC413/Assignments/Programming 4/.texpadtmp/a4-writeup.pdf" (7 pages, 5715883 bytes).
 PDF statistics:
- 405 PDF objects out of 1000 (max. 8388607)
- 355 compressed objects within 4 object streams
- 218 named destinations out of 1000 (max. 500000)
- 198 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 275 PDF objects out of 1000 (max. 8388607)
+ 201 compressed objects within 3 object streams
+ 75 named destinations out of 1000 (max. 500000)
+ 358 words of extra memory for PDF output out of 10000 (max. 10000000)
 
