@@ -171,7 +171,7 @@ def gan_training_loop(dataloader, test_dataloader, opts):
 		\label{Q1:wo}
 	\end{figure}
 
-	\paragraph{Experiment 2} Two figures below are generated samples from a GAN with gradient penalty after being trained for 1,000 iterations and 20,000 iterations. Compared samples in figure \ref{Q1:wo}, these samples are now with even clearer boundaries, and colours are more vivid.
+	\paragraph{Experiment 2} Two figures below are generated samples from a GAN with gradient penalty after being trained for 1,000 iterations and 20,000 iterations. Compared samples in figure \ref{Q1:wo}, these samples are now with even clearer boundaries, and colours are more vivid. The gradient penalty term added prevent gradient exploding while training the discriminator, and helps stabilize the training. So that adding gradient penalty improve generalizability of the model.  
 	\begin{figure}[H]
 		\centering
 		\caption{1,000 iters (left) and 20,000 iters (right)}
