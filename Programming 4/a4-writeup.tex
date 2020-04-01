@@ -67,7 +67,7 @@
 	\maketitle
 	\section{Part 1: Deep Convolutional GAN (DCGAN) [4pt]}
 	\subsection{Generator}
-	\textbf{Implementation} Note that I reshaped the input in \texttt{forward} method as well.
+	\textbf{Implementation} %Note that I reshaped the input in \texttt{forward} method as well.
 	\begin{lstlisting}[language=python]
 class DCGenerator(nn.Module):
     def __init__(self, noise_size, conv_dim, spectral_norm=False):
@@ -75,35 +75,10 @@ class DCGenerator(nn.Module):
 
         self.conv_dim = conv_dim # 32
 
-        ###########################################
-        ##   FILL THIS IN: CREATE ARCHITECTURE   ##
-        ###########################################
-        self.linear_bn = nn.Sequential(
-            nn.Linear(noise_size, self.conv_dim*4*4*4),
-            nn.BatchNorm1d(self.conv_dim*4*4*4)
-        ) # (100, 2048)
+        self.linear_bn = upconv(100, 128, kernel_size=4, stride=3, padding=2, batch_norm=True)
         self.upconv1 = upconv(self.conv_dim*4, self.conv_dim*2, 5, stride=2, padding=2, batch_norm=True, spectral_norm=spectral_norm)
         self.upconv2 = upconv(self.conv_dim*2, self.conv_dim, 5, stride=2, padding=2, batch_norm=True, spectral_norm=spectral_norm)
         self.upconv3 = upconv(self.conv_dim, 3, 5, stride=2, padding=2, batch_norm=False, spectral_norm=spectral_norm)
-
-    def forward(self, z):
-        """
-        ...
-        """
-        batch_size = z.size(0)
-        ###########################################
-        ##   		RESHAPED HERE AS WELL	     ##
-        ###########################################
-        z = z.view(batch_size, -1)
-        out = F.relu(self.linear_bn(z)).view(-1, self.conv_dim*4, 4, 4)    # BS x 128 x 4 x 4
-        out = F.relu(self.upconv1(out))  # BS x 64 x 8 x 8
-        out = F.relu(self.upconv2(out))  # BS x 32 x 16 x 16
-        out = F.tanh(self.upconv3(out))  # BS x 3 x 32 x 32
-        
-        out_size = out.size()
-        if out_size != torch.Size([batch_size, 3, 32, 32]):
-            raise ValueError("expect {} x 3 x 32 x 32, but get {}".format(batch_size, out_size))
-        return out
 	\end{lstlisting}
 
 	\subsection{Training Loop}
@@ -171,7 +146,9 @@ def gan_training_loop(dataloader, test_dataloader, opts):
 		\label{Q1:wo}
 	\end{figure}
 
-	\paragraph{Experiment 2} Two figures below are generated samples from a GAN with gradient penalty after being trained for 1,000 iterations and 20,000 iterations. Compared samples in figure \ref{Q1:wo}, these samples are now with even clearer boundaries, and colours are more vivid. The gradient penalty term added prevent gradient exploding while training the discriminator, and helps stabilize the training. So that adding gradient penalty improve generalizability of the model.  
+	\paragraph{Experiment 2} 
+	\ul{Note: this result is generated using the original starter code.}
+	Two figures below are generated samples from a GAN with gradient penalty after being trained for 1,000 iterations and 20,000 iterations. Compared samples in figure \ref{Q1:wo}, these samples are now with even clearer boundaries, and colours are more vivid. The gradient penalty term added prevent gradient exploding while training the discriminator, and helps stabilize the training. So that adding gradient penalty improve generalizability of the model.  
 	\begin{figure}[H]
 		\centering
 		\caption{1,000 iters (left) and 20,000 iters (right)}
@@ -198,7 +175,7 @@ def gan_training_loop(dataloader, test_dataloader, opts):
 
 	\subsubsection{Question 2}
 	\paragraph{Answer} Changed the random seed to \texttt{SEED = 42} (originally 4). With the new random seed, some images in the final $Y \to X$ translations are more clear and with less background noise. Such as boot (row 5, item 4), mountain (row 3, item 5), and donut (row 2, item 5).
-	\todo{Explain differences}
+	Since the weights of generator and discriminator are randomly initialized, therefore, the results are different using another random seed.
 	\begin{figure}[H]
 		\centering
 		\caption{Iteration 200, left: $X \to Y$, right: $Y \to X$}
@@ -213,8 +190,11 @@ def gan_training_loop(dataloader, test_dataloader, opts):
 	\end{figure}
 
 	\subsubsection{Question 3}
-	\todo{Add comment}
-	\paragraph{Comments} I tried three different level of lambda values for the cycle consistency, translation results are attached below:
+	\paragraph{Comments} I tried three different level of lambda values for the cycle consistency, translation results are attached below. It turns out that using a larger value of \texttt{lambda\_cycle} makes the reconstructed figure more similar to the original figure. Moreover, with a larger value, the colour reconstruction is more accurate and the background noises are reduced.
+	
+	Without enforcing cycle consistency, given a set of input images, the network can generate any random permutation of input images in the target domain (i.e., another style of emoji). Any of these permutation generates the same loss.
+	Therefore, only using the loss without enforcing cycle consistency cannot ensure that the learned function can map an individual input to the corresponding desired output, and the output images tend to be blurred and have low qualities.
+	Adding cycle consistency guarantees efficient training and high quality of output.
 	\paragraph{Configuration 1} \texttt{lambda\_cycle = 0}, all other hyper-parameters are default, including the random seed.
 	\begin{figure}[H]
 		\centering
@@ -274,54 +254,72 @@ def gan_training_loop(dataloader, test_dataloader, opts):
 	\section{Part 3: BigGAN [2pt]}
 	\subsection{BigGAN Experiments}
 	\subsubsection{Question 1}
-	\paragraph{Method} Given two classes with embeddings $\mathbf{r}_{class1}$ and $\mathbf{r}_{class2}$ in T-SNE space, to decide whether they are good candidate for linear interpolation, I looked at convex combinations of two classes' embeddings in figure \ref{tsne}.
-	Let $\Phi$ denote the set of convex combinations:
-	\begin{align}
-		\Phi = \{\alpha \mathbf{r}_{c l a s s 1}+(1-\alpha) \mathbf{r}_{c l a s s 2}: \alpha \in[0,1]\}
-	\end{align}
-	Linear interpolations between these two classes are basically taking points in set $\Phi$ and visualizing them.
-	If there are many \ul{other classes' embeddings} on or near the set $\Phi$, points in $\Phi$ are likely to be associated with meaningful visualizations.
-	Therefore, linear interpolations between these two classes are likely to generate meaningful results.
-	Otherwise, these two classes are not good candidates for linear interpolation.
+	\paragraph{Method} Given two classes with embeddings $\mathbf{r}_{class1}$ and $\mathbf{r}_{class2}$ in T-SNE plot, to decide whether they are good candidate for linear interpolation by checking i) whether they are close in the T-SNE plot (so these two classes are similar) and ii) whether they are in the same cluster in T-SNE plot.
+
 	\begin{figure}[H]
 		\caption{T-SNE Plot}
 		\centering
 		\label{tsne}
 		\medbreak
-		\includegraphics[width=0.7\linewidth]{./tsne.png}
+		\includegraphics[width=0.7\linewidth]{./tsne2.png}
 	\end{figure}
-	\paragraph{Good Candidate Match 1} There are many classes near the segment between \texttt{folding chair} and \texttt{vending machine} (right-up corner), so linear interpolation should be meaningful.
-%	\begin{figure}[H]
-%		\caption{Folding Chair and Vending Machine}
-%		\centering
-%		\medbreak
-%		\includegraphics[width=0.7\linewidth]{./foldingchair_vendingmachine.png}
-%	\end{figure}
 	
-	\paragraph{Good Candidate Match 2} Similarly, there are many classes on the line between \texttt{bookshop} and \texttt{hot pot} (right-up corner), so they are ideal for linear interpolation.
-
-%	\begin{figure}[H]
-%		\caption{Hot Pot and Bookshop}
-%		\centering
-%		\medbreak
-%		\includegraphics[width=0.7\linewidth]{./hotpot_bookshop.png}
-%	\end{figure}
+	\paragraph{Good Matches} \texttt{Chihuahua} and \texttt{king penguin} are both animals so they are closed to each other in the T-SNE plot. Moreover, they are in the same cluster (right bottom). Similarly, \texttt{jay} and \texttt{sloth bear} are good matches as well (left bottom).
 	
-	\paragraph{Bad Candidate Match 1} There are no other classes' embeddings are in between embeddings of \texttt{Go-Kart} and \texttt{Chessburger} in T-SNE plot, so they are not good match.
+	\paragraph{Bad Matches} \texttt{horse cart} and \texttt{panpipe} are not similar and they are far away from each other in the T-SNE plot, so they are not good matches. Similarly, \texttt{hand-held computer} and \texttt{bannister} are not good matches neither.
+% ==== Original Solution ====
+	
+%	\paragraph{Method} I determine whether a pair of classes is a good candidate for interpolation using the following three criterions: \\
+%	\textbf{Criterion 1} Given two classes with embeddings $\mathbf{r}_{class1}$ and $\mathbf{r}_{class2}$ in T-SNE plot, they are good matches if they are close to each other. \\
+%	\textbf{Criterion 2} Two classes are a pair of good matches if they both belong to one cluster in the T-SNE plot. \\
+%	\textbf{Criterion 3} Given two classes with embeddings $\mathbf{r}_{class1}$ and $\mathbf{r}_{class2}$ in T-SNE plot, to decide whether they are good candidate for linear interpolation, I looked at convex combinations of two classes' embeddings in figure \ref{tsne}.
+%	Let $\Phi$ denote the set of convex combinations:
+%	\begin{align}
+%		\Phi = \{\alpha \mathbf{r}_{c l a s s 1}+(1-\alpha) \mathbf{r}_{c l a s s 2}: \alpha \in[0,1]\}
+%	\end{align}
+%	Linear interpolations between these two classes are basically taking points in set $\Phi$ and visualizing them.
+%	If there are many \ul{other classes' embeddings} on or near the set $\Phi$, points in $\Phi$ are likely to be associated with meaningful visualizations.
+%	Therefore, linear interpolations between these two classes are likely to generate meaningful results.
+%	Otherwise, these two classes are not good candidates for linear interpolation.
 %	\begin{figure}[H]
-%		\caption{Go-Kart and Chessburger}
+%		\caption{T-SNE Plot}
 %		\centering
+%		\label{tsne}
 %		\medbreak
-%		\includegraphics[width=0.7\linewidth]{./gokart_cheeseburger.png}
+%		\includegraphics[width=0.7\linewidth]{./tsne.png}
 %	\end{figure}
-
-	\paragraph{Bad Candidate Pair 2} Similarly, \texttt{Ox} and \texttt{Chessburger} are not good match.
-%	\begin{figure}[H]
-%		\caption{Ox and Chessburger}
-%		\centering
-%		\medbreak
-%		\includegraphics[width=0.7\linewidth]{./ox_chessburger.png}
-%	\end{figure}
+%	\paragraph{Good Candidate Match 1} \texttt{folding chair} and \texttt{vending machine} are relatively near in the T-SNE plot, moreover, there are many classes near the segment between \texttt{folding chair} and \texttt{vending machine} (right-up corner), so linear interpolation should be meaningful.
+%%	\begin{figure}[H]
+%%		\caption{Folding Chair and Vending Machine}
+%%		\centering
+%%		\medbreak
+%%		\includegraphics[width=0.7\linewidth]{./foldingchair_vendingmachine.png}
+%%	\end{figure}
+%	
+%	\paragraph{Good Candidate Match 2} Similarly, \texttt{bookshop} and \texttt{hot pot} are in the same cluster, they are not very far away, and there are many classes on the line between \texttt{bookshop} and \texttt{hot pot} (right-up corner), so they are ideal for linear interpolation.
+%
+%%	\begin{figure}[H]
+%%		\caption{Hot Pot and Bookshop}
+%%		\centering
+%%		\medbreak
+%%		\includegraphics[width=0.7\linewidth]{./hotpot_bookshop.png}
+%%	\end{figure}
+%	
+%	\paragraph{Bad Candidate Match 1} There are no other classes' embeddings are in between embeddings of \texttt{Go-Kart} and \texttt{Chessburger} in T-SNE plot, further, they far relatively far from each other, they are not in the same cluster neither. So they are not good match.
+%%	\begin{figure}[H]
+%%		\caption{Go-Kart and Chessburger}
+%%		\centering
+%%		\medbreak
+%%		\includegraphics[width=0.7\linewidth]{./gokart_cheeseburger.png}
+%%	\end{figure}
+%
+%	\paragraph{Bad Candidate Pair 2} Similarly, \texttt{Ox} and \texttt{Chessburger} are not good match.
+%%	\begin{figure}[H]
+%%		\caption{Ox and Chessburger}
+%%		\centering
+%%		\medbreak
+%%		\includegraphics[width=0.7\linewidth]{./ox_chessburger.png}
+%%	\end{figure}
 
 	\subsubsection{Question 2}
 	\textbf{Implementation}
@@ -345,31 +343,31 @@ def generate_linear_interpolate_sample(G, batch_size, class_label1, class_label2
 	\end{lstlisting}
 	\textbf{Linear Interpolation Results}
 	\begin{figure}[H]
-		\caption{Good Match 1: Folding Chair and Vending Machine}
+		\caption{Good Matches: \texttt{Chihuahua} and \texttt{king penguin}}
 		\centering
 		\medbreak
-		\includegraphics[width=0.7\linewidth]{./foldingchair_vendingmachine.png}
+		\includegraphics[width=0.7\linewidth]{./good1.png}
 	\end{figure}
 
 	\begin{figure}[H]
-		\caption{Good Match 2 Hot Pot and Bookshop}
+		\caption{Good Matches: \texttt{jay} and \texttt{sloth bear}}
 		\centering
 		\medbreak
-		\includegraphics[width=0.7\linewidth]{./hotpot_bookshop.png}
+		\includegraphics[width=0.7\linewidth]{./good2.png}
 	\end{figure}
 	
 	\begin{figure}[H]
-		\caption{Bad Match 1 Go-Kart and Chessburger}
+		\caption{Bad Matches: \texttt{horse cart} and \texttt{panpipe}}
 		\centering
 		\medbreak
-		\includegraphics[width=0.7\linewidth]{./gokart_cheeseburger.png}
+		\includegraphics[width=0.7\linewidth]{./bad1.png}
 	\end{figure}
 
 	\begin{figure}[H]
-		\caption{Bad Match 2 Ox and Chessburger}
+		\caption{Bad Matches: \texttt{hand-held computer} and \texttt{bannister}}
 		\centering
 		\medbreak
-		\includegraphics[width=0.7\linewidth]{./ox_chessburger.png}
+		\includegraphics[width=0.7\linewidth]{./bad2.png}
 	\end{figure}
 \end{document}
 
